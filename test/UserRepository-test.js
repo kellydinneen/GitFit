@@ -1,7 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const UserRepository = require('..src/UserRepository.js');
+const UserRepository = require('../src/UserRepository.js');
 
 
 describe('UserRepository', function() {
@@ -56,26 +56,26 @@ describe('UserRepository', function() {
     userRepo = new UserRepository(userData);
   });
 
-  it.skip('should be a function', function() {
+  it('should be a function', function() {
     expect(UserRepository).to.be.a('function');
   });
 
-  it.skip('should instantiate UserRepository', function() {
+  it('should instantiate UserRepository', function() {
     expect(userRepo).to.be.an.instanceOf(UserRepository);
   });
 
   it.skip('should hold collection of Users', function() {
-    expect(userRepo.users[0]).to.be.an.instanceOf(User));
-    expect(userRepo.users[1]).to.be.an.instanceOf(User));
-    expect(userRepo.users[2]).to.be.an.instanceOf(User));
+    expect(userRepo.users[0]).to.be.an.instanceOf(User);
+    expect(userRepo.users[1]).to.be.an.instanceOf(User);
+    expect(userRepo.users[2]).to.be.an.instanceOf(User);
   });
 
-  it.skip('users should have names', function() {
+  it('users should have names', function() {
     expect(userRepo.users[0]).to.have.property('name');
     expect(userRepo.users[0].name).to.equal(userData[0].name);
   });
 
-  it.skip('should return a users information', function() {
+  it('should return a users information', function() {
     const userInfo = userRepo.getUserInfo(1);
     expect(userInfo.name).to.equal(userData[0].name);
     expect(userInfo.address).to.equal(userData[0].address);
@@ -85,12 +85,12 @@ describe('UserRepository', function() {
     expect(userInfo.strideLength).to.equal(userData[0].strideLength);
   });
 
-  it.skip('should only return a users information if the user is in the repository', function() {
+  it('should only return a users information if the user is in the repository', function() {
     const userInfo = userRepo.getUserInfo(4);
     expect(userInfo).to.be.undefined;
   });
 
-  it.skip('should return average step goal of all users', function() {
+  it('should return average step goal of all users', function() {
     const averageStepGoal = userRepo.calculateAverageStepGoal();
     expect(averageStepGoal).to.equal(20000 / 3);
   });
