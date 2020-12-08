@@ -1,7 +1,9 @@
 const chai = require('chai');
 const expect = chai.expect;
 
+
 const UserRepository = require('../src/UserRepository.js');
+const User = require('../src/User.js');
 
 
 describe('UserRepository', function() {
@@ -64,7 +66,7 @@ describe('UserRepository', function() {
     expect(userRepo).to.be.an.instanceOf(UserRepository);
   });
 
-  it.skip('should hold collection of Users', function() {
+  it('should hold collection of Users', function() {
     expect(userRepo.users[0]).to.be.an.instanceOf(User);
     expect(userRepo.users[1]).to.be.an.instanceOf(User);
     expect(userRepo.users[2]).to.be.an.instanceOf(User);
