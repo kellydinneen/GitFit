@@ -1,9 +1,14 @@
-// const user = require('User.js');
+const user = require('User.js');
+const User = require('./src/User.js');
 
 class UserRepository {
 
   constructor(userData) {
-    this.users = userData;
+    // this.users = userData;
+    this.users = userData.map(user => { 
+      const person = new User(user);
+      return person;
+    });
   }
 
   getUserInfo(userID) {
