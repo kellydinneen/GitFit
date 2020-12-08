@@ -1,9 +1,9 @@
-const User = require('../src/User');
+// const User = require('../src/User');
 
 class UserRepository {
 
   constructor(userData) {
-    this.users = userData.map(user => { 
+    this.users = userData.map(user => {
       let person = new User(user);
       return person;
     });
@@ -24,4 +24,6 @@ class UserRepository {
 
 };
 
-module.exports = UserRepository;
+if (typeof module !== 'undefined') {
+  module.exports = UserRepository;
+};

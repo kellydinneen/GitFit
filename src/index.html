@@ -5,12 +5,59 @@
     <title>Activity Tracker</title>
   </head>
   <body>
-    <h1>Activity Tracker</h1>
-
+    <main>
+      <h1 class='site-title'>GitFit</h1>
+      <h2 id='date' class= 'date'>Date</h2>
+      <h2 id='greeting' class= 'greeting'>Hello, User<h2>
+      <article class= 'user-info'>
+        <h2 class= 'user-info_title'>Your Info</h2>
+        <p id='user-name' class='user-info_content'>name</p>
+        <p id='user-email' class='user-info_content'>email</p>
+        <p id='user-address' class='user-info_content'>address</p>
+        <p id='user-step-goal' class='user-info_content'>daily step goal</p>
+        <p id='user-friends-list' class='user-info_content'>friends list</p>
+      </article>
+      <article class= 'activity-data'>
+        <h2 class= 'activity-data_title'>Activity</h2>
+        <section class='activity-data_timeline'>
+        </section>
+        <section class='activity-data_activity-minutes'>
+        </section>
+        <section class='activity-data_steps'>
+        </section>
+        <section class='activity-data_distance'>
+        </section>
+        <section class='activity-data_rankings'>
+          <h3 class='activity-data_steps-ranking'></h3>
+          <h3 class='activity-data_activity-minutes-ranking'></h3>
+          <h3 class='activity-data_stairs-ranking'></h3>
+        </section>
+      </article>
+      <article class= 'hydration-data'>
+        <h2 class= 'hydration-data_title'>Hydration</h2>
+        <section class='hydration-data_today'>
+        </section>
+        <section class='hydration-data_last-week'>
+        </section>
+      </article>
+      <article class= 'sleep-data'>
+        <h2 class= 'sleep-data_title'>Sleep</h2>
+        <section class='sleep-data_last-night'>
+        </section>
+        <section class='sleep-data_last-week'>
+        </section>
+        <section class='sleep-data_averages'>
+          <h3 id='all-time-average-sleep-quality' class='sleep-data_average-quality'>All Time Average Quality</h3>
+          <h3 id='all-time-average-sleep-hours' class='sleep-data_average-hours'>All Time Average Hours</h3>
+        </section>
+      </article>
+    </main>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/hydration.js"></script>
     <script type="text/javascript" src="../data/sleep.js"></script>
     <script type="text/javascript" src="../data/activity.js"></script>
+    <script type="text/javascript" src="../src/User.js"></script>
+    <script type="text/javascript" src="../src/UserRepository.js"></script>
     <script type="text/javascript" src="./scripts.js"></script>
   </body>
 </html>
