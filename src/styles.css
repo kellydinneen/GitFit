@@ -1,0 +1,29 @@
+/* body section */
+
+body {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    margin-left: 3%;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.greeting {
+  align-self: center;
+}
+
+/* main section */
+main {
+  display: flex;
+  height: 100vh;
+  width: 96vw;
+  justify-content: space-between;
+  margin-right: 5%;
+}
