@@ -87,7 +87,6 @@ describe('Hydration', function() {
   });
 
   it.skip('should have hydration stats in order by date', function() {
-    //.keys() returns array of keys. This tests that elements of keys array include elements of this dates array, in order
     expect(userOneHydration.hydrationCalendar.keys()).to.have.ordered.members(['2019/06/15', '2019/06/16', '2019/06/17']);
     expect(userOneHydration.hydrationCalendar['2019/06/16']).to.equal(69));
     expect(userTwoHydration.hydrationCalendar['2019/06/17']).to.equal(96));
@@ -103,9 +102,9 @@ describe('Hydration', function() {
   });
 
   it.skip('can calculate how many fluid ounces a user consumed on each day for the last 7 days', function() {
-    expect(userOneHydration.calculateOuncesConsumedOnDate('2019/06/17')).to.equal(96);
-    expect(userOneHydration.calculateOuncesConsumedOnDate('2019/06/16')).to.equal(69);
+    expect(userOneHydration.calculateWeeklyConsumption('2019/06/21')).to.deep.equal([37, 69, 96, 100, 20, 31, 91]);
+    expect(userOneHydration.calculateWeeklyConsumption('2019/06/22')).to.deep.equal([69, 96, 100, 20, 31, 91, 55]);
+    expect(userTwoHydration.calculateWeeklyConsumption('2019/06/22')).to.be.undefined;
   });
-
-
+  
 });
