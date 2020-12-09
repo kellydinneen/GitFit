@@ -108,8 +108,8 @@ describe('Hydration', function() {
   });
 
   it.skip('can calculate how many fluid ounces a user consumed on each day for the last 7 days', function() {
-    expect(userOneHydration.calculateWeeklyConsumption('2019/06/21')).to.deep.equal([37, 69, 96, 100, 20, 31, 91]);
-    expect(userOneHydration.calculateWeeklyConsumption('2019/06/22')).to.deep.equal([69, 96, 100, 20, 31, 91, 55]);
+    expect(userOneHydration.calculateWeeklyConsumption('2019/06/21')).to.deep.equal([91, 31, 20, 100, 96, 69, 37]);
+    expect(userOneHydration.calculateWeeklyConsumption('2019/06/22')).to.deep.equal([55, 91, 31, 20, 100, 96, 69]);
     expect(userTwoHydration.calculateWeeklyConsumption('2019/06/22')).to.be.undefined;
   });
 
