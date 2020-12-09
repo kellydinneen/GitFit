@@ -24,6 +24,5 @@ main {
   display: flex;
   height: 100vh;
   width: 96vw;
-  justify-content: space-between;
   margin-right: 5%;
 }
