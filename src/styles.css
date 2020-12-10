@@ -73,7 +73,7 @@ p {
 
 .widget {
   background: #E7E5DF;
-  border: solid #D3D0CB;
+  border: thin #D3D0CB;
   height: 32%;
   width: 100%;
   border-radius: 7px;
