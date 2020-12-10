@@ -1,19 +1,12 @@
-class Sleep {
+class SleepLog {
   constructor(sleepData, userID) {
-    const userSleepData = sleepData.filter((data) => data.userID === userID);
-    const makeSleepCalendar = (sleepCalendar, dailyData) => {
-      sleepCalendar[dailyData.date] = {'hoursSlept': dailyData.hoursSlept,
-      'sleepQuality': dailyData.sleepQuality}
-      return sleepCalendar;
-    };
-    this.sleepCalendar = userSleepData.reduce(makeSleepCalendar, {});
+    this.userSleep = sleepData.filter((data) => data.userID === userID);
   }
 
   calculateAllTimeAverageSleep(variable) {
     let totalSleep = 0;
-    const dates = Object.keys(this.sleepCalendar);
-    dates.forEach((date) => {
-      totalSleep += this.sleepCalendar[date][variable];
+    userSleep.forEach((date) => {
+      totalSleep += this.userSleep[date][variable];
     });
     return totalSleep / dates.length;
   }
@@ -23,8 +16,8 @@ class Sleep {
   }
 
   getWeekOfSleepData(today, variable) {
-    const allDates = Object.keys(this.sleepCalendar);
-    const indexOfToday = allDates.findIndex((date) => date === today);
+    // const allDates = Object.keys(this.sleepCalendar);
+    // const indexOfToday = allDates.findIndex((date) => date === today);
     const lastWeek = allDates.slice(indexOfToday, indexOfToday + 7);
     const getWeeksData = (weekOfSleep, date) => {
       weekOfSleep[date] = this.sleepCalendar[date][variable];
@@ -32,5 +25,4 @@ class Sleep {
     }
     return lastWeek.reduce(getWeeksData, {});
   }
-
 }

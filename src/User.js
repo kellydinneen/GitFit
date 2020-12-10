@@ -13,6 +13,10 @@ class User {
     const names = this.name.split(' ');
     return names[0];
   }
+
+  getSleep() {
+    
+  }
 }
 
 module.exports = User;
