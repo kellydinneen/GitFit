@@ -1,9 +1,9 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const Hydration = require('../src/Hydration.js');
+const HydrationLog = require('../src/HydrationLog.js');
 
-describe('Hydration', function() {
+describe('HydrationLog', function() {
   let hydrationData;
 
   beforeEach(function() {
@@ -65,52 +65,52 @@ describe('Hydration', function() {
       }
     ];
 
-    userOneHydration = new Hydration(hydrationData, 1);
-    userTwoHydration = new Hydration(hydrationData, 2);
+    userOneHydrationLogLog = new HydrationLog(hydrationData, 1);
+    userTwoHydrationLogLog = new HydrationLog(hydrationData, 2);
   });
 
   it.skip('should be a function', function() {
-    expect(Hydration).to.be.a('function');
+    expect(HydrationLog).to.be.a('function');
   });
 
   it.skip('should instantiate Hydration', function() {
-    expect(userOneHydration).to.be.an.instanceOf(Hydration);
+    expect(userOneHydrationLogLog).to.be.an.instanceOf(HydrationLog);
   });
 
   it.skip('should only have hydration stats for one user', function() {
-    expect(userOneHydration.hydrationCalendar.length).to.equal(9);
-    expect(userTwoHydration.hydrationCalendar.length).to.equal(2);
+    expect(userOneHydrationLog.log.length).to.equal(9);
+    expect(userTwoHydrationLog.log.length).to.equal(2);
   });
 
   it.skip('should have users hydration stats for all recorded dates', function() {
-    expect(userOneHydration.hydrationCalendar).to.have.all.keys('2019/06/15', '2019/06/16', '2019/06/17', '2019/06/18', '2019/06/19', '2019/06/20', '2019/06/21', '2019/06/22', '2019/06/23');
+    expect(userOneHydrationLog.log).to.have.all.keys('2019/06/15', '2019/06/16', '2019/06/17', '2019/06/18', '2019/06/19', '2019/06/20', '2019/06/21', '2019/06/22', '2019/06/23');
   });
 
   it.skip('should have hydration stats in order by date', function() {
-    expect(userOneHydration.hydrationCalendar.keys()).to.have.ordered.members(['2019/06/15', '2019/06/16', '2019/06/17', '2019/06/18', '2019/06/19', '2019/06/20', '2019/06/21', '2019/06/22', '2019/06/23']);
-    expect(userOneHydration.hydrationCalendar['2019/06/16']).to.equal(69));
-    expect(userTwoHydration.hydrationCalendar['2019/06/17']).to.equal(96));
+    expect(userOneHydrationLog.log.keys()).to.have.ordered.members(['2019/06/15', '2019/06/16', '2019/06/17', '2019/06/18', '2019/06/19', '2019/06/20', '2019/06/21', '2019/06/22', '2019/06/23']);
+    expect(userOneHydrationLog.log['2019/06/16']).to.equal(69));
+    expect(userTwoHydrationLog.log['2019/06/17']).to.equal(96));
   });
 
   it.skip('can calculate the average fluid ounces consumed by user per day for all time', function() {
-    expect(userOneHydration.calculateAverageOuncesPerDay()).to.equal(573 / 9);
-    expect(userTwoHydration.calculateAverageOuncesPerDay()).to.equal(166 / 2);
+    expect(userOneHydrationLog.calculateAverageOuncesPerDay()).to.equal(573 / 9);
+    expect(userTwoHydrationLog.calculateAverageOuncesPerDay()).to.equal(166 / 2);
   });
 
   it.skip('can calculate how many fluid ounces a user consumed on a specific date', function() {
-    expect(userOneHydration.calculateOuncesConsumedOnDate('2019/06/17')).to.equal(96);
-    expect(userOneHydration.calculateOuncesConsumedOnDate('2019/06/20')).to.equal(31);
+    expect(userOneHydrationLog.calculateOuncesConsumedOnDate('2019/06/17')).to.equal(96);
+    expect(userOneHydrationLog.calculateOuncesConsumedOnDate('2019/06/20')).to.equal(31);
   });
 
   it.skip('will not calculate how many fluid ounces a user consumed on a specific date if user does not have hydration data for that date', function() {
-    expect(userTwoHydration.calculateOuncesConsumedOnDate('2019/06/19')).to.be.undefined;
-    expect(userOneHydration.calculateOuncesConsumedOnDate('2019/06/27')).to.be.undefined;
+    expect(userTwoHydrationLog.calculateOuncesConsumedOnDate('2019/06/19')).to.be.undefined;
+    expect(userOneHydrationLog.calculateOuncesConsumedOnDate('2019/06/27')).to.be.undefined;
   });
 
   it.skip('can calculate how many fluid ounces a user consumed on each day for the last 7 days', function() {
-    expect(userOneHydration.calculateWeeklyConsumption('2019/06/21')).to.deep.equal([91, 31, 20, 100, 96, 69, 37]);
-    expect(userOneHydration.calculateWeeklyConsumption('2019/06/22')).to.deep.equal([55, 91, 31, 20, 100, 96, 69]);
-    expect(userTwoHydration.calculateWeeklyConsumption('2019/06/22')).to.be.undefined;
+    expect(userOneHydrationLog.calculateWeeklyConsumption('2019/06/21')).to.deep.equal([91, 31, 20, 100, 96, 69, 37]);
+    expect(userOneHydrationLog.calculateWeeklyConsumption('2019/06/22')).to.deep.equal([55, 91, 31, 20, 100, 96, 69]);
+    expect(userTwoHydrationLog.calculateWeeklyConsumption('2019/06/22')).to.be.undefined;
   });
 
 });
