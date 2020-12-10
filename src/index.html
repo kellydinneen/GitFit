@@ -3,54 +3,84 @@
   <head>
     <meta charset="UTF-8">
     <title>Activity Tracker</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css">
   </head>
   <body>
+    <section class='header'>
+      <div class='bubble heading'>
+        <h1 class='site-title'>GitFit</h1>
+      </div>
+      <div class='bubble'>
+        <h2 id='greeting' class= 'greeting'>Hello, User</h2> 
+      </div> 
+      <div class='bubble'>
+        <h2 id='date' class= 'date'>Date</h2>
+      </div>
+    </section> 
     <main>
-      <h1 class='site-title'>GitFit</h1>
-      <h2 id='date' class= 'date'>Date</h2>
-      <h2 id='greeting' class= 'greeting'>Hello, User<h2>
-      <article class= 'user-info'>
-        <h2 class= 'user-info_title'>Your Info</h2>
-        <p id='user-name' class='user-info_content'>name</p>
-        <p id='user-email' class='user-info_content'>email</p>
-        <p id='user-address' class='user-info_content'>address</p>
-        <p id='user-step-goal-comparison' class='user-info_content'>daily step goal comparison</p>
-        <p id='user-friends-list' class='user-info_content'>friends list</p>
-      </article>
-      <article class= 'activity-data'>
-        <h2 class= 'activity-data_title'>Activity</h2>
-        <section class='activity-data_timeline'>
-        </section>
-        <section class='activity-data_activity-minutes'>
-        </section>
-        <section class='activity-data_steps'>
-        </section>
-        <section class='activity-data_distance'>
-        </section>
-        <section class='activity-data_rankings'>
-          <h3 class='activity-data_steps-ranking'></h3>
-          <h3 class='activity-data_activity-minutes-ranking'></h3>
-          <h3 class='activity-data_stairs-ranking'></h3>
-        </section>
-      </article>
-      <article class= 'hydration-data'>
-        <h2 class= 'hydration-data_title'>Hydration</h2>
-        <section class='hydration-data_today'>
-        </section>
-        <section class='hydration-data_last-week'>
-        </section>
-      </article>
-      <article class= 'sleep-data'>
-        <h2 class= 'sleep-data_title'>Sleep</h2>
-        <section class='sleep-data_last-night'>
-        </section>
-        <section class='sleep-data_last-week'>
-        </section>
-        <section class='sleep-data_averages'>
-          <h3 id='all-time-average-sleep-quality' class='sleep-data_average-quality'>All Time Average Quality</h3>
-          <h3 id='all-time-average-sleep-hours' class='sleep-data_average-hours'>All Time Average Hours</h3>
-        </section>
-      </article>
+<!-- User info widget -->
+      <div class='user-area bubble'>
+        <article class= 'user-info'>
+          <h2 class= 'user-info_title'>Your Info</h2>
+          <p id='user-name' class='user-info_content'>name</p>
+          <p id='user-email' class='user-info_content'>email</p>
+          <p id='user-address' class='user-info_content'>address</p>
+          <p id='user-step-goal' class='user-info_content'>daily step goal</p>
+          <p id='user-friends-list' class='user-info_content'>friends list</p>
+        </article>
+      </div> 
+      <div class='user-info-area'>
+<!-- Activity Widgets  -->
+        <div class='activity genre'>
+          <article class='activity-data-today widget'>
+            <h3>Activity Today</h3>
+            <section class='activity-data_activity-minutes'>
+            </section>
+            <section class='activity-data_steps'>
+            </section>
+            <section class='activity-data_distance'>
+            </section>
+          </article>
+          <article class='activity-data-week widget'>
+            <h3>Activity This Week</h3>
+          </article>
+          <article class='activity-data_rankings widget'>
+            <h3>Activity Rankings</h3>
+            <h3 class='activity-data_steps-ranking'></h3>
+            <h3 class='activity-data_activity-minutes-ranking'></h3>
+            <h3 class='activity-data_stairs-ranking'></h3>
+          </article>
+        </div>
+<!-- Hydration Widgets -->
+        <div class='hydration genre'>
+          <article class='hydration-data-today widget'>
+            <h3>Hydr8 2Day</h3>
+          </article>
+          <article class='hydration-data-week widget'>
+            <h3>Hydr8 All Week</h3>
+          </article>
+        </div>
+<!-- Sleep Widgets -->
+        <div class='sleep genre'>
+          <article class='sleep-data-last-night widget'>
+            <h3>ZZZ's last Night</h3>
+            <section class='sleep-data_last-night'>
+            </section>
+          </article>
+          <article class='sleep-data-week widget'>
+            <h3>ZZZ's Last Week</h3>
+            <section class='sleep-data_last-week'>
+            </section>
+          </article>
+          <article class='sleep-data-all-time widget'>
+            <h3>ZZZ's All Time</h3>
+            <section class='sleep-data_averages'>
+              <h3 id='all-time-average-sleep-quality' class='sleep-data_average-quality'>All Time Average Quality</h3>
+              <h3 id='all-time-average-sleep-hours' class='sleep-data_average-hours'>All Time Average Hours</h3>
+            </section>
+          </article>
+        </div>
+      </div>
     </main>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/hydration.js"></script>
