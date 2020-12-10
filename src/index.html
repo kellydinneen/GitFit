@@ -8,8 +8,8 @@
   <body>
     <section class='header'>
       <h1 class='site-title'>GitFit</h1>
-      <h2 id='date' class= 'date'>Date</h2>
       <h2 id='greeting' class= 'greeting'>Hello, User</h2>  
+      <h2 id='date' class= 'date'>Date</h2>
     </section> 
     <main>
       <div class='user-area'>
@@ -23,40 +23,56 @@
         </article>
       </div> 
       <div class='user-info-area'>
-        <article class= 'activity-data'>
+        <div class='activity genre'>
           <h2 class= 'activity-data_title'>Activity</h2>
-          <section class='activity-data_timeline'>
-          </section>
-          <section class='activity-data_activity-minutes'>
-          </section>
-          <section class='activity-data_steps'>
-          </section>
-          <section class='activity-data_distance'>
-          </section>
-          <section class='activity-data_rankings'>
+          <article class='activity-data-today widget'>
+            <h3>Activity Today</h3>>
+            <section class='activity-data_activity-minutes'>
+            </section>
+            <section class='activity-data_steps'>
+            </section>
+            <section class='activity-data_distance'>
+            </section>
+          </article>
+          <article class='activity-data-week widget'>
+            <h3>Activity This Week</h3>
+          </article>
+          <article class='activity-data_rankings widget'>
+            <h3>Activity Rankings</h3>
             <h3 class='activity-data_steps-ranking'></h3>
             <h3 class='activity-data_activity-minutes-ranking'></h3>
             <h3 class='activity-data_stairs-ranking'></h3>
-          </section>
-        </article>
-        <article class= 'hydration-data'>
+          </article>
+        </div>
+        <div class='hydration genre'>
           <h2 class= 'hydration-data_title'>Hydration</h2>
-          <section class='hydration-data_today'>
-          </section>
-          <section class='hydration-data_last-week'>
-          </section>
-        </article>
-        <article class= 'sleep-data'>
+          <article class='hydration-data-today widget'>
+            <h3>Hydr8 2Day</h3>
+          </article>
+          <article class='hydration-data-week widget'>
+            <h3>Hydr8 All Week</h3>
+          </article>
+        </div>
+        <div class='sleep genre'>
           <h2 class= 'sleep-data_title'>Sleep</h2>
-          <section class='sleep-data_last-night'>
-          </section>
-          <section class='sleep-data_last-week'>
-          </section>
-          <section class='sleep-data_averages'>
-            <h3 id='all-time-average-sleep-quality' class='sleep-data_average-quality'>All Time Average Quality</h3>
-            <h3 id='all-time-average-sleep-hours' class='sleep-data_average-hours'>All Time Average Hours</h3>
-          </section>
-        </article>
+          <article class='sleep-data-last-night widget'>
+            <h3>ZZZ's last Night</h3>
+            <section class='sleep-data_last-night'>
+            </section>
+          </article>
+          <article class='sleep-data-week widget'>
+            <h3>ZZZ's Last Week</h3>
+            <section class='sleep-data_last-week'>
+            </section>
+          </article>
+          <article class='sleep-data-all-time widget'>
+            <h3>ZZZ's All Time</h3>
+            <section class='sleep-data_averages'>
+              <h3 id='all-time-average-sleep-quality' class='sleep-data_average-quality'>All Time Average Quality</h3>
+              <h3 id='all-time-average-sleep-hours' class='sleep-data_average-hours'>All Time Average Hours</h3>
+            </section>
+          </article>
+        </div>
       </div>
     </main>
     <script type="text/javascript" src="../data/users.js"></script>
