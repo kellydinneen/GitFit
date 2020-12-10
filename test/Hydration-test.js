@@ -200,12 +200,33 @@ describe('HydrationLog', function() {
   });
 
   it.skip('can calculate how many fluid ounces a user consumed on each day for the last 7 days', function() {
-    expect(userOneHydrationLog.calculateWeeklyConsumption('2019/06/21')).to.deep.equal([91, 31, 20, 100, 96, 69, 37]);
-    expect(userOneHydrationLog.calculateWeeklyConsumption('2019/06/22')).to.deep.equal([55, 91, 31, 20, 100, 96, 69]);
+    expect(userOneHydrationLog.calculateWeeklyConsumption('2019/06/21')).to.deep.equal(
+      {
+        '2019/06/15': 37,
+        '2019/06/16': 69,
+        '2019/06/17': 96,
+        '2019/06/18': 100,
+        '2019/06/19': 20,
+        '2019/06/20': 31,
+        '2019/06/21': 91
+      });
+    expect(userOneHydrationLog.calculateWeeklyConsumption('2019/06/22')).to.deep.equal(
+      {
+        '2019/06/16': 69,
+        '2019/06/17': 96,
+        '2019/06/18': 100,
+        '2019/06/19': 20,
+        '2019/06/20': 31,
+        '2019/06/21': 91,
+        '2019/06/22': 55
+      });
   });
 
-  it.skip('will not calculate how many fluid ounces a user consumed on each day for the last 7 days if user does not have data for last 7 days', function() {
-    expect(userTwoHydrationLog.calculateWeeklyConsumption('2019/06/22')).to.be.undefined;
+  it.skip('will calculate how many fluid ounces a user consumed only on those of the last 7 days that have user data', function() {
+    const userTwoWeekOfHydration = userTwoHydrationLog.calculateWeeklyConsumption('2019/06/22');
+    expect(userTwoWeekOfHydration).to.have.all.keys(['2019/06/16','2019/06/17','2019/06/18','2019/06/19','2019/06/20','2019/06/21','2019/06/22']);
+    expect(userTwoWeekOfHydration['2019/06/22']).to.be.undefined;
+    expect(userTwoWeekOfHydration['2019/06/26']).to.equal(91);
   });
-
+  
 });
