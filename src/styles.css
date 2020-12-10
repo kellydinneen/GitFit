@@ -3,18 +3,39 @@
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;;
+  justify-content: space-around;;
   align-items: center;
-  height: 100vh;
+  height: 99vh;
   width: 96%;
   margin-left: 2%;
   background: #44BBA4;
+  font-family: Sans-serif;
+  color: #081D36;
 }
 
 .header {
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+.bubble {
+  background: #E7E5DF;
+  border: solid #D3D0CB;
+  border-radius: 7px;
+  width: 8%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bubble:nth-of-type(2) {
+  align-self: center;
+  width: 15%
+}
+
+.heading {
+  height: 100%
 }
 
 .greeting {
@@ -43,15 +64,22 @@ main {
 }
 
 
-
+p {
+  height: 100%;
+  width: 100%;
+  overflow-wrap: break-word;
+}
 
 
 .widget {
   background: #E7E5DF;
   border: solid #D3D0CB;
-  height: 27.5%;
+  height: 32%;
   width: 100%;
   border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .genre {
