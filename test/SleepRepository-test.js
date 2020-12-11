@@ -1,4 +1,3 @@
-const { expect } = require('chai');
 const chai = require('chai');
 const expect = chai.expect;
 
@@ -65,22 +64,23 @@ describe('Sleep Repository', function() {
         "sleepQuality": 4.0
       }
     ];
-    // sleepRepo = new SleepRepository(sleepData);
+
+    sleepRepo = new SleepRepository(sleepData);
   });
 
-  it.skip('should be a function', function() {
+  it('should be a function', function() {
     expect(SleepRepository).to.be.a('function');
   });
 
-  it.skip('should instantiate the Sleep Repository', function() {
+  it('should instantiate the Sleep Repository', function() {
     expect(sleepRepo).to.be.an.instanceOf(SleepRepository);
   });
 
-  it.skip('should hold all of the sleep objects', function() {
-    expect(sleepRepo.sleep).to.deep.equal(sleepData);
+  it('should hold data for all nights of sleep for all users', function() {
+    expect(sleepRepo.allUserSleep).to.deep.equal(sleepData);
   });
 
-  it.skip('should find all user\'s average sleep quality', function() {
+  it('should find all user\'s average sleep quality', function() {
     const averageQuality = sleepRepo.calculateAllUsersAverageSleepQuality();
     expect(averageQuality).to.equal(2.9);
   });
