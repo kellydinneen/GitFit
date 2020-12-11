@@ -12,12 +12,17 @@ class SleepRepository {
     return sumOfSleepQuality / this.sleepCollection.length;
   }
 
-  findWeeksGoodSleepers() {
-    UserRepository.users.filter((user) => {
-      const userWeekOfSleep = user.getSleepLog().calcula
+  findWeeksGoodSleepers(date) {
+    const highQualitySleepers = UserRepository.users.filter((user) => {
+      const userWeekOfSleep = user.getSleepLog().getWeekOfSleepData(date, 'sleepQuality');
+      const totalWeeksQuality = userWeekOfSleep.reduce((total, sleep) => {
+        total += sleep.sleepQuality;
+        return total;
+      }, 0);
+      return totalWeeksQuality / 7 > 3;
     });
-    this.sleepCollection.forEach(sleep => userIDs.push(sleep.userID));
-    userIDs.flat.forEach(id => users.push(new User()));
+
+    return highQualitySleepers.map(sleeper => sleeper.id);
   }
 
  }

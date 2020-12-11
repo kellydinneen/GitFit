@@ -13,6 +13,10 @@ class User {
     const names = this.name.split(' ');
     return names[0];
   }
+
+  getSleepLog() {
+    return new SleepLog(sleepData, this.id);
+  }
 }
 
 if (typeof module !== 'undefined') {
