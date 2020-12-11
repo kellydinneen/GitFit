@@ -24,12 +24,13 @@ class SleepLog {
   }
 
   getWeekOfSleepData(today, variable) {
-    const indexOfToday = allDates.findIndex((date) => date === today);
-    const lastWeek = allDates.slice(indexOfToday, indexOfToday + 7);
-    const getWeeksData = (weekOfSleep, date) => {
-      weekOfSleep[date] = this.sleepCalendar[date][variable];
-      return weekOfSleep;
-    }
-    return lastWeek.reduce(getWeeksData, {});
+    const weeklyLog = {};
+    const dateIndex = this.log.findIndex(logEntry => logEntry.date === day);
+    const weekOfEntries = this.log.slice(dateIndex - 6 || 0, dateIndex + 1 || this.log.length + 1);
+    weekOfEntries.forEach(entry => {
+      const dateOfEntry = entry.date;
+      weeklyLog[dateOfEntry] = entry[variable];
+    });
+    return weeklyLog;
   }
 }
