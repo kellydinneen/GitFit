@@ -123,13 +123,13 @@ describe('Sleep Repository', function() {
     expect(highestQuality).to.deep.equal([2]);
   });
 
-  it.skip('should only find users whose average sleep quality for a given week is greater than 3', function() {
+  it('should only find users whose average sleep quality for a given week is greater than 3', function() {
     const highestQuality = sleepRepo.findWeeksGoodSleepers('2019/06/21', userRepo);
     expect(highestQuality).to.not.include(1);
   });
 
-  it.skip('should find the user/users who slept the longest on any given day', function() {
-    const todaysHighestQualitySleep = sleepRepo.getHighestSleepQuality('2019/06/21');
-    expect(todaysHighestQualitySleep).to.deep.equal([1]);
+  it('should find the user/users who slept the longest on any given day', function() {
+    const nightsLongestSleepers = sleepRepo.findNightsLongestSleepers('2019/06/21');
+    expect(nightsLongestSleepers).to.deep.equal([1]);
   });
 });

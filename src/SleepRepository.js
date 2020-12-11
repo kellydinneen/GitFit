@@ -33,7 +33,7 @@ class SleepRepository {
       if (entry.hoursSlept > mosthoursSlept) {
         mosthoursSlept = entry.hoursSlept;
         longestSleepers = [entry.userID];
-      } else if (entry.hoursSlept = mosthoursSlept) {
+      } else if (entry.hoursSlept === mosthoursSlept) {
         longestSleepers.push(entry.userID);
       };
     });
