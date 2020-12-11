@@ -1,9 +1,8 @@
 const { expect } = require('chai');
 const chai = require('chai');
-const expecet = chai.expect;
-// these are commented out because this class hasn't been created and will throw errors until then. Check line 68 also before testing.
-// Remove before committing after class has been created
-// const SleepRepository = require('../src/SleepRepository.js');
+const expect = chai.expect;
+
+const SleepRepository = require('../src/SleepRepository.js');
 
 describe('Sleep Repository', function() {
   let sleepRepo;
@@ -16,7 +15,7 @@ describe('Sleep Repository', function() {
         "date": "2019/06/15",
         "hoursSlept": 6.1,
         "sleepQuality": 2.2
-      }, 
+      },
       {
         "userID": 1,
         "date": "2019/06/16",
@@ -70,7 +69,7 @@ describe('Sleep Repository', function() {
   });
 
   it.skip('should be a function', function() {
-    expect(SleepRepository).to.be.be.a('function');
+    expect(SleepRepository).to.be.a('function');
   });
 
   it.skip('should instantiate the Sleep Repository', function() {
