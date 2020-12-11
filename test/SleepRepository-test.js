@@ -2,10 +2,11 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const SleepRepository = require('../src/SleepRepository.js');
+const UserRepository = require('../src/UserRepository.js');
 
 describe('Sleep Repository', function() {
   let sleepRepo;
-  let sleepData;
+  let userRepo;
 
   beforeEach(function() {
     sleepData = [
@@ -66,6 +67,38 @@ describe('Sleep Repository', function() {
     ];
 
     sleepRepo = new SleepRepository(sleepData);
+
+    userData = [
+      {
+        "id": 1,
+        "name": "Luisa Hane",
+        "address": "15195 Nakia Tunnel, Erdmanport VA 19901-1697",
+        "email": "Diana.Hayes1@hotmail.com",
+        "strideLength": 4.3,
+        "dailyStepGoal": 10000,
+        "friends": [
+          16,
+          4,
+          8
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Jarvis Considine",
+        "address": "30086 Kathryn Port, Ciceroland NE 07273",
+        "email": "Dimitri.Bechtelar11@gmail.com",
+        "strideLength": 4.5,
+        "dailyStepGoal": 5000,
+        "friends": [
+          9,
+          18,
+          24,
+          19
+        ]
+      }
+    ];
+
+    userRepo = new UserRepository(userData);
   });
 
   it('should be a function', function() {
@@ -86,12 +119,12 @@ describe('Sleep Repository', function() {
   });
 
   it('should find all users whose average sleep quality is greater than 3 for a given week', function() {
-    const highestQuality = sleepRepo.findWeeksGoodSleepers('2019/06/21');
+    const highestQuality = sleepRepo.findWeeksGoodSleepers('2019/06/21', userRepo);
     expect(highestQuality).to.deep.equal([2]);
   });
 
   it.skip('should only find users whose average sleep quality for a given week is greater than 3', function() {
-    const highestQuality = sleepRepo.findWeeksGoodSleepers('2019/06/21');
+    const highestQuality = sleepRepo.findWeeksGoodSleepers('2019/06/21', userRepo);
     expect(highestQuality).to.not.include(1);
   });
 

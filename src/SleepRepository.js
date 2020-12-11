@@ -12,14 +12,15 @@ class SleepRepository {
     return sumOfSleepQuality / this.sleepCollection.length;
   }
 
-  findWeeksGoodSleepers(date) {
-    const highQualitySleepers = UserRepository.users.filter((user) => {
+  findWeeksGoodSleepers(date, userRepo) {
+    const highQualitySleepers = userRepo.users.filter((user) => {
       const userWeekOfSleep = user.getSleepLog(this.sleepCollection).getWeekOfSleepData(date, 'sleepQuality');
-      const totalWeeksQuality = userWeekOfSleep.reduce((total, sleep) => {
-        total += sleep.sleepQuality;
+      userWeekOfSleep;
+      const totalWeeksQuality = Object.keys(userWeekOfSleep).reduce((total, night) => {
+        total += userWeekOfSleep[night];
         return total;
       }, 0);
-      return totalWeeksQuality / 7 > 3;
+      return totalWeeksQuality / Object.keys(userWeekOfSleep).length > 3;
     });
     return highQualitySleepers.map(sleeper => sleeper.id);
   }

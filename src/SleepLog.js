@@ -1,4 +1,5 @@
 class SleepLog {
+
   constructor(sleepData, userID) {
     this.log = sleepData.filter((data) => data.userID === userID)
       .map(userLog => {
@@ -23,7 +24,7 @@ class SleepLog {
     return lastNightsSleep[variable];
   }
 
-  getWeekOfSleepData(today, variable) {
+  getWeekOfSleepData(day, variable) {
     const weeklyLog = {};
     const dateIndex = this.log.findIndex(logEntry => logEntry.date === day);
     const weekOfEntries = this.log.slice(dateIndex - 6 || 0, dateIndex + 1 || this.log.length + 1);
@@ -34,3 +35,5 @@ class SleepLog {
     return weeklyLog;
   }
 }
+
+module.exports = SleepLog;
