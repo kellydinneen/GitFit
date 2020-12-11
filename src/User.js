@@ -14,7 +14,7 @@ class User {
     return names[0];
   }
 
-  getSleepLog() {
+  getSleepLog(sleepData) {
     return new SleepLog(sleepData, this.id);
   }
 }

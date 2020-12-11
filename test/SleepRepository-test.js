@@ -95,8 +95,8 @@ describe('Sleep Repository', function() {
     expect(highestQuality).to.not.include(1);
   });
 
-  it.skip('should find the user/users with the highest quality sleep for any given day', function() {
+  it.skip('should find the user/users who slept the longest on any given day', function() {
     const todaysHighestQualitySleep = sleepRepo.getHighestSleepQuality('2019/06/21');
-    expect(todaysHighestQualitySleep).to.deep.equal(1);
+    expect(todaysHighestQualitySleep).to.deep.equal([1]);
   });
 });
