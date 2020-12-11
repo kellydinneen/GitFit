@@ -77,12 +77,12 @@ describe('Sleep Repository', function() {
   });
 
   it('should hold data for all nights of sleep for all users', function() {
-    expect(sleepRepo.allUserSleep).to.deep.equal(sleepData);
+    expect(sleepRepo.sleepCollection).to.deep.equal(sleepData);
   });
 
   it('should find all user\'s average sleep quality', function() {
     const averageQuality = sleepRepo.calculateAllUsersAverageSleepQuality();
-    expect(averageQuality).to.equal(2.9);
+    expect(averageQuality.toFixed(2)).to.equal('2.91');
   });
 
   it.skip('should find all users whose average sleep quality is greater than 3 for a given week', function() {
