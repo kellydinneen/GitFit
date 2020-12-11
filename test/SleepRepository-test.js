@@ -85,7 +85,7 @@ describe('Sleep Repository', function() {
     expect(averageQuality.toFixed(2)).to.equal('2.91');
   });
 
-  it.skip('should find all users whose average sleep quality is greater than 3 for a given week', function() {
+  it('should find all users whose average sleep quality is greater than 3 for a given week', function() {
     const highestQuality = sleepRepo.findWeeksGoodSleepers('2019/06/21');
     expect(highestQuality).to.deep.equal([2]);
   });

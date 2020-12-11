@@ -12,5 +12,13 @@ class SleepRepository {
     return sumOfSleepQuality / this.sleepCollection.length;
   }
 
+  findWeeksGoodSleepers() {
+    UserRepository.users.filter((user) => {
+      const userWeekOfSleep = user.getSleepLog().calcula
+    });
+    this.sleepCollection.forEach(sleep => userIDs.push(sleep.userID));
+    userIDs.flat.forEach(id => users.push(new User()));
+  }
+
  }
 module.exports = SleepRepository;
