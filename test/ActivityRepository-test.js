@@ -57,21 +57,33 @@ describe('UserRepository', function() {
     expect(activityRepo).to.be.an.instanceOf(ActivityRepository);
   });
 
-  it('should store activity logs for all users', function() {
-    expect(activityRepo.userLogs[0]).to.be.an.instanceOf(ActivityLog);
-    expect(activityRepo.userLogs[0].userID).to.equal(1);
-    expect(activityRepo.userLogs[1]).to.be.an.instanceOf(ActivityLog);
-    expect(activityRepo.userLogs[1].userID).to.equal(2);
-    expect(activityRepo.userLogs[2]).to.be.an.instanceOf(ActivityLog);
-    expect(activityRepo.userLogs[2].userID).to.equal(3);
+  it('should organize user activity by date', function() {
+    expect(activityRepo.allUserLog).to.be.an('object');
+    expect(activityRepo.allUserLog).to.have.all.keys(['2019/06/15','2019/06/16']);
   });
+
+  it('should store activity for all users on each date', function() {
+    var usersActivityOnFifteenth = activityRepo.allUserLog['2019/06/15'];
+    expect(usersActivityOnFifteenth).to.be.an('object');
+    expect(usersActivityOnFifteenth).to.have.all.keys([1,2,3]);
+  });
+
+  it('should store all activity data for each user on a date', function() {
+    var userOneActivityOnFifteenth = activityRepo.allUserLog['2019/06/15'][1];
+    var userTwoActivityOnFifteenth = activityRepo.allUserLog['2019/06/15'][2];
+
+    expect(userOneActivityOnFifteenth).to.be.an('object');
+    expect(userOneActivityOnFifteenth).to.have.all.keys(["numSteps", "minutesActive",
+    "flightsOfStairs"]);
+    expect(userOneActivityOnFifteenth['flightsOfStairs']).to.equal(16);
+    expect(userTwoActivityOnFifteenth['flightsOfStairs']).to.equal(10);
   });
 
   it('should calculate average number of steps for all users on a specific date', function() {
     expect(activityRepo.calculateAllUserDailyAverage('2019/06/15', 'numSteps')).to.equal(15273  / 3);
   });
 
-  it('should calculate average minutes active for all users on a different date', function() {
+  it('should calculate average minutes active for all users on a specific date', function() {
     expect(activityRepo.calculateAllUserDailyAverage('2019/06/15', 'minutesActive')).to.equal(394 / 3);
   });
 
