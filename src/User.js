@@ -14,9 +14,12 @@ class User {
     return names[0];
   }
 
-  getSleep() {
-    
+  getSleepLog(sleepData) {
+    return new SleepLog(sleepData, this.id);
   }
 }
 
-module.exports = User;
+if (typeof module !== 'undefined') {
+  module.exports = User;
+};
+
