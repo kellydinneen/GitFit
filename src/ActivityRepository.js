@@ -6,7 +6,7 @@ class ActivityRepository {
   calculateAllUserDailyAverage(day, type) {
     let users = [];
     this.allUsersActivity.forEach(entry => {
-      if (!users.includes(entry.userID)) {
+      if (!users.includes(entry.userID) && entry.date === day) {
         users.push(entry.userID);
       }
     });
