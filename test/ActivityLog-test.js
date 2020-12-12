@@ -132,14 +132,27 @@ describe('ActivityLog', function() {
     expect(milesWalked).to.equal(6.03);
   });
 
-  it('should return active minutes on a given day', function() {
+  it('should return a user\'s active minutes on a given day', function() {
     const activeMinutes = user1.activityLog.getActiveMinutes('2019/06/16');
     expect(milesWalked).to.equal(116);
   });
 
-  it('should return total active minutes for a given week', function() {
+  it('should notify a user if they don\'t have data for a given day', function() {
+    const activeMinutes = user2.activityLog.getActiveMinutes('2019/06/16');
+    expect(activeMinutes).to.equal('You don\'t have any activity data for this day');
+    const milesWalked = user2.activityLog.getDistanceWalked('2019/06/16');
+    expect(milesWalked).to.equal('You don\'t have any activity data for this day');
+  });
+
+
+  it('should return a user\'s total active minutes for a given week', function() {
     const weeklyActiveMinutesTotal = user1.activityLog.getTotalWeeklyActiveMinutes('2019/06/22');
     expect(weeklyActiveMinutesTotal).to.equal(1097);
+  });
+
+  it('should notify a user if they don\'t have data for a week', function() {
+    const weeklyActiveMinutesTotal = user2.activityLog.getTotalWeeklyActiveMinutes('2019/06/22');
+    expect(weeklyActiveMinutesTotal).to.equal('You don\'t have any activity data for this week');
   });
 
   it('should know when user met step goal', function() {
@@ -148,13 +161,28 @@ describe('ActivityLog', function() {
   });
 
   it('should know when user did not meet step goal', function() {
-    const stepGoalEvaluation = user1.activityLog.evaluateStepGoal('2019/06/22');
+    const stepGoalEvaluation = user2.activityLog.evaluateStepGoal('2019/06/15');
     expect(stepGoalEvaluation).to.be.false;
   });
 
   it('should find all the days when user met step goal', function() {
     const stepGoalSuccesses = user1.activityLog.findDaysWhenStepGoalWasMet();
     expect(stepGoalSuccesses).to.deep.equal(["2019/06/21", "2019/06/20", "2019/06/18"]);
+  });
+
+  it('should return no days when a user never met step goal', function() {
+    const stepGoalSuccesses = user2.activityLog.findDaysWhenStepGoalWasMet();
+    expect(stepGoalSuccesses).to.deep.equal([]);
+  });
+
+  it('should find a user\'s all time stair climbing record', function() {
+    const stairClimbingRecord = user1.activityLog.findStairClimbingRecord();
+    expect(stairClimbingRecord).to.equal(33);
+  });
+
+  it('should find a different user\'s all time stair climbing record', function() {
+    const stairClimbingRecord = user2.activityLog.findStairClimbingRecord();
+    expect(stairClimbingRecord).to.equal(10);
   });
 
 });
