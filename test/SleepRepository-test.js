@@ -1,13 +1,12 @@
-const { expect } = require('chai');
 const chai = require('chai');
-const expecet = chai.expect;
-// these are commented out because this class hasn't been created and will throw errors until then. Check line 68 also before testing.
-// Remove before committing after class has been created
-// const SleepRepository = require('../src/SleepRepository.js');
+const expect = chai.expect;
+
+const SleepRepository = require('../src/SleepRepository.js');
+const UserRepository = require('../src/UserRepository.js');
 
 describe('Sleep Repository', function() {
   let sleepRepo;
-  let sleepData;
+  let userRepo;
 
   beforeEach(function() {
     sleepData = [
@@ -16,7 +15,7 @@ describe('Sleep Repository', function() {
         "date": "2019/06/15",
         "hoursSlept": 6.1,
         "sleepQuality": 2.2
-      }, 
+      },
       {
         "userID": 1,
         "date": "2019/06/16",
@@ -66,38 +65,71 @@ describe('Sleep Repository', function() {
         "sleepQuality": 4.0
       }
     ];
-    // sleepRepo = new SleepRepository(sleepData);
+
+    sleepRepo = new SleepRepository(sleepData);
+
+    userData = [
+      {
+        "id": 1,
+        "name": "Luisa Hane",
+        "address": "15195 Nakia Tunnel, Erdmanport VA 19901-1697",
+        "email": "Diana.Hayes1@hotmail.com",
+        "strideLength": 4.3,
+        "dailyStepGoal": 10000,
+        "friends": [
+          16,
+          4,
+          8
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Jarvis Considine",
+        "address": "30086 Kathryn Port, Ciceroland NE 07273",
+        "email": "Dimitri.Bechtelar11@gmail.com",
+        "strideLength": 4.5,
+        "dailyStepGoal": 5000,
+        "friends": [
+          9,
+          18,
+          24,
+          19
+        ]
+      }
+    ];
+
+    userRepo = new UserRepository(userData);
   });
 
-  it.skip('should be a function', function() {
-    expect(SleepRepository).to.be.be.a('function');
+  it('should be a function', function() {
+    expect(SleepRepository).to.be.a('function');
   });
 
-  it.skip('should instantiate the Sleep Repository', function() {
+  it('should instantiate the Sleep Repository', function() {
     expect(sleepRepo).to.be.an.instanceOf(SleepRepository);
   });
 
-  it.skip('should hold all of the sleep objects', function() {
-    expect(sleepRepo.sleep).to.deep.equal(sleepData);
+  it('should hold data for all nights of sleep for all users', function() {
+    expect(sleepRepo.sleepCollection).to.deep.equal(sleepData);
   });
 
-  it.skip('should find all user\'s average sleep quality', function() {
+  it('should find all user\'s average sleep quality', function() {
     const averageQuality = sleepRepo.calculateAllUsersAverageSleepQuality();
-    expect(averageQuality).to.equal(2.9);
+    expect(averageQuality.toFixed(2)).to.equal('2.91');
   });
 
-  it.skip('should find all users whose average sleep quality is greater than 3 for a given week', function() {
-    const highestQuality = sleepRepo.findWeeksGoodSleepers('2019/06/21');
+  it('should find all users whose average sleep quality is greater than 3 for a given week', function() {
+    const highestQuality = sleepRepo.findWeeksGoodSleepers('2019/06/21', userRepo);
     expect(highestQuality).to.deep.equal([2]);
   });
 
-  it.skip('should only find users whose average sleep quality for a given week is greater than 3', function() {
-    const highestQuality = sleepRepo.findWeeksGoodSleepers('2019/06/21');
+  it('should only find users whose average sleep quality for a given week is greater than 3', function() {
+    const highestQuality = sleepRepo.findWeeksGoodSleepers('2019/06/21', userRepo);
     expect(highestQuality).to.not.include(1);
   });
 
-  it.skip('should find the user/users with the highest quality sleep for any given day', function() {
-    const todaysHighestQualitySleep = sleepRepo.getHighestSleepQuality('2019/06/21');
-    expect(todaysHighestQualitySleep).to.deep.equal(1);
+  it('should find the user/users who slept the longest on any given day', function() {
+    const nightsLongestSleepers = sleepRepo.findNightsLongestSleepers('2019/06/21');
+    expect(nightsLongestSleepers).to.deep.equal([1]);
   });
 });

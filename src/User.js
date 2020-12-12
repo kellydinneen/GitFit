@@ -1,3 +1,5 @@
+const SleepLog = require('../src/SleepLog');
+
 class User {
   constructor(userData) {
     this.id = userData.id;
@@ -12,6 +14,10 @@ class User {
   getFirstName() {
     const names = this.name.split(' ');
     return names[0];
+  }
+
+  getSleepLog(sleepData) {
+    return new SleepLog(sleepData, this.id);
   }
 }
 
