@@ -24,22 +24,22 @@ describe('ActivityLog', function() {
         "flightsOfStairs": 10
       },
       {
-        "userID": 3,
-        "date": "2019/06/15",
+        "userID": 1,
+        "date": "2019/06/16",
         "numSteps": 7402,
         "minutesActive": 116,
         "flightsOfStairs": 33
       },
       {
         "userID": 1,
-        "date": "2019/06/16",
+        "date": "2019/06/17",
         "numSteps": 3486,
         "minutesActive": 114,
         "flightsOfStairs": 32
       },
       {
-        "userID": 2,
-        "date": "2019/06/16",
+        "userID": 1,
+        "date": "2019/06/18",
         "numSteps": 11374,
         "minutesActive": 213,
         "flightsOfStairs": 13
@@ -81,6 +81,30 @@ describe('ActivityLog', function() {
     activityLog = new ActivityLog(activityData, user1.id);
   });
 
+  it('should be a function', function() {
+    expect(ActivityLog).to.be.a('function');
+  });
+
+  it('should instantiate the ActivityLog class', function() {
+    expect(user1.activityLog).to.be.an.instanceOf(ActivityLog);
+    expect(user2.activityLog).to.be.an.instanceOf(ActivityLog);
+  });
+
+  it('should hold a list of activity log entries', function() {
+    const user1ActivityData = activityData.filter(entry => entry.userID === user1.id);
+    const user2ActivityData = activityData.filter(entry => entry.userID === user2.id);
+    expect(user1.activityLog.log).to.deep.equal(user1ActivityData);
+    expect(user2.activityLog.log).to.deep.equal(user2ActivityData);
+  });
+
+  it('should return miles user walked on a given day', function() {
+    //using number of steps and stridelength
+    const milesWalked = user1.activityLog.getDistanceWalked('2019/06/16');
+    //7402 * 4.3 /5280 = 6.02814393939
+    expect(milesWalked).to.equal(6.03);
+  });
+
   
+  });
 
 });
