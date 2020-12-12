@@ -1,14 +1,7 @@
 class SleepLog {
 
   constructor(sleepData, userID) {
-    this.log = sleepData.filter((data) => data.userID === userID)
-      .map(userLog => {
-        const logEntry = {};
-        logEntry.date = userLog.date;
-        logEntry.hoursSlept = userLog.hoursSlept;
-        logEntry.sleepQuality = userLog.sleepQuality;
-        return logEntry;
-      });
+    this.log = sleepData.filter((data) => data.userID === userID);
   }
 
   calculateAllTimeAverageSleep(variable) {
