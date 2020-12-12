@@ -6,6 +6,7 @@ const ActivityRepository = require('../src/ActivityRepository.js');
 
 describe('ActivityRepository', function() {
   let activityData;
+  let activityRepo;
 
   beforeEach(function() {
     activityData = [
