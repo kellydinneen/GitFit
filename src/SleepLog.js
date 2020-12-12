@@ -36,4 +36,6 @@ class SleepLog {
   }
 }
 
-module.exports = SleepLog;
+if (typeof module !== 'undefined') {
+  module.exports = SleepLog;
+}
