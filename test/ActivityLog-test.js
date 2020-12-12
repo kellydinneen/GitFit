@@ -44,6 +44,34 @@ describe('ActivityLog', function() {
         "minutesActive": 213,
         "flightsOfStairs": 13
       },
+      {
+        "userID": 1,
+        "date": "2019/06/19",
+        "numSteps": 3486,
+        "minutesActive": 114,
+        "flightsOfStairs": 32
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/20",
+        "numSteps": 11374,
+        "minutesActive": 213,
+        "flightsOfStairs": 13
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/21",
+        "numSteps": 11374,
+        "minutesActive": 213,
+        "flightsOfStairs": 13
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/22",
+        "numSteps": 3486,
+        "minutesActive": 114,
+        "flightsOfStairs": 32
+      }
     ];
     userData = [
       {
@@ -104,7 +132,29 @@ describe('ActivityLog', function() {
     expect(milesWalked).to.equal(6.03);
   });
 
-  
+  it('should return active minutes on a given day', function() {
+    const activeMinutes = user1.activityLog.getActiveMinutes('2019/06/16');
+    expect(milesWalked).to.equal(116);
+  });
+
+  it('should return total active minutes for a given week', function() {
+    const weeklyActiveMinutesTotal = user1.activityLog.getTotalWeeklyActiveMinutes('2019/06/22');
+    expect(weeklyActiveMinutesTotal).to.equal(1097);
+  });
+
+  it('should know when user met step goal', function() {
+    const stepGoalEvaluation = user1.activityLog.evaluateStepGoal('2019/06/18');
+    expect(stepGoalEvaluation).to.be.true;
+  });
+
+  it('should know when user did not meet step goal', function() {
+    const stepGoalEvaluation = user1.activityLog.evaluateStepGoal('2019/06/22');
+    expect(stepGoalEvaluation).to.be.false;
+  });
+
+  it('should find all the days when user met step goal', function() {
+    const stepGoalSuccesses = user1.activityLog.findDaysWhenStepGoalWasMet();
+    expect(stepGoalSuccesses).to.deep.equal(["2019/06/21", "2019/06/20", "2019/06/18"]);
   });
 
 });
