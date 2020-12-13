@@ -18,7 +18,8 @@ class User {
   }
 
   getSleepLog(sleepData) {
-    return new SleepLog(sleepData, this.id);
+    this.sleepLog = new SleepLog(sleepData, this.id);
+    // return ;
   }
   getHydrationLog(hydrationData) {
     // console.log(hydrationData);

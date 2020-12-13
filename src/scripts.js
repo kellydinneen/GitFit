@@ -10,6 +10,7 @@ const displayedUserAddress = document.querySelector('#user-address');
 const displayedUserStepGoalComparison = document.querySelector('#user-step-goal-comparison');
 const displayedUserFriendsList = document.querySelector('#user-friends-list');
 var weeklyHydrationChart = document.querySelector('#hydration-data-week_chart').getContext('2d');
+var lastNightsSleepChart = document.querySelector('#sleep-data-last-night_chart');
 
 let userRepo;
 
@@ -23,9 +24,11 @@ function openSite() {
 
 function displayUserDashboard(user, date) {
   user.getHydrationLog(hydrationData);
+  user.getSleepLog(sleepData);
   displayUserInfo(user);
   greetUser(user);
-  createChart(user, date)
+  createHydrationChart(user, date);
+  createSleepChart(user, date);
 }
 
 function greetUser(user) {
@@ -58,7 +61,7 @@ function determineDifferenceDirection(a, b) {
   return a - b < 0? 'lower':'higher';
 }
 
-function createChart(user, date) {
+function createHydrationChart(user, date) {
   let chartData = {
     type: 'bar',
     data: {
@@ -80,4 +83,26 @@ function createChart(user, date) {
     },
   };
   let myChart = new Chart(weeklyHydrationChart, chartData);
+}
+
+function createSleepChart(user, date) {
+  let chartData = {
+    type: 'doughnut',
+    data: {
+      labels: ['Hours Slept'],
+      datasets:[{
+      label: 'none',
+      data: [user.sleepLog.getLastNightsSleep(date, 'hoursSlept'), 12 - (user.sleepLog.getLastNightsSleep(date, 'hoursSlept'))],
+      backgroundColor: ['#44BBA4', '#061223'],
+      }]
+    },
+    options:{
+      scales:{
+        yAxes:[{
+          ticks: {"beginAtZero":true}
+        }],
+      },
+    },
+  };
+  let myChart = new Chart(lastNightsSleepChart, chartData);
 }
