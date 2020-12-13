@@ -12,6 +12,7 @@ const displayedUserFriendsList = document.querySelector('#user-friends-list');
 var weeklyHydrationChart = document.querySelector('#hydration-data-week_chart').getContext('2d');
 var lastNightsSleepQualityChart = document.querySelector('#sleep-data-last-night_chart');
 var allTimeSleepQualityChart = document.querySelector('#sleep-data-all-time_chart');
+var weekOfSleepChart = document.querySelector('#sleep-data-week_chart');
 
 let userRepo;
 
@@ -31,6 +32,7 @@ function displayUserDashboard(user, date) {
   createHydrationChart(user, date);
   createSleepChart(user, date);
   createAllTimeSleepChart(user, date);
+  createWeeklySleepChart(user, date);
 }
 
 function greetUser(user) {
@@ -77,6 +79,10 @@ function createHydrationChart(user, date) {
       }]
     },
     options:{
+      title: {
+            display: true,
+            text: 'Hydration'
+      },
       scales:{
         yAxes:[{
           ticks: {"beginAtZero":true}
@@ -102,6 +108,10 @@ function createSleepChart(user, date) {
       }]
     },
     options:{
+      title: {
+            display: true,
+            text: 'Last Night\'s Sleep'
+      },
       circumference: Math.PI,
       events: [],
       rotation: Math.PI
@@ -125,10 +135,59 @@ function createAllTimeSleepChart(user, date) {
       }]
     },
     options:{
+      title: {
+            display: true,
+            text: 'All Time Sleep'
+      },
       circumference: Math.PI,
       events: [],
       rotation: Math.PI
     },
   };
   let myChart = new Chart(allTimeSleepQualityChart, chartData);
+}
+
+function createWeeklySleepChart(user, date) {
+  let weekDays = Object.keys(user.sleepLog.getWeekOfSleepData(date, 'hoursSlept'));
+  let weekOfSleepHours = Object.values(user.sleepLog.getWeekOfSleepData(date, 'hoursSlept'));
+  let weekOfSleepQuality = Object.values(user.sleepLog.getWeekOfSleepData(date, 'sleepQuality'));
+  let data = [];
+  weekDays.forEach((day, i) => {
+    data[i] = {};
+    data[i].x = i;
+    data[i].y = weekOfSleepQuality[i];
+    data[i].r = 2 * weekOfSleepHours[i];
+  });
+  let chartData = {
+    type: 'bubble',
+    data: {
+      datasets:[{
+      label: 'Sleep',
+      data: data,
+      backgroundColor: 'cornflowerblue',
+      }]
+    },
+    options:{
+      hover: {
+        mode: "index",
+      },
+      title: {
+            display: true,
+            text: 'WEEK OF SLEEP'
+      },
+      scales:{
+        yAxes:[{
+        }],
+        xAxes:[{
+          ticks: {
+            callback: function(x) {
+              let weekdays = ['Monday', 'Tuesday','Wednesday','Thursday', 'Friday', 'Saturday', 'Sunday'];
+              return x.getDay
+            }
+          }
+        }],
+      },
+    },
+  };
+  let myChart = new Chart(weekOfSleepChart, chartData);
 }
