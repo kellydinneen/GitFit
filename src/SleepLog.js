@@ -13,10 +13,10 @@ class SleepLog {
 
   calculateAllTimeAverageSleep(variable) {
     let totalSleep = 0;
-    log.forEach((entry) => {
+    this.log.forEach((entry) => {
       totalSleep += entry[variable];
     });
-    return totalSleep / entry.length;
+    return totalSleep / this.log.length;
   }
 
   getLastNightsSleep(date, variable) {

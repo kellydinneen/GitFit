@@ -10,7 +10,8 @@ const displayedUserAddress = document.querySelector('#user-address');
 const displayedUserStepGoalComparison = document.querySelector('#user-step-goal-comparison');
 const displayedUserFriendsList = document.querySelector('#user-friends-list');
 var weeklyHydrationChart = document.querySelector('#hydration-data-week_chart').getContext('2d');
-var lastNightsSleepChart = document.querySelector('#sleep-data-last-night_chart');
+var lastNightsSleepQualityChart = document.querySelector('#sleep-data-last-night_chart');
+var allTimeSleepQualityChart = document.querySelector('#sleep-data-all-time_chart');
 
 let userRepo;
 
@@ -29,6 +30,7 @@ function displayUserDashboard(user, date) {
   greetUser(user);
   createHydrationChart(user, date);
   createSleepChart(user, date);
+  createAllTimeSleepChart(user, date);
 }
 
 function greetUser(user) {
@@ -67,7 +69,7 @@ function createHydrationChart(user, date) {
     data: {
       labels: Object.keys(user.hydrationLog.calculateWeeklyConsumption(date)),
       datasets:[{
-      label: 'none',
+      label: false,
       data: Object.values(user.hydrationLog.calculateWeeklyConsumption(date)),
       backgroundColor: '#44BBA4',
       borderColor: "#061223",
@@ -86,23 +88,47 @@ function createHydrationChart(user, date) {
 }
 
 function createSleepChart(user, date) {
+  let sleepValue = user.sleepLog.getLastNightsSleep(date, 'sleepQuality');
+  let highestPossibleQuality = 5;
   let chartData = {
     type: 'doughnut',
     data: {
-      labels: ['Hours Slept'],
+      labels: ['Sleep Quality'],
       datasets:[{
-      label: 'none',
-      data: [user.sleepLog.getLastNightsSleep(date, 'hoursSlept'), 12 - (user.sleepLog.getLastNightsSleep(date, 'hoursSlept'))],
-      backgroundColor: ['#44BBA4', '#061223'],
+      label: false,
+      data: [sleepValue, highestPossibleQuality - sleepValue],
+      backgroundColor: ['#44BBA4', '#E7E5DF'],
+      borderWidth: 0
       }]
     },
     options:{
-      scales:{
-        yAxes:[{
-          ticks: {"beginAtZero":true}
-        }],
-      },
+      circumference: Math.PI,
+      events: [],
+      rotation: Math.PI
     },
   };
-  let myChart = new Chart(lastNightsSleepChart, chartData);
+  let myChart = new Chart(lastNightsSleepQualityChart, chartData);
+}
+
+function createAllTimeSleepChart(user, date) {
+  let sleepValue = user.sleepLog.calculateAllTimeAverageSleep('sleepQuality');
+  let highestPossibleQuality = 5;
+  let chartData = {
+    type: 'doughnut',
+    data: {
+      labels: ['Sleep Quality'],
+      datasets:[{
+      label: false,
+      data: [sleepValue, highestPossibleQuality - sleepValue],
+      backgroundColor: ['#44BBA4', '#E7E5DF'],
+      borderWidth: 0
+      }]
+    },
+    options:{
+      circumference: Math.PI,
+      events: [],
+      rotation: Math.PI
+    },
+  };
+  let myChart = new Chart(allTimeSleepQualityChart, chartData);
 }
