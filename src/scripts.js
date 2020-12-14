@@ -29,6 +29,10 @@ function displayUserDashboard(user, date) {
   user.getWellnessLog(hydrationData, sleepData, activityData);
   displayUserInfo(user);
   greetUser(user);
+  createCharts(user, date);
+}
+
+function createCharts(user, date) {
   createHydrationChart(user, date);
   createSleepChart(user, date);
   createAllTimeSleepChart(user, date);
