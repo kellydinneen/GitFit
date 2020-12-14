@@ -1,4 +1,5 @@
 const SleepLog = require('../src/SleepLog');
+const ActivityLog = require('./ActivityLog');
 
 class User {
   constructor(userData) {
@@ -19,6 +20,11 @@ class User {
   getSleepLog(sleepData) {
     this.sleepLog = new SleepLog(sleepData, this.id);
     return this.sleepLog;
+  }
+
+  getActivityLog(activityData) {
+    this.activityLog = new ActivityLog(activityData, this.id);
+    return this.activityLog;
   }
 }
 
