@@ -60,4 +60,6 @@ class ActivityLog {
   }
 }
 
-module.exports = ActivityLog;
+if (typeof module !== 'undefined') {
+  module.exports = ActivityLog;
+};
