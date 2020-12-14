@@ -148,50 +148,41 @@ function createAllTimeSleepChart(user, date) {
   let myChart = new Chart(allTimeSleepQualityChart, chartData);
 }
 
-function createWeeklySleepChart(user, date) {
-  let weekDays = Object.keys(user.wellnessLog.getWeekOfStats(date, 'sleep', 'hoursSlept'));
-  let weekOfSleepHours = Object.values(user.wellnessLog.getWeekOfStats(date, 'sleep', 'hoursSlept'));
-  let weekOfSleepQuality = Object.values(user.wellnessLog.getWeekOfStats(date, 'sleep', 'sleepQuality'));
-  let data = [];
-  weekDays.forEach((day, i) => {
-    data[i] = {};
-    data[i].x = i;
-    data[i].y = weekOfSleepQuality[i];
-    data[i].r = 2 * weekOfSleepHours[i];
-  });
+ //Sleep Week : As bar
+ function createWeeklySleepChart(user, date) {
   let chartData = {
-    type: 'bubble',
+    type: 'bar',
     data: {
+      labels: Object.keys(user.wellnessLog.getWeekOfStats(date, 'sleep', 'sleepQuality')),
       datasets:[{
-      label: 'Sleep',
-      data: data,
-      backgroundColor: 'cornflowerblue',
-      }]
+      label: 'Sleep Quality',
+      data: Object.values(user.wellnessLog.getWeekOfStats(date, 'sleep', 'sleepQuality')),
+      backgroundColor: '#44BBA4',
+      borderColor: "#061223",
+      borderWidth: 1
+      }],
+      datasets:[{
+      label: 'Sleep Duration',
+      data: Object.values(user.wellnessLog.getWeekOfStats(date, 'sleep', 'hoursSlept')),
+      backgroundColor: '#44BBA4',
+      borderColor: "#061223",
+      borderWidth: 1
+      }],
     },
     options:{
-      hover: {
-        mode: "index",
-      },
       title: {
             display: true,
-            text: 'WEEK OF SLEEP'
+            text: 'Weekly Sleep Duration and Quality'
       },
       scales:{
         yAxes:[{
-        }],
-        xAxes:[{
-          ticks: {
-            callback: function(x) {
-              let weekdays = ['Monday', 'Tuesday','Wednesday','Thursday', 'Friday', 'Saturday', 'Sunday'];
-              return x.getDay
-            }
-          }
+          ticks: {"beginAtZero":true}
         }],
       },
     },
   };
   let myChart = new Chart(weekOfSleepChart, chartData);
-}
+};
 
 //Activity Week
 function createWeeklyActivityChart(user, date) {
