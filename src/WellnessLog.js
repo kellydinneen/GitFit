@@ -4,7 +4,6 @@ class WellnessLog {
     this.hydration = hydrationData.filter(log => log.userID === id);
     this.sleep = sleepData.filter(log => log.userID === id);
     this.activity = activityData.filter(log => log.userID === id);
-      });
   }
 
   //wellnessCategory could be: 'hydrationLog', 'sleepLog', or 'activityLog'
@@ -20,7 +19,7 @@ class WellnessLog {
   getWeekOfStats(day, wellnessCategory, property) {
     const weeklyLog = {};
     const dateIndex = this[wellnessCategory].findIndex(logEntry => logEntry.date === day);
-    const weekOfEntries = this[wellnessCategory].slice(dateIndex - 6 || 0, dateIndex + 1 || this[wellnessCategory]..length + 1);
+    const weekOfEntries = this[wellnessCategory].slice(dateIndex - 6 || 0, dateIndex + 1 || this[wellnessCategory].length + 1);
     weekOfEntries.forEach(entry => {
       const dateOfEntry = entry.date;
       weeklyLog[dateOfEntry] = entry[property];

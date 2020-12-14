@@ -1,7 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const WellnessLog = require('../src/SleepLog.js');
+const WellnessLog = require('../src/WellnessLog.js');
 const User = require('../src/User.js');
 
 let userData = [
@@ -42,9 +42,9 @@ describe('WellnessLog', function() {
   let wellnessLog1, wellnessLog2;
 
   beforeEach(function() {
-    user1.getWellnessLog([], sleepData, [], user1.userID);
+    user1.getWellnessLog([], [], []);
     wellnessLog1 = user1.wellnessLog;
-    user2.getWellnessLog([], sleepData, [], user2.userID);
+    user2.getWellnessLog([], [], []);
     wellnessLog2 = user2.wellnessLog;
   });
 
@@ -52,7 +52,7 @@ describe('WellnessLog', function() {
     expect(WellnessLog).to.be.a('function');
   });
 
-  it('should instantiate HydrationLog', function() {
+  it('should instantiate WellnessLog', function() {
     expect(wellnessLog1).to.be.an.instanceOf(WellnessLog);
   });
 
@@ -127,9 +127,9 @@ describe('WellnessLog.sleep', function() {
       }
     ];
 
-    user1.getWellnessLog([], sleepData, [], user1.userID);
+    user1.getWellnessLog([], sleepData, []);
     wellnessLog1 = user1.wellnessLog;
-    user2.getWellnessLog([], sleepData, [], user2.userID);
+    user2.getWellnessLog([], sleepData, []);
     wellnessLog2 = user2.wellnessLog;
   });
 
@@ -269,9 +269,9 @@ describe('WellnessLog.hydration', function() {
       }
     ];
 
-    user1.getWellnessLog(hydrationData, [], [], user1.userID);
+    user1.getWellnessLog(hydrationData, [], []);
     wellnessLog1 = user1.wellnessLog;
-    user2.getWellnessLog(hydrationData, [], [], user2.userID);
+    user2.getWellnessLog(hydrationData, [], []);
     wellnessLog2 = user2.wellnessLog;
   });
 
@@ -283,16 +283,16 @@ describe('WellnessLog.hydration', function() {
   });
 
   it('can calculate the average fluid ounces consumed by user per day for all time', function() {
-    expect(wellnessLog1.calculateAllTimeAverage('hydration','numOunces')).to.equal(573 / 9);
+    expect(wellnessLog1.calculateAllTimeAverage('hydration','numOunces')).to.equal('63.7');
   });
 
   it('can calculate the average fluid ounces consumed by different user per day for all time', function() {
-    expect(wellnessLog2.calculateAllTimeAverage('hydration','numOunces')).to.equal(166 / 2);
+    expect(wellnessLog2.calculateAllTimeAverage('hydration','numOunces')).to.equal('83.0');
   });
 
   it('can calculate how many fluid ounces a user consumed on a specific date', function() {
     expect(wellnessLog1.getTodaysStat('2019/06/16', 'hydration', 'numOunces')).to.equal(69);
-    expect(wellnessLog2.getTodaysStat('2019/06/20', 'hydration', 'numOunces')).to.equal(31);
+    expect(wellnessLog1.getTodaysStat('2019/06/20', 'hydration', 'numOunces')).to.equal(31);
   });
 
   it('can calculate how many fluid ounces a different user consumed on a specific date', function() {
@@ -300,7 +300,7 @@ describe('WellnessLog.hydration', function() {
   });
 
   it('can calculate how many fluid ounces a user consumed on each day for the last 7 days', function() {
-    expect(wellnessLog1.calculateWeeklyConsumption('2019/06/21', 'hydration', 'numOunces')).to.deep.equal(
+    expect(wellnessLog1.getWeekOfStats('2019/06/21', 'hydration', 'numOunces')).to.deep.equal(
       {
         '2019/06/15': 37,
         '2019/06/16': 69,
@@ -310,7 +310,7 @@ describe('WellnessLog.hydration', function() {
         '2019/06/20': 31,
         '2019/06/21': 91
       });
-    expect(wellnessLog1.calculateWeeklyConsumption('2019/06/22', 'hydration', 'numOunces')).to.deep.equal(
+    expect(wellnessLog1.getWeekOfStats('2019/06/22', 'hydration', 'numOunces')).to.deep.equal(
       {
         '2019/06/16': 69,
         '2019/06/17': 96,
@@ -323,7 +323,7 @@ describe('WellnessLog.hydration', function() {
   });
 
   it('will calculate how many fluid ounces a user consumed only on those of the last 7 days that have user data', function() {
-    const userTwoWeekOfHydration = wellnessLog2.calculateWeeklyConsumption('2019/06/22', 'hydration', 'numOunces');
+    const userTwoWeekOfHydration = wellnessLog2.getWeekOfStats('2019/06/22', 'hydration', 'numOunces');
     expect(userTwoWeekOfHydration).to.have.all.keys(["2019/06/15", "2019/06/16"]);
     expect(userTwoWeekOfHydration['2019/06/22']).to.be.undefined;
     expect(userTwoWeekOfHydration['2019/06/16']).to.equal(91);
