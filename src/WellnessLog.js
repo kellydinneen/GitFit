@@ -10,9 +10,10 @@ class WellnessLog {
   //property could be: 'numOunces' 'sleepQuality' 'hoursSlept' 'numSteps' 'minutesActive' 'flightsOfStairs'
 
   //TODAY
-  getTodaysStat(day, wellnessCategory, property) {
+  getTodaysStat(day, wellnessCategory, property, userData) {
     const daysLogEntry = this[wellnessCategory].find(logEntry => logEntry.date === day);
     if (property === 'distance') {
+      const user = userData.find(user => user.id === this.userID);
       const feetWalked = daysLogEntry.numSteps * user.strideLength;
       const distance = feetWalked / 5280;
       return parseFloat(distance.toFixed(2));
@@ -46,7 +47,7 @@ class WellnessLog {
 //Activity Only
 
   getTotalWeeklyActiveMinutes(date) {
-    const weeksActiveMinutes = Object.values(getWeekOfStats(date, 'activity', 'minutesActive'));
+    const weeksActiveMinutes = Object.values(this.getWeekOfStats(date, 'activity', 'minutesActive'));
       const totalMinutesActive = weeksActiveMinutes.reduce((acc, minutes) => {
         acc += minutes;
         return acc;
@@ -54,14 +55,14 @@ class WellnessLog {
       return totalMinutesActive;
   }
 
-  evaluateStepGoal(date) {
+  evaluateStepGoal(date, userData) {
     const daysEntry = this.activity.find(entry => entry.date === date);
-    const user = userData.find(user => user.id === this.id);
+    const user = userData.find(user => user.id === this.userID);
     return daysEntry.numSteps >= user.dailyStepGoal;
   }
 
-  findDaysWhenStepGoalWasMet() {
-    const daysWhenStepGoalWasMet = this.activity.filter(entry => this.evaluateStepGoal(entry.date));
+  findDaysWhenStepGoalWasMet(userData) {
+    const daysWhenStepGoalWasMet = this.activity.filter(entry => this.evaluateStepGoal(entry.date, userData));
     const dates = daysWhenStepGoalWasMet.map(entry => {
       return entry.date;
     });

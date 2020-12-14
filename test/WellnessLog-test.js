@@ -330,3 +330,134 @@ describe('WellnessLog.hydration', function() {
   });
 
 });
+
+
+describe('WellnessLog.activity', function() {
+  let activityData, wellnessLog1, wellnessLog2;
+
+  beforeEach(function() {
+    activityData = [
+      {
+        "userID": 1,
+        "date": "2019/06/15",
+        "numSteps": 3577,
+        "minutesActive": 140,
+        "flightsOfStairs": 16
+      },
+      {
+        "userID": 2,
+        "date": "2019/06/15",
+        "numSteps": 4294,
+        "minutesActive": 138,
+        "flightsOfStairs": 10
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/16",
+        "numSteps": 7402,
+        "minutesActive": 116,
+        "flightsOfStairs": 33
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/17",
+        "numSteps": 3486,
+        "minutesActive": 114,
+        "flightsOfStairs": 32
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/18",
+        "numSteps": 11374,
+        "minutesActive": 213,
+        "flightsOfStairs": 13
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/19",
+        "numSteps": 3486,
+        "minutesActive": 114,
+        "flightsOfStairs": 32
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/20",
+        "numSteps": 11374,
+        "minutesActive": 213,
+        "flightsOfStairs": 13
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/21",
+        "numSteps": 11374,
+        "minutesActive": 213,
+        "flightsOfStairs": 13
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/22",
+        "numSteps": 3486,
+        "minutesActive": 114,
+        "flightsOfStairs": 32
+      }
+    ];
+
+    user1.getWellnessLog([], [], activityData);
+    wellnessLog1 = user1.wellnessLog;
+    user2.getWellnessLog([], [], activityData);
+    wellnessLog2 = user2.wellnessLog;
+  });
+
+  it('should hold a list of activity entries', function() {
+    const user1ActivityData = activityData.filter(entry => entry.userID === user1.id);
+    const user2ActivityData = activityData.filter(entry => entry.userID === user2.id);
+    expect(wellnessLog1.activity).to.deep.equal(user1ActivityData);
+    expect(wellnessLog2.activity).to.deep.equal(user2ActivityData);
+  });
+
+  it('should return miles user walked on a given day', function() {
+    const milesWalked = wellnessLog1.getTodaysStat('2019/06/16', 'activity', 'distance', userData);
+    expect(milesWalked).to.equal(6.03);
+  });
+
+  it('should return a user\'s active minutes on a given day', function() {
+    const activeMinutes = wellnessLog1.getTodaysStat('2019/06/16', 'activity', 'minutesActive');
+    expect(activeMinutes).to.equal(116);
+  });
+
+  it('should return a user\'s total active minutes for a given week', function() {
+    const weeklyActiveMinutesTotal = wellnessLog1.getTotalWeeklyActiveMinutes('2019/06/22');
+    expect(weeklyActiveMinutesTotal).to.equal(1097);
+  });
+
+  it('should know when user met step goal', function() {
+    const stepGoalEvaluation = wellnessLog1.evaluateStepGoal('2019/06/18', userData);
+    expect(stepGoalEvaluation).to.be.true;
+  });
+
+  it('should know when user did not meet step goal', function() {
+    const stepGoalEvaluation = wellnessLog2.evaluateStepGoal('2019/06/15', userData);
+    expect(stepGoalEvaluation).to.be.false;
+  });
+
+  it('should find all the days when user met step goal', function() {
+    const stepGoalSuccesses = wellnessLog1.findDaysWhenStepGoalWasMet(userData);
+    expect(stepGoalSuccesses).to.deep.equal(["2019/06/18", "2019/06/20", "2019/06/21"]);
+  });
+
+  it('should return no days when a user never met step goal', function() {
+    const stepGoalSuccesses = wellnessLog2.findDaysWhenStepGoalWasMet(userData);
+    expect(stepGoalSuccesses).to.deep.equal([]);
+  });
+
+  it('should find a user\'s all time stair climbing record', function() {
+    const stairClimbingRecord = wellnessLog1.findStairClimbingRecord();
+    expect(stairClimbingRecord).to.equal(33);
+  });
+
+  it('should find a different user\'s all time stair climbing record', function() {
+    const stairClimbingRecord = wellnessLog2.findStairClimbingRecord();
+    expect(stairClimbingRecord).to.equal(10);
+  });
+
+});
