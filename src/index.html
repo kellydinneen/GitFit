@@ -57,26 +57,25 @@
             <h3>Hydr8 2Day</h3>
           </article>
           <article class='hydration-data-week widget'>
-            <h3>Hydr8 All Week</h3>
+            <canvas id='hydration-data-week_chart' class='hydration-data-week_chart' height='600' width='400'>
+            </canvas>
           </article>
         </div>
 <!-- Sleep Widgets -->
         <div class='sleep genre'>
           <article class='sleep-data-last-night widget'>
-            <h3>ZZZ's last Night</h3>
+            <canvas id='sleep-data-last-night_chart'></canvas>
             <section class='sleep-data_last-night'>
             </section>
           </article>
           <article class='sleep-data-week widget'>
-            <h3>ZZZ's Last Week</h3>
+            <canvas id='sleep-data-week_chart'></canvas>
             <section class='sleep-data_last-week'>
             </section>
           </article>
           <article class='sleep-data-all-time widget'>
-            <h3>ZZZ's All Time</h3>
             <section class='sleep-data_averages'>
-              <h3 id='all-time-average-sleep-quality' class='sleep-data_average-quality'>All Time Average Quality</h3>
-              <h3 id='all-time-average-sleep-hours' class='sleep-data_average-hours'>All Time Average Hours</h3>
+              <canvas id='sleep-data-all-time_chart'></canvas>
             </section>
           </article>
         </div>
@@ -87,9 +86,11 @@
     <script type="text/javascript" src="../data/sleep.js"></script>
     <script type="text/javascript" src="../data/activity.js"></script>
     <script type="text/javascript" src="../src/WellnessLog.js"></script>
+    <!-- <script type="text/javascript" src="../src/ActivityLog.js"></script> -->
     <script type="text/javascript" src="../src/User.js"></script>
     <script type="text/javascript" src="../src/UserRepository.js"></script>
     <script type="text/javascript" src="../src/SleepRepository.js"></script>
+    <script type="text/javascript" src="../node_modules/chart.js/dist/Chart.js"></script>
     <script type="text/javascript" src="./scripts.js"></script>
   </body>
 </html>

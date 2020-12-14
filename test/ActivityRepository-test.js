@@ -3,9 +3,10 @@ const expect = chai.expect;
 
 
 const ActivityRepository = require('../src/ActivityRepository.js');
-// const ActivityLog = require('../src/ActivityLog.js');
-describe('UserRepository', function() {
+
+describe('ActivityRepository', function() {
   let activityData;
+  let activityRepo;
 
   beforeEach(function() {
     activityData = [
