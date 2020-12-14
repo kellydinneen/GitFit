@@ -12,8 +12,14 @@ class WellnessLog {
   //TODAY
   getTodaysStat(day, wellnessCategory, property) {
     const daysLogEntry = this[wellnessCategory].find(logEntry => logEntry.date === day);
-    return daysLogEntry[property];
-  }
+    if (property === 'distance') {
+      const feetWalked = daysLogEntry.numSteps * user.strideLength;
+      const distance = feetWalked / 5280;
+      return parseFloat(distance.toFixed(2));
+    } else {
+      return daysLogEntry[property];
+    }
+  };
 
   //THIS WEEK
   getWeekOfStats(day, wellnessCategory, property) {
@@ -37,6 +43,35 @@ class WellnessLog {
     return (total / this[wellnessCategory].length).toFixed(1);
   }
 
+//Activity Only
+
+  getTotalWeeklyActiveMinutes(date) {
+    const weeksActiveMinutes = Object.values(getWeekOfStats(date, 'activity', 'minutesActive'));
+      const totalMinutesActive = weeksActiveMinutes.reduce((acc, minutes) => {
+        acc += minutes;
+        return acc;
+      }, 0);
+      return totalMinutesActive;
+  }
+
+  evaluateStepGoal(date) {
+    const daysEntry = this.activity.find(entry => entry.date === date);
+    const user = userData.find(user => user.id === this.id);
+    return daysEntry.numSteps >= user.dailyStepGoal;
+  }
+
+  findDaysWhenStepGoalWasMet() {
+    const daysWhenStepGoalWasMet = this.activity.filter(entry => this.evaluateStepGoal(entry.date));
+    const dates = daysWhenStepGoalWasMet.map(entry => {
+      return entry.date;
+    });
+    return dates;
+  }
+
+  findStairClimbingRecord() {
+    const record = this.activity.sort((a, b) => b.flightsOfStairs - a.flightsOfStairs);
+    return record[0].flightsOfStairs;
+  }
 
 }
 
