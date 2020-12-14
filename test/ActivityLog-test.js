@@ -103,9 +103,9 @@ describe('ActivityLog', function() {
       }
     ];
     user1 = new User(userData[0]);
-    user1.getActivityLog(activityData, user1.userID);
+    user1.getActivityLog(activityData, user1.id);
     user2 = new User(userData[1]);
-    user2.getActivityLog(activityData, user2.userID);
+    user2.getActivityLog(activityData, user2.id);
     activityLog = new ActivityLog(activityData, user1.id);
   });
 
@@ -134,7 +134,7 @@ describe('ActivityLog', function() {
 
   it('should return a user\'s active minutes on a given day', function() {
     const activeMinutes = user1.activityLog.getActiveMinutes('2019/06/16');
-    expect(milesWalked).to.equal(116);
+    expect(activeMinutes).to.equal(116);
   });
 
   it('should notify a user if they don\'t have data for a given day', function() {
@@ -167,7 +167,7 @@ describe('ActivityLog', function() {
 
   it('should find all the days when user met step goal', function() {
     const stepGoalSuccesses = user1.activityLog.findDaysWhenStepGoalWasMet();
-    expect(stepGoalSuccesses).to.deep.equal(["2019/06/21", "2019/06/20", "2019/06/18"]);
+    expect(stepGoalSuccesses).to.deep.equal(["2019/06/18", "2019/06/20", "2019/06/21"]);
   });
 
   it('should return no days when a user never met step goal', function() {
