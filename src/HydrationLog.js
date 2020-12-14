@@ -1,13 +1,7 @@
 class HydrationLog {
   constructor(hydrationData, id) {
     this.userID = id;
-    this.log = hydrationData.filter(log => log.userID === id)
-      .map(userLog => {
-        const logEntry = {};
-        logEntry.date = userLog.date;
-        logEntry.numOunces = userLog.numOunces;
-        return logEntry;
-      });
+    this.log = hydrationData.filter(log => log.userID === id);
   }
   calculateAverageOuncesPerDay() {
     const totalOunces = this.log.reduce((acc, day) => {
@@ -32,4 +26,6 @@ class HydrationLog {
   }
 }
 
-module.exports = HydrationLog;
+if (typeof module !== 'undefined') {
+  module.exports = HydrationLog;
+}
