@@ -13,31 +13,26 @@ class SleepRepository {
   }
 
   findWeeksGoodSleepers(date, userRepo) {
-    const highQualitySleepers = userRepo.users.filter((user) => {
+    const highestQualitySleepers = userRepo.users.filter((user) => {
       const userWeekOfSleep = user.getSleepLog(this.sleepCollection).getWeekOfSleepData(date, 'sleepQuality');
-      userWeekOfSleep;
-      const totalWeeksQuality = Object.keys(userWeekOfSleep).reduce((total, night) => {
-        total += userWeekOfSleep[night];
-        return total;
-      }, 0);
+      const totalWeeksQuality =
+        Object.values(userWeekOfSleep).reduce((total, sleepQuality) => {
+          total += sleepQuality;
+          return total;
+        }, 0);
       return totalWeeksQuality / Object.keys(userWeekOfSleep).length > 3;
     });
-    return highQualitySleepers.map(sleeper => sleeper.id);
+    return highestQualitySleepers.map(sleeper => sleeper.id);
   }
 
   findNightsLongestSleepers(date) {
     const nightSleeps = this.sleepCollection.filter(entry => entry.date === date);
-    let longestSleepers = [];
-    let mosthoursSlept = 0;
-    nightSleeps.forEach((entry) => {
-      if (entry.hoursSlept > mosthoursSlept) {
-        mosthoursSlept = entry.hoursSlept;
-        longestSleepers = [entry.userID];
-      } else if (entry.hoursSlept === mosthoursSlept) {
-        longestSleepers.push(entry.userID);
-      };
+    const sortedSleeps = nightSleeps.sort((a, b) => {
+      return a.hoursSlept - b.hoursSlept
     });
-    return longestSleepers;
+    const longestSleepTime = sortedSleeps[sortedSleeps.length - 1];
+    const longestSleeps = sortedSleeps.filter(sleep => sleep.hoursSlept === longestSleepTime.hoursSlept);
+    return longestSleeps.map(sleep => sleep.userID);
   }
 
  }

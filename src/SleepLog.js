@@ -1,22 +1,16 @@
 class SleepLog {
 
   constructor(sleepData, userID) {
-    this.log = sleepData.filter((data) => data.userID === userID)
-      .map(userLog => {
-        const logEntry = {};
-        logEntry.date = userLog.date;
-        logEntry.hoursSlept = userLog.hoursSlept;
-        logEntry.sleepQuality = userLog.sleepQuality;
-        return logEntry;
-      });
+    this.log = sleepData.filter((data) => data.userID === userID);
   }
 
   calculateAllTimeAverageSleep(variable) {
     let totalSleep = 0;
-    this.log.forEach((entry) => {
+
+    this.log.forEach(entry => {
       totalSleep += entry[variable];
     });
-    return totalSleep / this.log.length;
+    return (totalSleep / this.log.length).toFixed(1);
   }
 
   getLastNightsSleep(date, variable) {

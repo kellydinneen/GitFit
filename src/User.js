@@ -1,5 +1,6 @@
-// const SleepLog = require('../src/SleepLog');
-// const HydrationLog = require('../src/HydrationLog');
+
+const SleepLog = require('../src/SleepLog');
+const ActivityLog = require('./ActivityLog');
 
 class User {
   constructor(userData) {
@@ -25,6 +26,14 @@ class User {
     // console.log(hydrationData);
     this.hydrationLog = new HydrationLog(hydrationData, this.id);
     // return this.hydrationLog;
+
+    return this.sleepLog;
+  }
+
+  getActivityLog(activityData) {
+    this.activityLog = new ActivityLog(activityData, this.id);
+    return this.activityLog;
+
   }
 }
 
