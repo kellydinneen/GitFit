@@ -25,8 +25,7 @@ function openSite() {
 };
 
 function displayUserDashboard(user, date) {
-  user.getHydrationLog(hydrationData);
-  user.getSleepLog(sleepData);
+  user.getWellnessLog(hydrationData, sleepData, activityData);
   displayUserInfo(user);
   greetUser(user);
   createHydrationChart(user, date);
@@ -69,10 +68,10 @@ function createHydrationChart(user, date) {
   let chartData = {
     type: 'bar',
     data: {
-      labels: Object.keys(user.hydrationLog.calculateWeeklyConsumption(date)),
+      labels: Object.keys(user.wellnessLog.getWeekOfStats(date, 'hydration', 'numOunces')),
       datasets:[{
       label: false,
-      data: Object.values(user.hydrationLog.calculateWeeklyConsumption(date)),
+      data: Object.values(user.wellnessLog.getWeekOfStats(date, 'hydration', 'numOunces')),
       backgroundColor: '#44BBA4',
       borderColor: "#061223",
       borderWidth: 1
@@ -94,7 +93,7 @@ function createHydrationChart(user, date) {
 }
 
 function createSleepChart(user, date) {
-  let sleepValue = user.sleepLog.getLastNightsSleep(date, 'sleepQuality');
+  let sleepValue = user.wellnessLog.getTodaysStat(date, 'sleep', 'sleepQuality');
   let highestPossibleQuality = 5;
   let chartData = {
     type: 'doughnut',
@@ -121,7 +120,7 @@ function createSleepChart(user, date) {
 }
 
 function createAllTimeSleepChart(user, date) {
-  let sleepValue = user.sleepLog.calculateAllTimeAverageSleep('sleepQuality');
+  let sleepValue = user.wellnessLog.calculateAllTimeAverage('sleep', 'sleepQuality');
   let highestPossibleQuality = 5;
   let chartData = {
     type: 'doughnut',
@@ -148,9 +147,9 @@ function createAllTimeSleepChart(user, date) {
 }
 
 function createWeeklySleepChart(user, date) {
-  let weekDays = Object.keys(user.sleepLog.getWeekOfSleepData(date, 'hoursSlept'));
-  let weekOfSleepHours = Object.values(user.sleepLog.getWeekOfSleepData(date, 'hoursSlept'));
-  let weekOfSleepQuality = Object.values(user.sleepLog.getWeekOfSleepData(date, 'sleepQuality'));
+  let weekDays = Object.keys(user.wellnessLog.getWeekOfStats(date, 'sleep', 'hoursSlept'));
+  let weekOfSleepHours = Object.values(user.wellnessLog.getWeekOfStats(date, 'sleep', 'hoursSlept'));
+  let weekOfSleepQuality = Object.values(user.wellnessLog.getWeekOfStats(date, 'sleep', 'sleepQuality'));
   let data = [];
   weekDays.forEach((day, i) => {
     data[i] = {};
