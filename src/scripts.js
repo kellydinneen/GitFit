@@ -5,8 +5,7 @@
 const displayDate = document.querySelector('#date');
 const greeting = document.querySelector('#greeting');
 const displayedUserName = document.querySelector('#user-name');
-const displayedUserEmail = document.querySelector('#user-email');
-const displayedUserAddress = document.querySelector('#user-address');
+const displayedUserStepGoal = document.querySelector('#user-step-goal');
 const displayedUserStepGoalComparison = document.querySelector('#user-step-goal-comparison');
 const displayedUserFriendsList = document.querySelector('#user-friends-list');
 var weeklyHydrationChart = document.querySelector('#hydration-data-week_chart').getContext('2d');
@@ -46,10 +45,9 @@ function greetUser(user) {
 
 function displayUserInfo(user) {
   displayedUserName.innerText = `Name: ${user.name}`;
-  displayedUserEmail.innerText = `Email: ${user.email}`;
-  displayedUserAddress.innerText = `Address: ${user.address}`;
   const averageStepGoal = userRepo.calculateAverageStepGoal();
   // displayedUserStepGoalComparison.innerText = `Your daily step goal is ${user.dailyStepGoal} steps, which is ${calculatePercentDifference(user.dailyStepGoal, averageStepGoal)}% ${determineDifferenceDirection(user.dailyStepGoal, averageStepGoal)} than ${averageStepGoal} steps, the average daily step goal of GitFit users`;
+  displayedUserStepGoal.innerText = `Daily Step Goal: ${user.dailyStepGoal}`;
   displayedUserFriendsList.innerText = `Friends: ${getFriendNames(user)}`;
 }
 
