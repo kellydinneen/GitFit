@@ -76,4 +76,6 @@ class WellnessLog {
 
 }
 
-module.exports = WellnessLog;
+if (typeof module !== 'undefined') {
+  module.exports = WellnessLog;
+};
