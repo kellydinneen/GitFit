@@ -13,6 +13,7 @@ var weeklyHydrationChart = document.querySelector('#hydration-data-week_chart').
 var lastNightsSleepQualityChart = document.querySelector('#sleep-data-last-night_chart');
 var allTimeSleepQualityChart = document.querySelector('#sleep-data-all-time_chart');
 var weekOfSleepChart = document.querySelector('#sleep-data-week_chart');
+var weekOfActivityChart = document.querySelector('#activity-data-week_chart');
 
 let userRepo;
 
@@ -32,6 +33,7 @@ function displayUserDashboard(user, date) {
   createSleepChart(user, date);
   createAllTimeSleepChart(user, date);
   createWeeklySleepChart(user, date);
+  createWeeklyActivityChart(user, date);
 }
 
 function greetUser(user) {
@@ -190,3 +192,46 @@ function createWeeklySleepChart(user, date) {
   };
   let myChart = new Chart(weekOfSleepChart, chartData);
 }
+
+//Activity Week
+function createWeeklyActivityChart(user, date) {
+  let chartData = {
+    type: 'bar',
+    data: {
+      labels: Object.keys(user.wellnessLog.getWeekOfStats(date, 'activity', 'numSteps')),
+      datasets:[{
+      label: 'Number of Steps',
+      data: Object.values(user.wellnessLog.getWeekOfStats(date, 'activity', 'numSteps')),
+      backgroundColor: '#44BBA4',
+      borderColor: "#061223",
+      borderWidth: 1
+      }],
+      datasets:[{
+      label: 'Minutes Active',
+      data: Object.values(user.wellnessLog.getWeekOfStats(date, 'activity', 'minutesActive')),
+      backgroundColor: '#44BBA4',
+      borderColor: "#061223",
+      borderWidth: 1
+      }],
+      datasets:[{
+      label: 'Flights of Stairs Climbed',
+      data: Object.values(user.wellnessLog.getWeekOfStats(date, 'activity', 'flightsOfStairs')),
+      backgroundColor: '#44BBA4',
+      borderColor: "#061223",
+      borderWidth: 1
+      }]
+    },
+    options:{
+      title: {
+            display: true,
+            text: 'Weekly Activity: steps, activity minutes, and stairs'
+      },
+      scales:{
+        yAxes:[{
+          ticks: {"beginAtZero":true}
+        }],
+      },
+    },
+  };
+  let myChart = new Chart(weekOfActivityChart, chartData);
+};
