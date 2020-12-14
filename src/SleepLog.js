@@ -6,6 +6,7 @@ class SleepLog {
 
   calculateAllTimeAverageSleep(variable) {
     let totalSleep = 0;
+
     this.log.forEach(entry => {
       totalSleep += entry[variable];
     });
@@ -29,4 +30,6 @@ class SleepLog {
   }
 }
 
-module.exports = SleepLog;
+if (typeof module !== 'undefined') {
+  module.exports = SleepLog;
+}
