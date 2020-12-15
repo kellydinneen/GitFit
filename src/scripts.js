@@ -12,6 +12,7 @@ var weeklyHydrationChart = document.querySelector('#hydration-data-week_chart').
 var lastNightsSleepQualityChart = document.querySelector('#sleep-data-last-night_chart');
 var allTimeSleepQualityChart = document.querySelector('#sleep-data-all-time_chart');
 var weekOfSleepChart = document.querySelector('#sleep-data-week_chart');
+var todaysActivityMinutes = document.querySelector('#activity-data_today-minutes');
 var weekOfActivityChart = document.querySelector('#activity-data-week_chart');
 
 let userRepo;
@@ -28,6 +29,7 @@ function displayUserDashboard(user, date) {
   user.getWellnessLog(hydrationData, sleepData, activityData);
   displayUserInfo(user);
   greetUser(user);
+  displayTodaysActivity(user, date);
   createCharts(user, date);
 }
 
@@ -66,6 +68,10 @@ function calculatePercentDifference(a, b) {
 
 function determineDifferenceDirection(a, b) {
   return a - b < 0? 'lower':'higher';
+}
+
+function displayTodaysActivity(user, date) {
+  todaysActivityMinutes.innerText = user.wellnessLog.getTodaysStat(date, 'activity', 'minutesActive');
 }
 
 function createHydrationChart(user, date) {
