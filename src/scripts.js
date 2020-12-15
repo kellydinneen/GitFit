@@ -6,7 +6,7 @@ const displayDate = document.querySelector('#date');
 const greeting = document.querySelector('#greeting');
 const displayedUserName = document.querySelector('#user-name');
 const displayedUserStepGoal = document.querySelector('#user-step-goal');
-const displayedUserStepGoalComparison = document.querySelector('#user-step-goal-comparison');
+const displayedUserStepGoalComparison = document.querySelector('#user-step-goal_comparison');
 const displayedUserFriendsList = document.querySelector('#user-friends-list');
 var weeklyHydrationChart = document.querySelector('#hydration-data-week_chart').getContext('2d');
 var lastNightsSleepQualityChart = document.querySelector('#sleep-data-last-night_chart');
@@ -36,8 +36,6 @@ function openSite() {
   currentUser = userRepo.users[getRandomIndex(userRepo.users)];
   console.log(currentUser);
   displayUserDashboard(currentUser, '2019/09/22');
-
-  // displayUserDashboard(userRepo.users[10], '2019/09/22');
 };
 
 function displayUserDashboard(user, date) {
@@ -66,7 +64,7 @@ function greetUser(user) {
 function displayUserInfo(user) {
   displayedUserName.innerText = `Name: ${user.name}`;
   const averageStepGoal = userRepo.calculateAverageStepGoal();
-  // displayedUserStepGoalComparison.innerText = `Your daily step goal is ${user.dailyStepGoal} steps, which is ${calculatePercentDifference(user.dailyStepGoal, averageStepGoal)}% ${determineDifferenceDirection(user.dailyStepGoal, averageStepGoal)} than ${averageStepGoal} steps, the average daily step goal of GitFit users`;
+  displayedUserStepGoalComparison.innerText = `Your daily step goal is ${currentUser.dailyStepGoal} steps, while the average daily step goal is ${userRepo.calculateAverageStepGoal()}`;
   displayedUserStepGoal.innerText = `Daily Step Goal: ${user.dailyStepGoal}`;
   displayedUserFriendsList.innerText = `Friends: ${getFriendNames(user)}`;
 }
@@ -78,15 +76,6 @@ function getFriendNames(user) {
   });
   return friendNameList.join(', ');
 };
-
-function calculatePercentDifference(a, b) {
-  const exactPercentDifference =  (a - b) / b * 100;
-  return exactPercentDifference.toFixed();
-};
-
-function determineDifferenceDirection(a, b) {
-  return a - b < 0? 'lower':'higher';
-}
 
 function displayUserData(location, user, date, category, section) {
   location.innerText = user.wellnessLog.getTodaysStat(date, category, section, userRepo.users);
