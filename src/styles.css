@@ -46,6 +46,7 @@ footer {
 .widget {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   background: #E7E5DF;
   border: thin #D3D0CB;
@@ -145,12 +146,12 @@ footer {
   bottom: 1%;
 }
 
+.widget-heading {
+  font-size: 16px;
+}
+
 /* Responsive Breakpoints */
 @media screen and (min-width: 65em) {
-
-  .widget-heading {
-    font-size: 1.2vw;
-  }
 
   .widget {
     display: flex;

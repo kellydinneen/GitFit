@@ -108,7 +108,7 @@ function createHydrationChart(user, date) {
       maintainAspectRatio: false,
       responsive: true,
       title: {
-            fontSize: 14,
+            fontSize: 16,
             fontColor: '#081D36',
             display: true,
             text: 'This Week\'s Hydration'
@@ -217,7 +217,7 @@ function createAllTimeSleepChart(user, date) {
       responsive: true,
       title: {
         fontColor: '#081D36',
-        fontSize: 14,
+        fontSize: 16,
         display: true,
         text: 'Weekly Sleep'
       },
@@ -282,7 +282,7 @@ function createWeeklyActivityChart(user, date) {
       responsive: true,
       title: {
         fontColor: '#081D36',
-        fontSize: 14,
+        fontSize: 16,
         display: true,
         text: 'Weekly Activity'
       },
@@ -319,7 +319,7 @@ function createDailyHydrationChart(user, date) {
   let chartData = {
     type: 'doughnut',
     data: {
-      labels: ['ounces of water'],
+      labels: ['ounces'],
       datasets:[{
       label: {display: false},
       data: [ouncesValue, upperLimit - ouncesValue >= 0? upperLimit - ouncesValue : 0],
@@ -335,7 +335,7 @@ function createDailyHydrationChart(user, date) {
       responsive: true,
       title: {
         fontColor: '#081D36',
-        fontSize: 14,
+        fontSize: 16,
         display: true,
         text: 'Today\'s Hydration'
       },
