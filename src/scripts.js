@@ -8,7 +8,9 @@ const displayedUserStepGoalComparison = document.querySelector('#user-step-goal_
 const displayedUserFriendsList = document.querySelector('#user-friends-list');
 var weeklyHydrationChart = document.querySelector('#hydration-data-week_chart').getContext('2d');
 var lastNightsSleepQualityChart = document.querySelector('#sleep-data-last-night-quality_chart');
+var lastNightsSleepQualityValue = document.querySelector('#sleep-data-last-night-quality_value');
 var allTimeSleepQualityChart = document.querySelector('#sleep-data-all-time-quality_chart');
+var allTimeSleepQualityValue = document.querySelector('#sleep-data-all-time-quality_value');
 var weekOfSleepChart = document.querySelector('#sleep-data-week_chart');
 var todaysActivityMinutes = document.querySelector('#activity-data_today-minutes');
 var todaysStepCount = document.querySelector('#activity-data_today-steps');
@@ -49,6 +51,8 @@ function displayUserDashboard(user, date) {
 function createCharts(user, date) {
   createHydrationChart(user, date);
   createTodaysSleepChart(user, date);
+  lastNightsSleepQualityValue.innerText = `${user.wellnessLog.getTodaysStat(date, 'sleep', 'sleepQuality')} out  of 5`;
+  allTimeSleepQualityValue.innerText = `${user.wellnessLog.calculateAllTimeAverage('sleep', 'sleepQuality')} out  of 5`;
   createAllTimeSleepChart(user, date);
   createWeeklySleepChart(user, date);
   createWeeklyActivityChart(user, date);
@@ -94,6 +98,7 @@ function createHydrationChart(user, date) {
       }]
     },
     options:{
+      maintainAspectRatio: false,
       responsive: true,
       title: {
             display: true,
@@ -101,7 +106,7 @@ function createHydrationChart(user, date) {
       },
       scales:{
         yAxes:[{
-          ticks: {"beginAtZero":true}
+          ticks: {"beginAtZero":true, maxTicksLimit: 8}
         }],
       },
     },
@@ -201,7 +206,7 @@ function createAllTimeSleepChart(user, date) {
             display: true,
             labelString: 'Hours and Quality'
           },
-          ticks: {"beginAtZero":true}
+          ticks: {"beginAtZero":true, maxTicksLimit: 8}
         },
         {
           scaleLabel: {
@@ -210,7 +215,7 @@ function createAllTimeSleepChart(user, date) {
           },
           id: 'yAxis2',
           position: 'right',
-          ticks: {"beginAtZero": true},
+          ticks: {"beginAtZero":true, maxTicksLimit: 8, suggestedMax: 5},
           // callback: (value) => value * 5},
           gridLines: {'display': false}
         }],
@@ -260,6 +265,7 @@ function createWeeklyActivityChart(user, date) {
       },
       scales:{
         yAxes:[{
+          ticks: {"beginAtZero":true, maxTicksLimit: 8},
           scaleLabel: {
             display: true,
             labelString: 'stairs / active minutes'
@@ -268,6 +274,7 @@ function createWeeklyActivityChart(user, date) {
           gridLines: {'display': false}
         },
         {
+          ticks: {"beginAtZero":true, maxTicksLimit: 8},
           scaleLabel: {
             display: true,
             labelString: 'number of steps'
