@@ -62,7 +62,7 @@ function createCharts(user, date) {
 }
 
 function greetUser(user, date) {
-  greeting.innerText = `Hello, ${user.getFirstName()}`;
+  greeting.innerText = `Hello, ${user.getFirstName()}!`;
   displayDate.innerText = date;
 };
 

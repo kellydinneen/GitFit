@@ -25,7 +25,7 @@ footer {
   height: 15vh;;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
   background: #081D36;
   color: #D3D0CB;
   border: solid #D3D0CB;
@@ -148,6 +148,17 @@ footer {
 
 .widget-heading {
   font-size: 16px;
+}
+
+.site-title {
+  font-size: 40px;
+  font-style: italic;
+}
+
+.user-info_content_title {
+  color: #081D36;
+  background-color: #D3D0CB;
+  padding: 0.1em;
 }
 
 /* Responsive Breakpoints */
