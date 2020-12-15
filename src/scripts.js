@@ -173,11 +173,11 @@ function createAllTimeSleepChart(user, date) {
       backgroundColor: '#44BBA4',
       borderColor: "#061223",
       borderWidth: 1
-      }],
-      datasets:[{
+      },
+      {
       label: 'Sleep Duration',
       data: Object.values(user.wellnessLog.getWeekOfStats(date, 'sleep', 'hoursSlept')),
-      backgroundColor: '#44BBA4',
+      backgroundColor: '#FB6384',
       borderColor: "#061223",
       borderWidth: 1
       }],
@@ -205,22 +205,23 @@ function createWeeklyActivityChart(user, date) {
       labels: Object.keys(user.wellnessLog.getWeekOfStats(date, 'activity', 'numSteps')),
       datasets:[{
       label: 'Number of Steps',
-      data: Object.values(user.wellnessLog.getWeekOfStats(date, 'activity', 'numSteps')),
+      data: Object.values(user.wellnessLog.getWeekOfStats(date, 'activity', 'numSteps')).map(value => value / 100),
+      yAxisID: 'yAxis2',
       backgroundColor: '#44BBA4',
       borderColor: "#061223",
       borderWidth: 1
-      }],
-      datasets:[{
+      },
+      {
       label: 'Minutes Active',
       data: Object.values(user.wellnessLog.getWeekOfStats(date, 'activity', 'minutesActive')),
-      backgroundColor: '#44BBA4',
+      backgroundColor: '#FB6384',
       borderColor: "#061223",
       borderWidth: 1
-      }],
-      datasets:[{
+      },
+      {
       label: 'Flights of Stairs Climbed',
-      data: Object.values(user.wellnessLog.getWeekOfStats(date, 'activity', 'flightsOfStairs')),
-      backgroundColor: '#44BBA4',
+      data: Object.values(user.wellnessLog.getWeekOfStats(date, 'activity', 'flightsOfStairs')).map(value => value * 10),
+      backgroundColor: '#FC9F40',
       borderColor: "#061223",
       borderWidth: 1
       }]
@@ -232,7 +233,23 @@ function createWeeklyActivityChart(user, date) {
       },
       scales:{
         yAxes:[{
-          ticks: {"beginAtZero":true}
+          scaleLabel: {
+            display: true,
+            labelString: 'Stairs Climbed and Minutes Active'
+          },
+          position: 'left',
+          ticks: {"beginAtZero": true},
+          gridLines: {'display': false}
+        },
+        { 
+          scaleLabel: {
+            display: true,
+            labelString: 'Number of Steps'
+          },
+          id: 'yAxis2',
+          position: 'right',
+          ticks: {"beginAtZero": true, callback: (value) => value * 100},
+          gridLines: {'display': false}
         }],
       },
     },

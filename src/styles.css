@@ -99,3 +99,17 @@ p {
   width: 50%;
   height: 50%;
 }
+
+.activity-data_today {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.activity-data_today_stats {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

@@ -32,18 +32,20 @@
         <div class='activity genre'>
           <article class='activity-data-today widget'>
             <h3>Activity Today</h3>
-            <section class='activity-data_activity-minutes'>
-              <h4 id='activity-data_today-minutes'></h4>
-              <h5>Minutes Active</h5>
-            </section>
-            <section class='activity-data_steps'>
-              <h4 id='activity-data_today-steps'></h4>
-              <h5>Step Count</h5>
-            </section>
-            <section class='activity-data_distance'>
-              <h4 id='activity-data_today-distance'></h4>
-              <h5>Distance Walked</h5>
-            </section>
+            <div class='activity-data_today_stats'>
+              <section class='activity-data_activity-minutes'>
+                <h4 id='activity-data_today-minutes'></h4>
+                <h5>Minutes Active</h5>
+              </section>
+              <section class='activity-data_steps'>
+                <h4 id='activity-data_today-steps'></h4>
+                <h5>Step Count</h5>
+              </section>
+              <section class='activity-data_distance'>
+                <h4 id='activity-data_today-distance'></h4>
+                <h5>Miles Walked</h5>
+              </section>
+            </div>
           </article>
           <article class='activity-data-week widget'>
             <canvas id='activity-data-week_chart'></canvas>
@@ -61,7 +63,7 @@
             <h3>Hydr8 2Day</h3>
           </article>
           <article class='hydration-data-week widget'>
-            <canvas id='hydration-data-week_chart' class='hydration-data-week_chart' height='600' width='400'>
+            <canvas id='hydration-data-week_chart' class='hydration-data-week_chart' >
             </canvas>
           </article>
         </div>
