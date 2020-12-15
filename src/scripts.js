@@ -14,6 +14,7 @@ var allTimeSleepQualityChart = document.querySelector('#sleep-data-all-time_char
 var weekOfSleepChart = document.querySelector('#sleep-data-week_chart');
 var todaysActivityMinutes = document.querySelector('#activity-data_today-minutes');
 var todaysStepCount = document.querySelector('#activity-data_today-steps');
+var todaysDistanceWalked = document.querySelector('#activity-data_today-distance');
 var weekOfActivityChart = document.querySelector('#activity-data-week_chart');
 
 
@@ -33,6 +34,7 @@ function displayUserDashboard(user, date) {
   greetUser(user);
   displayUserData(todaysActivityMinutes, user, date, 'activity', 'minutesActive');
   displayUserData(todaysStepCount, user, date, 'activity', 'numSteps');
+  displayUserData(todaysDistanceWalked, user, date, 'activity', 'distance');
   createCharts(user, date);
 }
 
@@ -74,7 +76,7 @@ function determineDifferenceDirection(a, b) {
 }
 
 function displayUserData(location, user, date, category, section) {
-  location.innerText = user.wellnessLog.getTodaysStat(date, category, section);
+  location.innerText = user.wellnessLog.getTodaysStat(date, category, section, userRepo.users);
 }
 
 function createHydrationChart(user, date) {
