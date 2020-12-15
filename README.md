@@ -32,6 +32,29 @@ To get started on this project:
 
 ## Features
 
+The current user is randomly chosen from a `UserRepository` class upon the opening of the page. So, everytime the page is refreshed a different user's information and logged health statistics are displayed. 
+
+<p align = "center">
+<img src="">
+</p>
+
+The page displays 4 differenct sections: 
+1. User's Information
+2. User's Activity
+3. User's Hydration
+4. User's Sleep
+
+The current user's information is displayed from a `User` class that instantiated within the `User Repository` class as soon as the page loads. Then the each user is assigned a `WellnessLog` object instance that contains all of the user's documented activity, hydration, and sleep data. Then, all users' data is logged into a `Sleep Repository`, `Activity Repository`, and `Hydration Repository`, where methods calaculate information about all users' wellness data. 
+
+
+#### 
+
+#### Continuous Improvement/Future Improvements
+ In the next iteration we hope to add:
+  * Add a comment class and section
+  * Ability for user to rearrange their cards
+---
+
 ## Technologies
 
 1. Vanilla JavaScript
