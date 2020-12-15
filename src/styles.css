@@ -1,67 +1,84 @@
 /* body section */
 
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;;
-  align-items: center;
   height: 99vh;
-  width: 96%;
+  width: 97%;
   margin-left: 2%;
   background: #44BBA4;
   font-family: Sans-serif;
   color: #081D36;
 }
 
-.header {
+header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
+  height: 10%;
 }
 
-.bubble {
-  background: #E7E5DF;
-  border: solid #D3D0CB;
-  border-radius: 7px;
-  width: 8%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.bubble:nth-of-type(2) {
-  align-self: center;
-  width: 15%
-}
-
-.heading {
-  height: 100%
-}
-
-.greeting {
-  align-self: center;
-}
-
-/* main section */
 main {
   display: flex;
   justify-content: space-between;
-  height: 75%;
+  height: 70%;
   width: 100%;
 }
 
-.user-area {
-  width: 20%;
-  background: #E7E5DF;
+.info-box {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+footer {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+  background: #081D36;
+  color: #D3D0CB;
   border: solid #D3D0CB;
 }
 
-.user-info-area {
+.widget {
+  background: #E7E5DF;
+  border: thin #D3D0CB;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.small-widgets {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  width: 77%;
+  width: 100%;
+  height: 200px;
 }
+.sleep-data-doughnut{
+  width: 48%;
+}
+
+.activity {
+  height: 1000px;
+  width: 45%;
+}
+
+.activity-data-week {
+  margin-top: 3%;
+  height: 300px;
+}
+
+.sleep-data-week {
+  margin-top: 3%;
+  height: 300px;
+}
+
+
 
 
 p {
@@ -70,44 +87,27 @@ p {
   overflow-wrap: break-word;
 }
 
-
-.widget {
-  background: #E7E5DF;
-  border: thin #D3D0CB;
-  height: 32%;
-  width: 100%;
-  border-radius: 7px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .genre {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-  width: 31%;
+  justify-content: flex-start;
+  padding: 1%;
 }
 
-.genre:nth-of-type(2) {
-  justify-content: space-around;
+.hydration {
+  width: 28%;
 }
 
-.hydration-data-week_chart {
-  width: 50%;
-  height: 50%;
+.sleep {
+  width: 28%;
 }
 
-.activity-data_today {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.activity-numbers {
+  width: 48%
 }
 
-.activity-data_today_stats {
+
+.activity-numbers_stats {
   display: flex;
   flex-direction: row;
   align-items: center;

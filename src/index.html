@@ -6,94 +6,98 @@
     <link rel="stylesheet" type="text/css" href="./styles.css">
   </head>
   <body>
-    <section class='header'>
-      <div class='bubble heading'>
-        <h1 class='site-title'>GitFit</h1>
-      </div>
-      <div class='bubble'>
-        <h2 id='greeting' class='greeting'>Hello, User</h2>
-      </div>
-      <div class='bubble'>
-        <h2 id='date' class='date'>Date</h2>
-      </div>
-    </section>
+    <header>
+      <h1 class='site-title'>GitFit</h1>
+      <h2 id='greeting' class='greeting'>Hello, User</h2>
+      <h2 id='date' class='date'>Date</h2>
+    </header>
     <main>
-<!-- User info widget -->
-      <div class='user-area bubble'>
-        <article class='user-info'>
-          <h2 class= 'user-info_title'>Your Info</h2>
-          <p id='user-name' class='user-info_content'>Name</p>
-          <p id='user-step-goal' class='user-info_content'>Daily Step Goal</p>
-          <p id='user-step-goal_comparison' class='user-info_content'>Step Goal Comparison</p>
-          <p id='user-friends-list' class='user-info_content'>Friends List</p>
-        </article>
-      </div>
-      <div class='user-info-area'>
 <!-- Activity Widgets  -->
-        <div class='activity genre'>
-          <article class='activity-data-today widget'>
+      <section class='activity genre'>
+        <div class='small-widgets'>
+          <article class='activity-numbers widget'>
             <h3>Activity Today</h3>
-            <div class='activity-data_today_stats'>
-              <section class='activity-data_activity-minutes'>
+            <div class='activity-numbers_stats'>
+              <span class='activity-data_activity-minutes'>
                 <h4 id='activity-data_today-minutes'></h4>
                 <h5>Minutes Active</h5>
-              </section>
-              <section class='activity-data_steps'>
+              </span>
+              <span class='activity-data_steps'>
                 <h4 id='activity-data_today-steps'></h4>
                 <h5>Step Count</h5>
-              </section>
-              <section class='activity-data_distance'>
+              </span>
+              <span class='activity-data_distance'>
                 <h4 id='activity-data_today-distance'></h4>
                 <h5>Miles Walked</h5>
-              </section>
+              </span>
             </div>
           </article>
-          <article class='activity-data-week widget'>
-            <canvas id='activity-data-week_chart'></canvas>
-          </article>
-          <article class='activity-data_rankings widget'>
+          <article class='activity-numbers widget'>
             <h3>Activity Rankings</h3>
-            <h3 class='activity-data_steps-ranking'></h3>
-            <h3 class='activity-data_activity-minutes-ranking'></h3>
-            <h3 class='activity-data_stairs-ranking'></h3>
+            <div class='activity-numbers_stats'>
+              <span class='activity-data_activity-minutes'>
+                <h4 id='activity-data_today-minutes'></h4>
+                <h5>Minutes Active</h5>
+              </span>
+              <span class='activity-data_steps'>
+                <h4 id='activity-data_today-steps'></h4>
+                <h5>Step Count</h5>
+              </span>
+              <span class='activity-data_distance'>
+                <h4 id='activity-data_today-distance'></h4>
+                <h5>Miles Walked</h5>
+              </span>
+            </div>
           </article>
         </div>
+        <article class='activity-data-week widget'>
+          <canvas id='activity-data-week_chart'></canvas>
+        </article>
+      </section>
 <!-- Hydration Widgets -->
-        <div class='hydration genre'>
-          <article class='hydration-data-today widget'>
-            <canvas id='hydration-data_today_chart'></canvas>
-          </article>
-          <article class='hydration-data-week widget'>
-            <canvas id='hydration-data-week_chart' class='hydration-data-week_chart'>
-            </canvas>
-          </article>
-        </div>
+      <section class='hydration genre'>
+        <article class='hydration-data-week widget'>
+          <canvas id='hydration-data-week_chart' class='hydration-data-week_chart'>
+          </canvas>
+        </article>
+        <article class='hydration-data-today widget'>
+          <canvas id='hydration-data_today_chart'></canvas>
+        </article>
+      </section>
 <!-- Sleep Widgets -->
-        <div class='sleep genre'>
-          <article class='sleep-data-last-night widget'>
+      <section class='sleep genre'>
+        <div class='small-widgets'>
+          <article class='sleep-data-doughnut widget'>
             <canvas id='sleep-data-last-night_chart'></canvas>
-            <section class='sleep-data_last-night'>
-            </section>
           </article>
-          <article class='sleep-data-week widget'>
-            <canvas id='sleep-data-week_chart'></canvas>
-            <section class='sleep-data_last-week'>
-            </section>
-          </article>
-          <article class='sleep-data-all-time widget'>
-            <section class='sleep-data_averages'>
-              <canvas id='sleep-data-all-time_chart'></canvas>
-            </section>
+          <article class='sleep-data-doughnut widget'>
+            <canvas id='sleep-data-all-time_chart'></canvas>
           </article>
         </div>
-      </div>
+        <article class='sleep-data-week widget'>
+          <canvas id='sleep-data-week_chart'></canvas>
+        </article>
+      </section>
     </main>
+    <footer class='user-info'>
+        <h2 class='user-info_content_title'>Your Info</h2>
+        <div class='info-box'>
+          <p>Name:</p>
+          <p id='user-name'>Name</p>
+        </div>
+        <div class='info-box'>
+          <p>Your Step Goal:</p><p id='user-step-goal'>Daily Step Goal</p><p id='user-step-goal_comparison'>Step Goal Comparison</p>
+        </div>
+        <div class='info-box'>
+          <p>Friends:</p>
+          <p id='user-friends-list'>Friends List</p>
+        </div>
+    </footer>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/hydration.js"></script>
     <script type="text/javascript" src="../data/sleep.js"></script>
     <script type="text/javascript" src="../data/activity.js"></script>
     <script type="text/javascript" src="../src/WellnessLog.js"></script>
-    <!-- <script type="text/javascript" src="../src/ActivityLog.js"></script> -->
     <script type="text/javascript" src="../src/User.js"></script>
     <script type="text/javascript" src="../src/UserRepository.js"></script>
     <script type="text/javascript" src="../src/SleepRepository.js"></script>
