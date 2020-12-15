@@ -84,6 +84,8 @@ function displayUserData(location, user, date, category, section) {
   location.innerText = user.wellnessLog.getTodaysStat(date, category, section, userRepo.users);
 }
 
+Chart.defaults.global.defaultFontFamily = 'Montserrat';
+
 function createHydrationChart(user, date) {
   let chartData = {
     type: 'bar',

@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>GitFit</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="./styles.css">
   </head>
   <body>
@@ -16,7 +17,7 @@
       <section class='activity genre'>
         <div class='small-widgets'>
           <article class='activity-numbers widget'>
-            <h3>Activity Today</h3>
+            <h3 class='widget-heading'>Activity Today</h3>
             <div class='activity-numbers_stats'>
               <div class='bottom-stats'>
                 <span class='activity-data_activity-minutes'>
@@ -35,7 +36,7 @@
             </div>
           </article>
           <article class='activity-numbers widget'>
-            <h3>Activity Rankings</h3>
+            <h3 class='widget-heading'>Activity Rankings</h3>
             <div class='activity-numbers_stats'>
               <div class='bottom-stats'>
                 <span class='activity-data_activity-minutes'>
@@ -76,7 +77,7 @@
       <section class='sleep genre'>
         <div class='small-widgets'>
           <article class='sleep-data-doughnut widget'>
-            <h3>Last Night's Sleep</h3>
+            <h3 class='widget-heading'>Last Night's Sleep</h3>
             <h4 id='sleep-data-last-night-hours_number'>Hours</h4>
             <div class='sleep-doughnut-wrapper'>
               <canvas id='sleep-data-last-night-quality_chart'></canvas>
@@ -84,7 +85,7 @@
             <p id='sleep-data-last-night-quality_value' class='sleep-doughnut-headline'>X out of 5</p>
           </article>
           <article class='sleep-data-doughnut widget'>
-            <h3>Average Sleep</h3>
+            <h3 class='widget-heading'>Average Sleep</h3>
             <h4 id='sleep-data-all-time-hours_number'>Average Hours</h4>
             <div class='sleep-doughnut-wrapper'>
               <canvas id='sleep-data-all-time-quality_chart'></canvas>
@@ -97,7 +98,7 @@
         </article>
       </section>
     </main>
-    <aside class='user-info'>
+    <footer class='user-info'>
         <h2 class='user-info_content_title'>Your Info</h2>
         <div class='info-box'>
           <h4>Name:</h4>
@@ -112,7 +113,7 @@
           <h4>Friends:</h4>
           <h3 id='user-friends-list'>Friends List</h3>
         </div>
-    </aside>
+    </footer>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/hydration.js"></script>
     <script type="text/javascript" src="../data/sleep.js"></script>
