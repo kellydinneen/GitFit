@@ -16,16 +16,28 @@ var todaysActivityMinutes = document.querySelector('#activity-data_today-minutes
 var todaysStepCount = document.querySelector('#activity-data_today-steps');
 var todaysDistanceWalked = document.querySelector('#activity-data_today-distance');
 var weekOfActivityChart = document.querySelector('#activity-data-week_chart');
+var todaysHydration = document.querySelector('#hydration-data_today_chart');
 
 
 let userRepo;
+let currentUser; 
+
+function getRandomIndex(array) {
+  return Math.floor(Math.random() * array.length);
+}
+
+
 
 //event handlers
 window.onload = openSite();
 
 function openSite() {
   userRepo = new UserRepository(userData);
-  displayUserDashboard(userRepo.users[10], '2019/09/22');
+  currentUser = userRepo.users[getRandomIndex(userRepo.users)];
+  console.log(currentUser);
+  displayUserDashboard(currentUser, '2019/09/22');
+
+  // displayUserDashboard(userRepo.users[10], '2019/09/22');
 };
 
 function displayUserDashboard(user, date) {
@@ -44,6 +56,7 @@ function createCharts(user, date) {
   createAllTimeSleepChart(user, date);
   createWeeklySleepChart(user, date);
   createWeeklyActivityChart(user, date);
+  createDailyHydrationChart(user, date)
 }
 
 function greetUser(user) {
@@ -169,7 +182,9 @@ function createAllTimeSleepChart(user, date) {
       labels: Object.keys(user.wellnessLog.getWeekOfStats(date, 'sleep', 'sleepQuality')),
       datasets:[{
       label: 'Sleep Quality',
+
       data: Object.values(user.wellnessLog.getWeekOfStats(date, 'sleep', 'sleepQuality')),
+      yAxisID: 'yAxis2',
       backgroundColor: '#44BBA4',
       borderColor: "#061223",
       borderWidth: 1
@@ -189,7 +204,22 @@ function createAllTimeSleepChart(user, date) {
       },
       scales:{
         yAxes:[{
+          scaleLabel: {
+            display: true,
+            labelString: 'Hours and Quality'
+          },
           ticks: {"beginAtZero":true}
+        },
+        { 
+          scaleLabel: {
+            display: true,
+            labelString: 'Quality'
+          },
+          id: 'yAxis2',
+          position: 'right',
+          ticks: {"beginAtZero": true}, 
+          // callback: (value) => value * 5},
+          gridLines: {'display': false}
         }],
       },
     },
@@ -256,3 +286,31 @@ function createWeeklyActivityChart(user, date) {
   };
   let myChart = new Chart(weekOfActivityChart, chartData);
 };
+
+//Hydration: Daily
+function createDailyHydrationChart(user, date) {
+  let ouncesValue = user.wellnessLog.getTodaysStat(date, 'hydration', 'numOunces');
+  let upperLimit = 64;
+  let chartData = {
+    type: 'doughnut',
+    data: {
+      labels: ['Todays Hydration'],
+      datasets:[{
+      label: false,
+      data: [ouncesValue, upperLimit - ouncesValue],
+      backgroundColor: ['#44BBA4', '#E7E5DF'],
+      borderWidth: 0
+      }]
+    },
+    options:{
+      title: {
+            display: true,
+            text: 'Today\'s Hydration'
+      },
+      circumference: Math.PI,
+      events: [],
+      rotation: Math.PI
+    },
+  };
+  let myChart = new Chart(todaysHydration, chartData);
+}

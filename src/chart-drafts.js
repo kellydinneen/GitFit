@@ -147,7 +147,7 @@ function createDailyStepsChart(user, date) {
 //Hydration: Daily
       function createDailyHydrationChart(user, date) {
         let ouncesValue = user.wellnessLog.getTodaysStat(date, 'hydration', 'numOunces');
-        let upperLimit = 150
+        let upperLimit = 64,
         let chartData = {
           type: 'doughnut',
           data: {
@@ -170,6 +170,7 @@ function createDailyStepsChart(user, date) {
           },
         };
         let myChart = new Chart(xxxxxxxx, chartData);
+      }
 
   //Activity Week
   function createWeeklyActivityChart(user, date) {
