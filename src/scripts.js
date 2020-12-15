@@ -7,8 +7,8 @@ const displayedUserStepGoal = document.querySelector('#user-step-goal');
 const displayedUserStepGoalComparison = document.querySelector('#user-step-goal_comparison');
 const displayedUserFriendsList = document.querySelector('#user-friends-list');
 var weeklyHydrationChart = document.querySelector('#hydration-data-week_chart').getContext('2d');
-var lastNightsSleepQualityChart = document.querySelector('#sleep-data-last-night_chart');
-var allTimeSleepQualityChart = document.querySelector('#sleep-data-all-time_chart');
+var lastNightsSleepQualityChart = document.querySelector('#sleep-data-last-night-quality_chart');
+var allTimeSleepQualityChart = document.querySelector('#sleep-data-all-time-quality_chart');
 var weekOfSleepChart = document.querySelector('#sleep-data-week_chart');
 var todaysActivityMinutes = document.querySelector('#activity-data_today-minutes');
 var todaysStepCount = document.querySelector('#activity-data_today-steps');
@@ -48,7 +48,7 @@ function displayUserDashboard(user, date) {
 
 function createCharts(user, date) {
   createHydrationChart(user, date);
-  createSleepChart(user, date);
+  createTodaysSleepChart(user, date);
   createAllTimeSleepChart(user, date);
   createWeeklySleepChart(user, date);
   createWeeklyActivityChart(user, date);
@@ -109,7 +109,7 @@ function createHydrationChart(user, date) {
   let myChart = new Chart(weeklyHydrationChart, chartData);
 }
 
-function createSleepChart(user, date) {
+function createTodaysSleepChart(user, date) {
   let sleepValue = user.wellnessLog.getTodaysStat(date, 'sleep', 'sleepQuality');
   let highestPossibleQuality = 5;
   let chartData = {
@@ -126,7 +126,7 @@ function createSleepChart(user, date) {
     options:{
       responsive: true,
       title: {
-            display: true,
+            display: false,
             text: 'Last Night\'s Sleep'
       },
       circumference: Math.PI,
@@ -154,8 +154,8 @@ function createAllTimeSleepChart(user, date) {
     options:{
       responsive: true,
       title: {
-            display: true,
-            text: 'All Time Sleep'
+            display: false,
+            text: 'Last Night\'s Sleep'
       },
       circumference: Math.PI,
       events: [],
@@ -172,7 +172,7 @@ function createAllTimeSleepChart(user, date) {
     data: {
       labels: Object.keys(user.wellnessLog.getWeekOfStats(date, 'sleep', 'sleepQuality')),
       datasets:[{
-      label: 'Sleep Quality',
+      label: 'quality',
 
       data: Object.values(user.wellnessLog.getWeekOfStats(date, 'sleep', 'sleepQuality')),
       yAxisID: 'yAxis2',
@@ -181,7 +181,7 @@ function createAllTimeSleepChart(user, date) {
       borderWidth: 1
       },
       {
-      label: 'Sleep Duration',
+      label: 'hours',
       data: Object.values(user.wellnessLog.getWeekOfStats(date, 'sleep', 'hoursSlept')),
       backgroundColor: '#AD94CD',
       borderColor: "#061223",
@@ -189,6 +189,7 @@ function createAllTimeSleepChart(user, date) {
       }],
     },
     options:{
+      maintainAspectRatio: false,
       responsive: true,
       title: {
             display: true,
@@ -227,21 +228,21 @@ function createWeeklyActivityChart(user, date) {
       labels: Object.keys(user.wellnessLog.getWeekOfStats(date, 'activity', 'numSteps')),
       datasets:[
         {
-        label: 'Minutes Active',
+        label: 'minutes active',
         data: Object.values(user.wellnessLog.getWeekOfStats(date, 'activity', 'minutesActive')),
         backgroundColor: '#D45E5E',
         borderColor: "#061223",
         borderWidth: 1
         },
         {
-        label: 'Stairs Climbed',
+        label: 'stairs climbed',
         data: Object.values(user.wellnessLog.getWeekOfStats(date, 'activity', 'flightsOfStairs')).map(value => value * 10),
         backgroundColor: '#EDC610',
         borderColor: "#061223",
         borderWidth: 1
         },
         {
-        label: 'Number of Steps',
+        label: 'steps',
         data: Object.values(user.wellnessLog.getWeekOfStats(date, 'activity', 'numSteps')),
         yAxisID: 'yAxis2',
         backgroundColor: '#F79D03',
@@ -251,6 +252,7 @@ function createWeeklyActivityChart(user, date) {
       ]
     },
     options:{
+      maintainAspectRatio: false,
       responsive: true,
       title: {
             display: true,
@@ -260,20 +262,18 @@ function createWeeklyActivityChart(user, date) {
         yAxes:[{
           scaleLabel: {
             display: true,
-            labelString: 'Stairs Climbed and Minutes Active'
+            labelString: 'stairs / active minutes'
           },
           position: 'left',
-          ticks: {"beginAtZero": true},
           gridLines: {'display': false}
         },
         {
           scaleLabel: {
             display: true,
-            labelString: 'Number of Steps'
+            labelString: 'number of steps'
           },
           id: 'yAxis2',
           position: 'right',
-          ticks: {"beginAtZero": true},
           gridLines: {'display': false}
         }],
       },
@@ -298,6 +298,7 @@ function createDailyHydrationChart(user, date) {
       }]
     },
     options:{
+      maintainAspectRatio: false,
       responsive: true,
       title: {
             display: true,
