@@ -65,7 +65,7 @@ footer {
 
 .activity {
   height: 1000px;
-  width: 45%;
+  width: 40%;
 }
 
 .activity-data-week {
@@ -78,6 +78,13 @@ footer {
   height: 300px;
 }
 
+.hydration-data-week {
+  height: 250px;
+}
+.hydration-data-today {
+  margin-top: 3%;
+  height: 230px;
+}
 
 
 
@@ -99,7 +106,7 @@ p {
 }
 
 .sleep {
-  width: 28%;
+  width: 35%;
 }
 
 .activity-numbers {
@@ -109,7 +116,30 @@ p {
 
 .activity-numbers_stats {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  width: 100%;
+  line-height: .1em;
   align-items: center;
-  justify-content: center;
+  text-align: center;
+}
+
+.bottom-stats {
+  width: 85%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.minutes {
+  font-weight: bolder;
+  color: #D45E5E;
+}
+
+.distance {
+  font-weight: bolder;
+  color: #C50031;
+}
+
+.steps {
+  font-weight: bolder;
+  color: #F79D03;
 }

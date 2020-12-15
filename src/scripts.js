@@ -86,7 +86,7 @@ function createHydrationChart(user, date) {
     data: {
       labels: Object.keys(user.wellnessLog.getWeekOfStats(date, 'hydration', 'numOunces')),
       datasets:[{
-      label: 'Watuh',
+      label: 'ounces of water',
       data: Object.values(user.wellnessLog.getWeekOfStats(date, 'hydration', 'numOunces')),
       backgroundColor: '#7398C4',
       borderColor: "#061223",
@@ -229,14 +229,14 @@ function createWeeklyActivityChart(user, date) {
         {
         label: 'Minutes Active',
         data: Object.values(user.wellnessLog.getWeekOfStats(date, 'activity', 'minutesActive')),
-        backgroundColor: '#CC286B',
+        backgroundColor: '#D45E5E',
         borderColor: "#061223",
         borderWidth: 1
         },
         {
         label: 'Stairs Climbed',
         data: Object.values(user.wellnessLog.getWeekOfStats(date, 'activity', 'flightsOfStairs')).map(value => value * 10),
-        backgroundColor: '#FC9F40',
+        backgroundColor: '#EDC610',
         borderColor: "#061223",
         borderWidth: 1
         },
@@ -244,7 +244,7 @@ function createWeeklyActivityChart(user, date) {
         label: 'Number of Steps',
         data: Object.values(user.wellnessLog.getWeekOfStats(date, 'activity', 'numSteps')),
         yAxisID: 'yAxis2',
-        backgroundColor: '#A83833',
+        backgroundColor: '#F79D03',
         borderColor: "#061223",
         borderWidth: 1
         },
@@ -289,7 +289,7 @@ function createDailyHydrationChart(user, date) {
   let chartData = {
     type: 'doughnut',
     data: {
-      labels: ['Todays Hydration'],
+      labels: ['ounces of water'],
       datasets:[{
       label: {display: false},
       data: [ouncesValue, upperLimit - ouncesValue],
@@ -303,8 +303,8 @@ function createDailyHydrationChart(user, date) {
             display: true,
             text: 'Today\'s Hydration'
       },
-      circumference: Math.PI,
-      events: [],
+      circumference: 2 * Math.PI,
+      // events: [],
       rotation: Math.PI
     },
   };
