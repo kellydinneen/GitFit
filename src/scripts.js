@@ -61,11 +61,11 @@ function greetUser(user, date) {
 };
 
 function displayUserInfo(user) {
-  displayedUserName.innerText = `Name: ${user.name}`;
+  displayedUserName.innerText = `${user.name}`;
   const averageStepGoal = userRepo.calculateAverageStepGoal();
-  displayedUserStepGoalComparison.innerText = `Your daily step goal is ${currentUser.dailyStepGoal} steps, while the average daily step goal is ${userRepo.calculateAverageStepGoal()}`;
-  displayedUserStepGoal.innerText = `Daily Step Goal: ${user.dailyStepGoal}`;
-  displayedUserFriendsList.innerText = `Friends: ${getFriendNames(user)}`;
+  displayedUserStepGoalComparison.innerText = `The average daily step goal is ${userRepo.calculateAverageStepGoal()}`;
+  displayedUserStepGoal.innerText = `${user.dailyStepGoal}`;
+  displayedUserFriendsList.innerText = `${getFriendNames(user)}`;
 }
 
 function getFriendNames(user) {

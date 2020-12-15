@@ -29,17 +29,17 @@ main {
   flex-direction: column;
   justify-content: flex-start;
   text-align: center;
-  padding: 0;
-  margin: 0;
+  margin-top: 10%;
+  margin-bottom: 10%;
 }
 
 footer {
   width: 100%;
   height: 20%;
   display: flex;
-  justify-content: space-between;
-  padding: 0;
-  margin: 0;
+  justify-content: space-around;
+  align-items: center;
+  line-height: 1em;
   background: #081D36;
   color: #D3D0CB;
   border: solid #D3D0CB;
@@ -70,20 +70,21 @@ footer {
 
 .activity-data-week {
   margin-top: 3%;
-  height: 300px;
+  height: 260px;
 }
 
 .sleep-data-week {
   margin-top: 3%;
-  height: 300px;
+  height: 260px;
 }
 
 .hydration-data-week {
-  height: 250px;
+  margin-top: 3%;
+  height: 230px;
 }
 .hydration-data-today {
   margin-top: 3%;
-  height: 230px;
+  height: 220px;
 }
 
 
