@@ -87,7 +87,7 @@ function createHydrationChart(user, date) {
     data: {
       labels: Object.keys(user.wellnessLog.getWeekOfStats(date, 'hydration', 'numOunces')),
       datasets:[{
-      label: false,
+      label: 'Watuh',
       data: Object.values(user.wellnessLog.getWeekOfStats(date, 'hydration', 'numOunces')),
       backgroundColor: '#44BBA4',
       borderColor: "#061223",
@@ -285,7 +285,7 @@ function createDailyHydrationChart(user, date) {
     data: {
       labels: ['Todays Hydration'],
       datasets:[{
-      label: false,
+      label: {display: false},
       data: [ouncesValue, upperLimit - ouncesValue],
       backgroundColor: ['#44BBA4', '#E7E5DF'],
       borderWidth: 0
