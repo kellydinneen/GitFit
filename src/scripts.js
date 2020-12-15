@@ -17,6 +17,7 @@ var todaysStepCount = document.querySelector('#activity-data_today-steps');
 var todaysDistanceWalked = document.querySelector('#activity-data_today-distance');
 var weekOfActivityChart = document.querySelector('#activity-data-week_chart');
 var todaysHydration = document.querySelector('#hydration-data_today_chart');
+var todaysHydrationValue = document.querySelector('#hydration-data_today_number');
 
 
 let userRepo;
@@ -53,6 +54,7 @@ function createCharts(user, date) {
   createTodaysSleepChart(user, date);
   lastNightsSleepQualityValue.innerText = `${user.wellnessLog.getTodaysStat(date, 'sleep', 'sleepQuality')} out  of 5`;
   allTimeSleepQualityValue.innerText = `${user.wellnessLog.calculateAllTimeAverage('sleep', 'sleepQuality')} out  of 5`;
+  todaysHydrationValue.innerText = `${(user.wellnessLog.getTodaysStat(date, 'hydration', 'numOunces') / 8).toFixed(1)} out of 10 cups`
   createAllTimeSleepChart(user, date);
   createWeeklySleepChart(user, date);
   createWeeklyActivityChart(user, date);
@@ -313,14 +315,14 @@ function createWeeklyActivityChart(user, date) {
 //Hydration: Daily
 function createDailyHydrationChart(user, date) {
   let ouncesValue = user.wellnessLog.getTodaysStat(date, 'hydration', 'numOunces');
-  let upperLimit = 64;
+  let upperLimit = 80;
   let chartData = {
     type: 'doughnut',
     data: {
       labels: ['ounces of water'],
       datasets:[{
       label: {display: false},
-      data: [ouncesValue, upperLimit - ouncesValue],
+      data: [ouncesValue, upperLimit - ouncesValue >= 0? upperLimit - ouncesValue : 0],
       backgroundColor: ['#7398C4', '#E7E5DF'],
       borderWidth: 0
       }]
