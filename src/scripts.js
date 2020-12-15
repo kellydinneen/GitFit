@@ -84,7 +84,7 @@ function displayUserData(location, user, date, category, section) {
   location.innerText = user.wellnessLog.getTodaysStat(date, category, section, userRepo.users);
 }
 
-Chart.defaults.global.defaultFontFamily = 'Josefin Sans', sans-serif;;
+Chart.defaults.global.defaultFontFamily = 'Josefin Sans', sans-serif;
 
 function createHydrationChart(user, date) {
   let chartData = {
@@ -92,7 +92,7 @@ function createHydrationChart(user, date) {
     data: {
       labels: Object.keys(user.wellnessLog.getWeekOfStats(date, 'hydration', 'numOunces')),
       datasets:[{
-      label: 'ounces of water',
+      label: 'ounces',
       data: Object.values(user.wellnessLog.getWeekOfStats(date, 'hydration', 'numOunces')),
       backgroundColor: '#7398C4',
       borderColor: "#061223",
@@ -100,14 +100,23 @@ function createHydrationChart(user, date) {
       }]
     },
     options:{
+      legend: {
+        display: false
+      },
       maintainAspectRatio: false,
       responsive: true,
       title: {
+            fontSize: 14,
+            fontColor: '#081D36',
             display: true,
             text: 'This Week\'s Hydration'
       },
       scales:{
         yAxes:[{
+          scaleLabel: {
+            display: true,
+            labelString: 'ounces'
+          },
           ticks: {"beginAtZero":true, maxTicksLimit: 8}
         }],
       },
@@ -131,11 +140,14 @@ function createTodaysSleepChart(user, date) {
       }]
     },
     options:{
-      responsive: true,
-      title: {
-            display: false,
-            text: 'Last Night\'s Sleep'
+      legend: {
+        display: false
       },
+      title: {
+            display: true,
+            text: 'Quality'
+      },
+      responsive: true,
       circumference: Math.PI,
       events: [],
       rotation: Math.PI
@@ -159,11 +171,14 @@ function createAllTimeSleepChart(user, date) {
       }]
     },
     options:{
-      responsive: true,
-      title: {
-            display: false,
-            text: 'Last Night\'s Sleep'
+      legend: {
+        display: false
       },
+      title: {
+            display: true,
+            text: 'Average Quality'
+      },
+      responsive: true,
       circumference: Math.PI,
       events: [],
       rotation: Math.PI
@@ -188,7 +203,7 @@ function createAllTimeSleepChart(user, date) {
       borderWidth: 1
       },
       {
-      label: 'hours',
+      label: 'duration',
       data: Object.values(user.wellnessLog.getWeekOfStats(date, 'sleep', 'hoursSlept')),
       backgroundColor: '#AD94CD',
       borderColor: "#061223",
@@ -199,21 +214,23 @@ function createAllTimeSleepChart(user, date) {
       maintainAspectRatio: false,
       responsive: true,
       title: {
-            display: true,
-            text: 'Weekly Sleep Duration and Quality'
+        fontColor: '#081D36',
+        fontSize: 14,
+        display: true,
+        text: 'Weekly Sleep'
       },
       scales:{
         yAxes:[{
           scaleLabel: {
             display: true,
-            labelString: 'Hours and Quality'
+            labelString: 'hours'
           },
           ticks: {"beginAtZero":true, maxTicksLimit: 8}
         },
         {
           scaleLabel: {
             display: true,
-            labelString: 'Quality'
+            labelString: 'quality'
           },
           id: 'yAxis2',
           position: 'right',
@@ -262,8 +279,10 @@ function createWeeklyActivityChart(user, date) {
       maintainAspectRatio: false,
       responsive: true,
       title: {
-            display: true,
-            text: 'Weekly Activity: steps, activity minutes, and stairs'
+        fontColor: '#081D36',
+        fontSize: 14,
+        display: true,
+        text: 'Weekly Activity'
       },
       scales:{
         yAxes:[{
@@ -307,11 +326,16 @@ function createDailyHydrationChart(user, date) {
       }]
     },
     options:{
+      legend: {
+        display: false
+      },
       maintainAspectRatio: false,
       responsive: true,
       title: {
-            display: true,
-            text: 'Today\'s Hydration'
+        fontColor: '#081D36',
+        fontSize: 14,
+        display: true,
+        text: 'Today\'s Hydration'
       },
       circumference: 2 * Math.PI,
       // events: [],
