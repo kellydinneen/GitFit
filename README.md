@@ -40,11 +40,19 @@ The current user is randomly chosen from a `UserRepository` class upon the openi
 
 The page displays 4 differenct sections: 
 1. User's Information
+* Displays a percentage of the user's personal info.
 2. User's Activity
+* Displays the user's Activity stats for the most recent day and week as well as their rank among all of the users
 3. User's Hydration
+* Displays how much water a user drank on the latest day, assuming that the goal is to drink 8 cups, and their hydration log entries from the latest week.
 4. User's Sleep
+* Displays the quality of a user's sleep on a scale of 1 to 5 and the hours of sleep they got, assuming that 8 hours is the goal. These are displayed for the latest day, the latest week, and the user's all time average. 
 
-The current user's information is displayed from a `User` class that instantiated within the `User Repository` class as soon as the page loads. Then the each user is assigned a `WellnessLog` object instance that contains all of the user's documented activity, hydration, and sleep data. Then, all users' data is logged into a `Sleep Repository`, `Activity Repository`, and `Hydration Repository`, where methods calaculate information about all users' wellness data. 
+The current user's information is displayed from a `User` class that instantiated within the `UserRepository` class as soon as the page loads. Then the each user is assigned a `WellnessLog` object instance that contains all of the user's documented activity, hydration, and sleep data. Then, all users' data is logged into a `SleepRepository`, `ActivityRepository`, and `HydrationRepository`, where methods calaculate information about all users' wellness data. 
+
+Charts are used to display some of the user's data. The charts were created using `Chart js`.
+
+The User Info Area displays a percentage of the user's personal info.
 
 
 #### 
@@ -60,8 +68,8 @@ The current user's information is displayed from a `User` class that instantiate
 1. Vanilla JavaScript
 2. CSS 
 3. HTML
-4. Chart.js
-5. Moment.js
+4. `Chart js`
+5. `Moment js`
 
 ## Deployment
 
