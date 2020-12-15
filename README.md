@@ -42,7 +42,19 @@ To get started on this project:
 
 ## Deployment
 
+####
 
+## Authors
+<table>
+    <tr>
+        <td> Kelly Dinneen <a href="https://github.com/kellydinneen">GH</td>
+        <td> Richard Tyler <a href="https://github.com/richardltyler">GH</td>
+    </tr>
+<td><img src="https://avatars3.githubusercontent.com/u/70412553?s=400&u=6889ab0a2470a8c4d85c90de53761b160bb9fea6&v=4" alt="Ms. Dinneen"
+ width="150" height="auto" /></td>
+ <td><img src="https://avatars3.githubusercontent.com/u/70095063?s=460&u=39c274f1a2fbb88cc013de61aa8307596a988255&v=4" alt="Mr. Tyler"
+ width="150" height="auto" /></td>
+</table>
 
 
 
