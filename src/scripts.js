@@ -5,33 +5,56 @@
 const displayDate = document.querySelector('#date');
 const greeting = document.querySelector('#greeting');
 const displayedUserName = document.querySelector('#user-name');
-const displayedUserEmail = document.querySelector('#user-email');
-const displayedUserAddress = document.querySelector('#user-address');
-const displayedUserStepGoalComparison = document.querySelector('#user-step-goal-comparison');
+const displayedUserStepGoal = document.querySelector('#user-step-goal');
+const displayedUserStepGoalComparison = document.querySelector('#user-step-goal_comparison');
 const displayedUserFriendsList = document.querySelector('#user-friends-list');
 var weeklyHydrationChart = document.querySelector('#hydration-data-week_chart').getContext('2d');
 var lastNightsSleepQualityChart = document.querySelector('#sleep-data-last-night_chart');
 var allTimeSleepQualityChart = document.querySelector('#sleep-data-all-time_chart');
 var weekOfSleepChart = document.querySelector('#sleep-data-week_chart');
+var todaysActivityMinutes = document.querySelector('#activity-data_today-minutes');
+var todaysStepCount = document.querySelector('#activity-data_today-steps');
+var todaysDistanceWalked = document.querySelector('#activity-data_today-distance');
+var weekOfActivityChart = document.querySelector('#activity-data-week_chart');
+var todaysHydration = document.querySelector('#hydration-data_today_chart');
+
 
 let userRepo;
+let currentUser; 
+
+function getRandomIndex(array) {
+  return Math.floor(Math.random() * array.length);
+}
+
+
 
 //event handlers
 window.onload = openSite();
 
 function openSite() {
   userRepo = new UserRepository(userData);
-  displayUserDashboard(userRepo.users[10], '2019/09/22');
+  currentUser = userRepo.users[getRandomIndex(userRepo.users)];
+  console.log(currentUser);
+  displayUserDashboard(currentUser, '2019/09/22');
 };
 
 function displayUserDashboard(user, date) {
   user.getWellnessLog(hydrationData, sleepData, activityData);
   displayUserInfo(user);
   greetUser(user);
+  displayUserData(todaysActivityMinutes, user, date, 'activity', 'minutesActive');
+  displayUserData(todaysStepCount, user, date, 'activity', 'numSteps');
+  displayUserData(todaysDistanceWalked, user, date, 'activity', 'distance');
+  createCharts(user, date);
+}
+
+function createCharts(user, date) {
   createHydrationChart(user, date);
   createSleepChart(user, date);
   createAllTimeSleepChart(user, date);
   createWeeklySleepChart(user, date);
+  createWeeklyActivityChart(user, date);
+  createDailyHydrationChart(user, date)
 }
 
 function greetUser(user) {
@@ -40,10 +63,9 @@ function greetUser(user) {
 
 function displayUserInfo(user) {
   displayedUserName.innerText = `Name: ${user.name}`;
-  displayedUserEmail.innerText = `Email: ${user.email}`;
-  displayedUserAddress.innerText = `Address: ${user.address}`;
   const averageStepGoal = userRepo.calculateAverageStepGoal();
-  // displayedUserStepGoalComparison.innerText = `Your daily step goal is ${user.dailyStepGoal} steps, which is ${calculatePercentDifference(user.dailyStepGoal, averageStepGoal)}% ${determineDifferenceDirection(user.dailyStepGoal, averageStepGoal)} than ${averageStepGoal} steps, the average daily step goal of GitFit users`;
+  displayedUserStepGoalComparison.innerText = `Your daily step goal is ${currentUser.dailyStepGoal} steps, while the average daily step goal is ${userRepo.calculateAverageStepGoal()}`;
+  displayedUserStepGoal.innerText = `Daily Step Goal: ${user.dailyStepGoal}`;
   displayedUserFriendsList.innerText = `Friends: ${getFriendNames(user)}`;
 }
 
@@ -55,13 +77,8 @@ function getFriendNames(user) {
   return friendNameList.join(', ');
 };
 
-function calculatePercentDifference(a, b) {
-  const exactPercentDifference =  (a - b) / b * 100;
-  return exactPercentDifference.toFixed();
-};
-
-function determineDifferenceDirection(a, b) {
-  return a - b < 0? 'lower':'higher';
+function displayUserData(location, user, date, category, section) {
+  location.innerText = user.wellnessLog.getTodaysStat(date, category, section, userRepo.users);
 }
 
 function createHydrationChart(user, date) {
@@ -70,7 +87,7 @@ function createHydrationChart(user, date) {
     data: {
       labels: Object.keys(user.wellnessLog.getWeekOfStats(date, 'hydration', 'numOunces')),
       datasets:[{
-      label: false,
+      label: 'Watuh',
       data: Object.values(user.wellnessLog.getWeekOfStats(date, 'hydration', 'numOunces')),
       backgroundColor: '#44BBA4',
       borderColor: "#061223",
@@ -146,47 +163,143 @@ function createAllTimeSleepChart(user, date) {
   let myChart = new Chart(allTimeSleepQualityChart, chartData);
 }
 
-function createWeeklySleepChart(user, date) {
-  let weekDays = Object.keys(user.wellnessLog.getWeekOfStats(date, 'sleep', 'hoursSlept'));
-  let weekOfSleepHours = Object.values(user.wellnessLog.getWeekOfStats(date, 'sleep', 'hoursSlept'));
-  let weekOfSleepQuality = Object.values(user.wellnessLog.getWeekOfStats(date, 'sleep', 'sleepQuality'));
-  let data = [];
-  weekDays.forEach((day, i) => {
-    data[i] = {};
-    data[i].x = i;
-    data[i].y = weekOfSleepQuality[i];
-    data[i].r = 2 * weekOfSleepHours[i];
-  });
+ //Sleep Week : As bar
+ function createWeeklySleepChart(user, date) {
   let chartData = {
-    type: 'bubble',
+    type: 'bar',
     data: {
+      labels: Object.keys(user.wellnessLog.getWeekOfStats(date, 'sleep', 'sleepQuality')),
       datasets:[{
-      label: 'Sleep',
-      data: data,
-      backgroundColor: 'cornflowerblue',
-      }]
+      label: 'Sleep Quality',
+
+      data: Object.values(user.wellnessLog.getWeekOfStats(date, 'sleep', 'sleepQuality')),
+      yAxisID: 'yAxis2',
+      backgroundColor: '#44BBA4',
+      borderColor: "#061223",
+      borderWidth: 1
+      },
+      {
+      label: 'Sleep Duration',
+      data: Object.values(user.wellnessLog.getWeekOfStats(date, 'sleep', 'hoursSlept')),
+      backgroundColor: '#FB6384',
+      borderColor: "#061223",
+      borderWidth: 1
+      }],
     },
     options:{
-      hover: {
-        mode: "index",
-      },
       title: {
             display: true,
-            text: 'WEEK OF SLEEP'
+            text: 'Weekly Sleep Duration and Quality'
       },
       scales:{
         yAxes:[{
-        }],
-        xAxes:[{
-          ticks: {
-            callback: function(x) {
-              let weekdays = ['Monday', 'Tuesday','Wednesday','Thursday', 'Friday', 'Saturday', 'Sunday'];
-              return x.getDay
-            }
-          }
+          scaleLabel: {
+            display: true,
+            labelString: 'Hours and Quality'
+          },
+          ticks: {"beginAtZero":true}
+        },
+        { 
+          scaleLabel: {
+            display: true,
+            labelString: 'Quality'
+          },
+          id: 'yAxis2',
+          position: 'right',
+          ticks: {"beginAtZero": true}, 
+          // callback: (value) => value * 5},
+          gridLines: {'display': false}
         }],
       },
     },
   };
   let myChart = new Chart(weekOfSleepChart, chartData);
+};
+
+//Activity Week
+function createWeeklyActivityChart(user, date) {
+  let chartData = {
+    type: 'bar',
+    data: {
+      labels: Object.keys(user.wellnessLog.getWeekOfStats(date, 'activity', 'numSteps')),
+      datasets:[{
+      label: 'Number of Steps',
+      data: Object.values(user.wellnessLog.getWeekOfStats(date, 'activity', 'numSteps')).map(value => value / 100),
+      yAxisID: 'yAxis2',
+      backgroundColor: '#44BBA4',
+      borderColor: "#061223",
+      borderWidth: 1
+      },
+      {
+      label: 'Minutes Active',
+      data: Object.values(user.wellnessLog.getWeekOfStats(date, 'activity', 'minutesActive')),
+      backgroundColor: '#FB6384',
+      borderColor: "#061223",
+      borderWidth: 1
+      },
+      {
+      label: 'Flights of Stairs Climbed',
+      data: Object.values(user.wellnessLog.getWeekOfStats(date, 'activity', 'flightsOfStairs')).map(value => value * 10),
+      backgroundColor: '#FC9F40',
+      borderColor: "#061223",
+      borderWidth: 1
+      }]
+    },
+    options:{
+      title: {
+            display: true,
+            text: 'Weekly Activity: steps, activity minutes, and stairs'
+      },
+      scales:{
+        yAxes:[{
+          scaleLabel: {
+            display: true,
+            labelString: 'Stairs Climbed and Minutes Active'
+          },
+          position: 'left',
+          ticks: {"beginAtZero": true},
+          gridLines: {'display': false}
+        },
+        { 
+          scaleLabel: {
+            display: true,
+            labelString: 'Number of Steps'
+          },
+          id: 'yAxis2',
+          position: 'right',
+          ticks: {"beginAtZero": true, callback: (value) => value * 100},
+          gridLines: {'display': false}
+        }],
+      },
+    },
+  };
+  let myChart = new Chart(weekOfActivityChart, chartData);
+};
+
+//Hydration: Daily
+function createDailyHydrationChart(user, date) {
+  let ouncesValue = user.wellnessLog.getTodaysStat(date, 'hydration', 'numOunces');
+  let upperLimit = 64;
+  let chartData = {
+    type: 'doughnut',
+    data: {
+      labels: ['Todays Hydration'],
+      datasets:[{
+      label: {display: false},
+      data: [ouncesValue, upperLimit - ouncesValue],
+      backgroundColor: ['#44BBA4', '#E7E5DF'],
+      borderWidth: 0
+      }]
+    },
+    options:{
+      title: {
+            display: true,
+            text: 'Today\'s Hydration'
+      },
+      circumference: Math.PI,
+      events: [],
+      rotation: Math.PI
+    },
+  };
+  let myChart = new Chart(todaysHydration, chartData);
 }

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Activity Tracker</title>
+    <title>GitFit</title>
     <link rel="stylesheet" type="text/css" href="./styles.css">
   </head>
   <body>
@@ -11,22 +11,21 @@
         <h1 class='site-title'>GitFit</h1>
       </div>
       <div class='bubble'>
-        <h2 id='greeting' class= 'greeting'>Hello, User</h2>
+        <h2 id='greeting' class='greeting'>Hello, User</h2>
       </div>
       <div class='bubble'>
-        <h2 id='date' class= 'date'>Date</h2>
+        <h2 id='date' class='date'>Date</h2>
       </div>
     </section>
     <main>
 <!-- User info widget -->
       <div class='user-area bubble'>
-        <article class= 'user-info'>
+        <article class='user-info'>
           <h2 class= 'user-info_title'>Your Info</h2>
-          <p id='user-name' class='user-info_content'>name</p>
-          <p id='user-email' class='user-info_content'>email</p>
-          <p id='user-address' class='user-info_content'>address</p>
-          <p id='user-step-goal' class='user-info_content'>daily step goal</p>
-          <p id='user-friends-list' class='user-info_content'>friends list</p>
+          <p id='user-name' class='user-info_content'>Name</p>
+          <p id='user-step-goal' class='user-info_content'>Daily Step Goal</p>
+          <p id='user-step-goal_comparison' class='user-info_content'>Step Goal Comparison</p>
+          <p id='user-friends-list' class='user-info_content'>Friends List</p>
         </article>
       </div>
       <div class='user-info-area'>
@@ -34,15 +33,23 @@
         <div class='activity genre'>
           <article class='activity-data-today widget'>
             <h3>Activity Today</h3>
-            <section class='activity-data_activity-minutes'>
-            </section>
-            <section class='activity-data_steps'>
-            </section>
-            <section class='activity-data_distance'>
-            </section>
+            <div class='activity-data_today_stats'>
+              <section class='activity-data_activity-minutes'>
+                <h4 id='activity-data_today-minutes'></h4>
+                <h5>Minutes Active</h5>
+              </section>
+              <section class='activity-data_steps'>
+                <h4 id='activity-data_today-steps'></h4>
+                <h5>Step Count</h5>
+              </section>
+              <section class='activity-data_distance'>
+                <h4 id='activity-data_today-distance'></h4>
+                <h5>Miles Walked</h5>
+              </section>
+            </div>
           </article>
           <article class='activity-data-week widget'>
-            <h3>Activity This Week</h3>
+            <canvas id='activity-data-week_chart'></canvas>
           </article>
           <article class='activity-data_rankings widget'>
             <h3>Activity Rankings</h3>
@@ -54,10 +61,10 @@
 <!-- Hydration Widgets -->
         <div class='hydration genre'>
           <article class='hydration-data-today widget'>
-            <h3>Hydr8 2Day</h3>
+            <canvas id='hydration-data_today_chart'></canvas>
           </article>
           <article class='hydration-data-week widget'>
-            <canvas id='hydration-data-week_chart' class='hydration-data-week_chart' height='600' width='400'>
+            <canvas id='hydration-data-week_chart' class='hydration-data-week_chart'>
             </canvas>
           </article>
         </div>
