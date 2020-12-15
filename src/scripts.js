@@ -13,7 +13,9 @@ var lastNightsSleepQualityChart = document.querySelector('#sleep-data-last-night
 var allTimeSleepQualityChart = document.querySelector('#sleep-data-all-time_chart');
 var weekOfSleepChart = document.querySelector('#sleep-data-week_chart');
 var todaysActivityMinutes = document.querySelector('#activity-data_today-minutes');
+var todaysStepCount = document.querySelector('#activity-data_today-steps');
 var weekOfActivityChart = document.querySelector('#activity-data-week_chart');
+
 
 let userRepo;
 
@@ -29,7 +31,8 @@ function displayUserDashboard(user, date) {
   user.getWellnessLog(hydrationData, sleepData, activityData);
   displayUserInfo(user);
   greetUser(user);
-  displayTodaysActivity(user, date);
+  displayUserData(todaysActivityMinutes, user, date, 'activity', 'minutesActive');
+  displayUserData(todaysStepCount, user, date, 'activity', 'numSteps');
   createCharts(user, date);
 }
 
@@ -70,8 +73,8 @@ function determineDifferenceDirection(a, b) {
   return a - b < 0? 'lower':'higher';
 }
 
-function displayTodaysActivity(user, date) {
-  todaysActivityMinutes.innerText = user.wellnessLog.getTodaysStat(date, 'activity', 'minutesActive');
+function displayUserData(location, user, date, category, section) {
+  location.innerText = user.wellnessLog.getTodaysStat(date, category, section);
 }
 
 function createHydrationChart(user, date) {
