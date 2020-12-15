@@ -59,8 +59,9 @@ The User Info Area displays a percentage of the user's personal info.
 
 #### Continuous Improvement/Future Improvements
  In the next iteration we hope to add:
-  * Add a comment class and section
-  * Ability for user to rearrange their cards
+  * Update the date formats to make them more readable
+  * Make drag-and-drop widgets to display all of the information that is readily available in the code 
+  * Allow users to begin making profiles
 ---
 
 ## Technologies
