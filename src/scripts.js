@@ -46,7 +46,6 @@ function getRandomIndex(array) {
 }
 
 function displayUserDashboard(user, date) {
-  user.getWellnessLog(hydrationData, sleepData, activityData);
   displayUserInfo(user);
   greetUser(user, date);
   displayUserData(todaysActivityMinutes, user, date, 'activity', 'minutesActive');
@@ -58,10 +57,6 @@ function displayUserDashboard(user, date) {
 function createCharts(user, date) {
   createHydrationChart(user, date);
   createTodaysSleepChart(user, date);
-  minutesRanking.innerText = getActivityRank(user, date, 'minutesActive');
-  // distanceRanking.innerText = getActivityRank
-  stepsRanking.innerText = getActivityRank(user, date, 'numSteps');
-
   lastNightsSleepQualityValue.innerText = `${user.wellnessLog.getTodaysStat(date, 'sleep', 'sleepQuality')} out  of 5`;
   allTimeSleepQualityValue.innerText = `${user.wellnessLog.calculateAllTimeAverage('sleep', 'sleepQuality')} out  of 5`;
   todaysHydrationValue.innerText = `${(user.wellnessLog.getTodaysStat(date, 'hydration', 'numOunces') / 8).toFixed(1)} out of 10 cups`
@@ -71,12 +66,7 @@ function createCharts(user, date) {
   createDailyHydrationChart(user, date)
 }
 
-function getActivityRank(user, date, property) {
-  let todaysActivity = activityRepo.allUsersActivity.filter(entry => entry.date === date);
-  let sortedActivity = todaysActivity.sort((a, b) => a[property] - b[property]);
-  let currentUsersRank = sortedActivity.findIndex(entry => entry.userID === user.id);
-  return currentUsersRank;
-}
+
 
 function greetUser(user, date) {
   greeting.innerText = `Hello, ${user.getFirstName()}!`;
