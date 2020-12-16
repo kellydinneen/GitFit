@@ -75,7 +75,7 @@ The User Info Area displays a percentage of the user's personal info.
 
 ## Deployment
 
-####
+THe site can be reached at this [link](https://richardltyler.github.io/GitFit/src/index.html).
 
 ## Authors
 <table>
