@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GitFit</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
@@ -23,16 +24,16 @@
               <div class='bottom-stats'>
                 <span class='activity-data_activity-minutes'>
                   <h2 class='minutes' id='activity-data_today-minutes'></h2>
-                  <h5>Active Minutes</h5>
+                  <h5 class='label'>Active Minutes</h5>
                 </span>
                 <span class='activity-data_distance'>
                   <h2 class='distance' id='activity-data_today-distance'></h2>
-                  <h5>Miles Walked</h5>
+                  <h5 class='label'>Miles Walked</h5>
                 </span>
               </div>
               <span class='activity-data_steps'>
                 <h2 class='steps' id='activity-data_today-steps'></h2>
-                <h5>Steps</h5>
+                <h5 class='label'>Steps</h5>
               </span>
             </div>
           </article>
@@ -45,16 +46,16 @@
               <div class='bottom-stats'>
                 <span class='activity-data_activity-minutes'>
                   <h2 class='minutes' id='activity-data_rank-minutes'></h2>
-                  <h5>in Active Minutes</h5>
+                  <h5 class='label'>in Active Minutes</h5>
                 </span>
                 <span class='activit1-data_distance'>
                   <h2 class='stairs' id='activity-data_rank-distance'></h2>
-                  <h5>in Stairs Climbed</h5>
+                  <h5 class='label'>in Stairs Climbed</h5>
                 </span>
               </div>
               <span class='activity-data_steps'>
                 <h2 class='steps' id='activity-data_rank-steps'></h2>
-                <h5>in Steps</h5>
+                <h5 class='label'>in Steps</h5>
               </span>
               </div>
             </div>
@@ -117,16 +118,16 @@
         <h2 class='user-info_content_title'>Your Info</h2>
         <div class='info-box'>
           <h4>Name:</h4>
-          <h3 id='user-name'>Name</h3>
+          <h3 class='user-info-item' id='user-name'>Name</h3>
         </div>
         <div class='info-box'>
           <h4>Step Goal:</h4>
-          <h3 id='user-step-goal'>Daily Step Goal</h3>
-          <p id='user-step-goal_comparison'>Step Goal Comparison</p>
+          <h3 class='user-info-item' id='user-step-goal'>Daily Step Goal</h3>
+          <p class='user-info-item' id='user-step-goal_comparison'>Step Goal Comparison</p>
         </div>
         <div class='info-box'>
           <h4>Friends:</h4>
-          <h3 id='user-friends-list'>Friends List</h3>
+          <h3 class='user-info-item' id='user-friends-list'>Friends List</h3>
         </div>
     </footer>
     <script type="text/javascript" src="../data/users.js"></script>
