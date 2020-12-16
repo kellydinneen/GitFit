@@ -38,7 +38,6 @@ class UserRepository {
       let usersRank = distanceRankings.findIndex(user => user.id === currentUser.id);
       return usersRank - 1;
     }
-
 };
 
 if (typeof module !== 'undefined') {

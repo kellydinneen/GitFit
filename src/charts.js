@@ -1,5 +1,8 @@
 // charts
 
+// all of the old drafts are still in this file but they are commented out at the bottom
+// draft charts start at line 274
+
 Chart.defaults.global.defaultFontFamily = 'Josefin Sans', 'sans-serif';
 
 function createHydrationChart(user, date) {
