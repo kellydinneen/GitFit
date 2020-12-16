@@ -20,6 +20,15 @@ class ActivityRepository {
 
     return allUsersActivityTypeTotal / users.length;
   };
+
+  getActivityRank(user, date, property) {
+    let todaysActivity = this.allUsersActivity.filter(entry => entry.date === date);
+    let sortedActivity = todaysActivity.sort((a, b) => a[property] - b[property]);
+    let currentUsersRank = sortedActivity.findIndex(entry => entry.userID === user.id);
+    return currentUsersRank - 1;
+  }
 }
 
-module.exports = ActivityRepository;
+if (typeof module !== 'undefined') {
+  module.exports = ActivityRepository;
+};

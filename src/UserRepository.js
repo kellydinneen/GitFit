@@ -22,6 +22,9 @@ class UserRepository {
     return totalStepGoal / this.users.length;
     };
 
+    getAllWellnessLogs() {
+      userRepo.users.forEach(user => user.getWellnessLog(hydrationData, sleepData, activityData, user.id));
+    }
 };
 
 if (typeof module !== 'undefined') {
