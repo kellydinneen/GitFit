@@ -189,6 +189,10 @@ footer {
   padding: 0.1em;
 }
 
+.user-info-item {
+  font-size: 1.5vw;
+}
+
 /* Responsive Breakpoints */
 @media screen and (min-width: 65em) {
 
@@ -260,6 +264,10 @@ footer {
     font-size: 1vw;
   }
 
+  .user-info-item {
+    font-size: 1.2vw;
+  }
+
 }
 
 @media screen and (max-width: 45em) {
@@ -273,10 +281,6 @@ footer {
     justify-content: space-between;
     align-items: center;
   }
-  aside {
-    flex-direction: column;
-    height: 500px;
-  }
   .genre {
     flex-direction: column;
   }
@@ -288,7 +292,7 @@ footer {
   .hydration-data-week {
     margin:1vh;
     width: 18em;
-    height: 14em;
+    height: 16em;
   }
   .activity-numbers {
     margin:1vh;
@@ -301,7 +305,7 @@ footer {
   .hydration-data-today {
     margin:1vh;
     width: 12em;
-    height: 14em;
+    height: 16em;
   }
   .sleep-data-week {
     margin:1vh;
@@ -320,6 +324,9 @@ footer {
     width: 12em;
   }
   .label {
+    font-size: 12px;
+  }
+  .user-info-item {
     font-size: 12px;
   }
 }
