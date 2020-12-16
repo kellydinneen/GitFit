@@ -67,7 +67,7 @@ function greetUser(user, date) {
 };
 
 function displayUserRankings(location, user, date, category) {
-  location.innerText = activityRepo.getActivityRank(user, date, category);
+  location.innerText = `#${activityRepo.getActivityRank(user, date, category)}`
 }
 
 function displayUserData(location, user, date, category, section) {
@@ -93,11 +93,3 @@ function getFriendNames(user) {
   });
   return friendNameList.join(', ');
 };
-
-
-
-
-
-
-
-
