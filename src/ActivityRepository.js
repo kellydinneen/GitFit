@@ -23,9 +23,8 @@ class ActivityRepository {
 
   getActivityRank(user, date, property) {
     let todaysActivity = this.allUsersActivity.filter(entry => entry.date === date);
-    let sortedActivity = todaysActivity.sort((a, b) => a[property] - b[property]);
-    let currentUsersRank = sortedActivity.findIndex(entry => entry.userID === user.id);
-    return currentUsersRank + 1;
+    let sortedActivity = todaysActivity.sort((a, b) => b[property] - a[property]);
+    let currentUsersRank = sortedActivity.findIndex(entry => entry.userID === user.id);return currentUsersRank + 1;
   }
 }
 
