@@ -33,6 +33,7 @@ function openSite() {
   userRepo = new UserRepository(userData);
   activityRepo = new ActivityRepository(activityData);
   currentUser = userRepo.users[getRandomIndex(userRepo.users)];
+  userRepo.getAllWellnessLogs();
   displayUserDashboard(currentUser, '2019/09/22');
 };
 
@@ -45,7 +46,7 @@ function displayUserDashboard(user, date) {
   greetUser(user, date);
   displayUserRankings(minutesRanking, user, date, 'minutesActive');
   displayUserRankings(stepsRanking, user, date, 'numSteps');
-  displayUserRankings(distanceRanking, currentUser, date, 'distance');
+  displayUserRankings(distanceRanking, currentUser, date, 'flightsOfStairs');
   displayUserData(todaysActivityMinutes, user, date, 'activity', 'minutesActive');
   displayUserData(todaysStepCount, user, date, 'activity', 'numSteps');
   displayUserData(todaysDistanceWalked, user, date, 'activity', 'distance');
@@ -66,11 +67,7 @@ function greetUser(user, date) {
 };
 
 function displayUserRankings(location, user, date, category) {
-  if (category === 'distance') {
-    location.innerText = userRepo.findUsersDistanceRank(user, date);
-  } else {
-    location.innerText = activityRepo.getActivityRank(user, date, category);
-  }
+  location.innerText = activityRepo.getActivityRank(user, date, category);
 }
 
 function displayUserData(location, user, date, category, section) {
