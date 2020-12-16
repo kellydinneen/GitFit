@@ -10,7 +10,7 @@ header {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 10%;
+  height: 5%;
 }
 
 main {
@@ -22,15 +22,14 @@ main {
 }
 
 footer {
-  width: 98vw;
-  height: 15vh;;
+  width: 97vw;
+  height: 17vh;;
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
   background: #081D36;
   color: #D3D0CB;
   border: solid #D3D0CB;
-  margin-top: 1%;
 }
 
 .info-box {
@@ -194,7 +193,7 @@ footer {
 }
 
 /* Responsive Breakpoints */
-@media screen and (min-width: 65em) {
+@media screen and (min-width: 70em) {
 
   .widget {
     display: flex;
@@ -215,6 +214,11 @@ footer {
     flex-direction: row;
     height: 70%;
     width: 100%;
+  }
+
+  .footer {
+    width: 98vw;
+    height: 15vh;;
   }
 
   .genre {
@@ -280,6 +284,9 @@ footer {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+  }
+  footer {
+    height: 16vh;;
   }
   .genre {
     flex-direction: column;
