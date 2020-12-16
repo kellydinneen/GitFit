@@ -18,7 +18,7 @@ main {
   flex-direction: column;
   justify-content: space-around;
   height: 80%;
-  width: 100%;
+  width: 98%;
 }
 
 footer {
@@ -169,7 +169,6 @@ footer {
   font-style: italic;
   font-size: 0.8em;
   left: 28%;
-  bottom: 1%;
 }
 
 .widget-heading {
@@ -242,7 +241,7 @@ footer {
   }
 
   .sleep-data-week {
-    height: 35vh;
+    height: 33vh;
     width: 35vw;
   }
 
@@ -286,7 +285,12 @@ footer {
     align-items: center;
   }
   footer {
-    height: 16vh;;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    left: -1%;
+    height: 400px;
+    width: 96vw;
   }
   .genre {
     flex-direction: column;
@@ -328,6 +332,86 @@ footer {
   .sleep-doughnut-wrapper {
     margin:1vh;
     height: 8em;
+    width: 12em;
+  }
+  .label {
+    font-size: 12px;
+  }
+  .user-info-item {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 35em) {
+  * {
+    align-items: center;
+  }
+  header {
+    flex-direction: column;
+    align-items: center;
+    height: 30%;
+  }
+  main {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer {
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    left: -1%;
+    height: 400px;
+    width: 96vw;
+  }
+  .genre {
+    flex-direction: column;
+    align-items: center;
+  }
+  .activity-data-week {
+    margin:1vh;
+    width: 18em;
+    height: 16em;
+  }
+  .hydration-data-week {
+    margin:1vh;
+    width: 18em;
+    height: 16em;
+  }
+  .small-widgets {
+    flex-direction: column;
+  }
+  .activity-numbers {
+    margin:1vh;
+    width: 18em;
+    height: 14em;
+  }
+  .hydration-data-today {
+    margin:1vh;
+    width: 18em;
+    height: 14em;
+  }
+
+  .hydration-doughnut-wrapper {
+    height: 10em;
+    width: 10em;
+  }
+
+  .sleep-data-week {
+    margin:1vh;
+    width: 18em;
+    height: 16em;
+  }
+  .sleep-data-doughnut {
+    line-height: 0;
+    margin:1vh;
+    padding: 1vh;
+    width: 18em;
+    height: 14em;
+  }
+  .sleep-doughnut-wrapper {
+    margin:1vh;
+    height: 6em;
     width: 12em;
   }
   .label {
