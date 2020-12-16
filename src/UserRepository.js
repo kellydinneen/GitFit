@@ -36,7 +36,6 @@ class UserRepository {
       });
       let distanceRankings = distances.sort((a, b) => a.distance - b.distance);
       let usersRank = distanceRankings.findIndex(user => user.id === currentUser.id);
-      console.log(distanceRankings)
       return usersRank - 1;
     }
 
