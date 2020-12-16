@@ -26,12 +26,6 @@ let userRepo;
 let currentUser;
 let activityRepo;
 
-function getRandomIndex(array) {
-  return Math.floor(Math.random() * array.length);
-}
-
-
-
 //event handlers
 window.onload = openSite();
 
@@ -39,8 +33,17 @@ function openSite() {
   userRepo = new UserRepository(userData);
   activityRepo = new ActivityRepository(activityData);
   currentUser = userRepo.users[getRandomIndex(userRepo.users)];
+  getWellnessLogs();
   displayUserDashboard(currentUser, '2019/09/22');
 };
+
+function getWellnessLogs() {
+  userRepo.users.forEach(user => user.getWellnessLog(hydrationData, sleepData, activityData, user.id));
+}
+
+function getRandomIndex(array) {
+  return Math.floor(Math.random() * array.length);
+}
 
 function displayUserDashboard(user, date) {
   user.getWellnessLog(hydrationData, sleepData, activityData);
@@ -56,7 +59,7 @@ function createCharts(user, date) {
   createHydrationChart(user, date);
   createTodaysSleepChart(user, date);
   minutesRanking.innerText = getActivityRank(user, date, 'minutesActive');
-  distanceRanking.innerText = getActivityRank
+  // distanceRanking.innerText = getActivityRank
   stepsRanking.innerText = getActivityRank(user, date, 'numSteps');
 
   lastNightsSleepQualityValue.innerText = `${user.wellnessLog.getTodaysStat(date, 'sleep', 'sleepQuality')} out  of 5`;
@@ -100,7 +103,9 @@ function displayUserData(location, user, date, category, section) {
   location.innerText = user.wellnessLog.getTodaysStat(date, category, section, userRepo.users);
 }
 
-// Chart.defaults.global.defaultFontFamily = 'Josefin Sans', sans-serif;
+
+
+Chart.defaults.global.defaultFontFamily = 'Josefin Sans', 'sans-serif';
 
 function createHydrationChart(user, date) {
   let chartData = {
