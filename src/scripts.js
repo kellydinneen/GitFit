@@ -1,4 +1,3 @@
-
 //query selectors
 const displayDate = document.querySelector('#date');
 const greeting = document.querySelector('#greeting');
@@ -6,22 +5,26 @@ const displayedUserName = document.querySelector('#user-name');
 const displayedUserStepGoal = document.querySelector('#user-step-goal');
 const displayedUserStepGoalComparison = document.querySelector('#user-step-goal_comparison');
 const displayedUserFriendsList = document.querySelector('#user-friends-list');
-var weeklyHydrationChart = document.querySelector('#hydration-data-week_chart').getContext('2d');
-var lastNightsSleepQualityChart = document.querySelector('#sleep-data-last-night-quality_chart');
-var lastNightsSleepQualityValue = document.querySelector('#sleep-data-last-night-quality_value');
-var allTimeSleepQualityChart = document.querySelector('#sleep-data-all-time-quality_chart');
-var allTimeSleepQualityValue = document.querySelector('#sleep-data-all-time-quality_value');
-var weekOfSleepChart = document.querySelector('#sleep-data-week_chart');
-var todaysActivityMinutes = document.querySelector('#activity-data_today-minutes');
-var todaysStepCount = document.querySelector('#activity-data_today-steps');
-var todaysDistanceWalked = document.querySelector('#activity-data_today-distance');
-var weekOfActivityChart = document.querySelector('#activity-data-week_chart');
-var todaysHydration = document.querySelector('#hydration-data_today_chart');
-var todaysHydrationValue = document.querySelector('#hydration-data_today_number');
+const weeklyHydrationChart = document.querySelector('#hydration-data-week_chart').getContext('2d');
+const lastNightsSleepQualityChart = document.querySelector('#sleep-data-last-night-quality_chart');
+const lastNightsSleepQualityValue = document.querySelector('#sleep-data-last-night-quality_value');
+const allTimeSleepQualityChart = document.querySelector('#sleep-data-all-time-quality_chart');
+const allTimeSleepQualityValue = document.querySelector('#sleep-data-all-time-quality_value');
+const weekOfSleepChart = document.querySelector('#sleep-data-week_chart');
+const todaysActivityMinutes = document.querySelector('#activity-data_today-minutes');
+const todaysStepCount = document.querySelector('#activity-data_today-steps');
+const todaysDistanceWalked = document.querySelector('#activity-data_today-distance');
+const weekOfActivityChart = document.querySelector('#activity-data-week_chart');
+const minutesRanking = document.querySelector('#activity-data_rank-minutes');
+const distanceRanking = document.querySelector('#activity-data_rank-distance');
+const stepsRanking = document.querySelector('#activity-data_rank-steps');
+const todaysHydration = document.querySelector('#hydration-data_today_chart');
+const todaysHydrationValue = document.querySelector('#hydration-data_today_number');
 
 
 let userRepo;
 let currentUser;
+let activityRepo;
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -34,8 +37,8 @@ window.onload = openSite();
 
 function openSite() {
   userRepo = new UserRepository(userData);
+  activityRepo = new ActivityRepository(activityData);
   currentUser = userRepo.users[getRandomIndex(userRepo.users)];
-  console.log(currentUser);
   displayUserDashboard(currentUser, '2019/09/22');
 };
 
@@ -52,6 +55,10 @@ function displayUserDashboard(user, date) {
 function createCharts(user, date) {
   createHydrationChart(user, date);
   createTodaysSleepChart(user, date);
+  minutesRanking.innerText = getActivityRank(user, date, 'minutesActive');
+  distanceRanking.innerText = getActivityRank
+  stepsRanking.innerText = getActivityRank(user, date, 'numSteps');
+
   lastNightsSleepQualityValue.innerText = `${user.wellnessLog.getTodaysStat(date, 'sleep', 'sleepQuality')} out  of 5`;
   allTimeSleepQualityValue.innerText = `${user.wellnessLog.calculateAllTimeAverage('sleep', 'sleepQuality')} out  of 5`;
   todaysHydrationValue.innerText = `${(user.wellnessLog.getTodaysStat(date, 'hydration', 'numOunces') / 8).toFixed(1)} out of 10 cups`
@@ -59,6 +66,13 @@ function createCharts(user, date) {
   createWeeklySleepChart(user, date);
   createWeeklyActivityChart(user, date);
   createDailyHydrationChart(user, date)
+}
+
+function getActivityRank(user, date, property) {
+  let todaysActivity = activityRepo.allUsersActivity.filter(entry => entry.date === date);
+  let sortedActivity = todaysActivity.sort((a, b) => a[property] - b[property]);
+  let currentUsersRank = sortedActivity.findIndex(entry => entry.userID === user.id);
+  return currentUsersRank;
 }
 
 function greetUser(user, date) {
@@ -86,7 +100,7 @@ function displayUserData(location, user, date, category, section) {
   location.innerText = user.wellnessLog.getTodaysStat(date, category, section, userRepo.users);
 }
 
-Chart.defaults.global.defaultFontFamily = 'Josefin Sans', sans-serif;
+// Chart.defaults.global.defaultFontFamily = 'Josefin Sans', sans-serif;
 
 function createHydrationChart(user, date) {
   let chartData = {
