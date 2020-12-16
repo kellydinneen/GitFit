@@ -15,8 +15,9 @@ header {
 
 main {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
-  height: 70%;
+  height: 80%;
   width: 100%;
 }
 
@@ -39,8 +40,7 @@ footer {
 
 .genre {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .widget {
@@ -59,45 +59,48 @@ footer {
 }
 
 .activity-numbers {
-  height: 28vh;
-  width: 19vw;
+  margin: 1vw;
+  height: 32vh;
+  width: 22vw;
 }
 
 .activity-data-week {
+  margin: 1vw;
   position: relative;
-  margin-top: 1vh;
-  height: 35vh;
-  width: 40vw;
+  height: 32vh;
+  width: 52vw;
 }
 
 .sleep-data-doughnut {
-  width: 16.5vw;
-  height: 30vh;
+  margin: 2vh;
+  width: 22vw;
+  height: 32vh;
   line-height: 0.5em;
 }
 
 .sleep-data-week {
-  margin-top: 2vh;
+  margin: 2vh;
   position: relative;
-  height: 35vh;
-  width: 35vw;
+  height: 32vh;
+  width: 52vw;
 }
 
 .hydration-data-week {
   position: relative;
-  height: 33vh;
-  width: 20vw;
+  margin: 1vw;
+  height: 32vh;
+  width: 40vw;
 }
 .hydration-data-today {
   position: relative;
-  margin-top: 1vh;
-  height: 29vh;
-  width: 20vw;
+  margin: 1vw;
+  height: 32vh;
+  width: 25vw;
 }
 .sleep-doughnut-wrapper {
   position: relative;
-  height: 11vh;
-  width: 15vw;
+  height: 12vh;
+  width: 17vw;
 }
 
 .hydration-doughnut-wrapper {
@@ -146,10 +149,15 @@ footer {
   text-shadow: 1px 1px 1px #2F0101;
 }
 
+
 .sleep-hours {
   color: #666;
   font-weight: bold;
   font-size: 12px;
+}
+
+.label {
+  font-size: 1.2vw;
 }
 
 .sleep-hours-number {
@@ -200,9 +208,13 @@ footer {
   }
 
   main {
-    display: flex;
+    flex-direction: row;
     height: 70%;
     width: 100%;
+  }
+
+  .genre {
+    flex-direction: column;
   }
 
   .activity-numbers {
@@ -211,6 +223,7 @@ footer {
   }
 
   .activity-data-week {
+    margin-top: 1vh;
     height: 35vh;
     width: 40vw;
   }
@@ -230,7 +243,7 @@ footer {
     width: 20vw;
   }
   .hydration-data-today {
-    height: 29vh;
+    height: 30vh;
     width: 20vw;
   }
   .sleep-doughnut-wrapper {
@@ -243,9 +256,13 @@ footer {
     width: 25vw;
   }
 
+  .label {
+    font-size: 1vw;
+  }
+
 }
 
-@media screen and (max-width: 35em) {
+@media screen and (max-width: 45em) {
   header {
     flex-direction: column;
     align-items: center;
@@ -259,6 +276,9 @@ footer {
   aside {
     flex-direction: column;
     height: 500px;
+  }
+  .genre {
+    flex-direction: column;
   }
   .activity-data-week {
     margin:1vh;
@@ -298,5 +318,8 @@ footer {
     margin:1vh;
     height: 8em;
     width: 12em;
+  }
+  .label {
+    font-size: 12px;
   }
 }
