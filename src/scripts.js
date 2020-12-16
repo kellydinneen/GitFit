@@ -52,6 +52,31 @@ function displayUserDashboard(user, date) {
   createCharts(user, date);
 }
 
+function displayUserInfo(user) {
+  displayedUserName.innerText = `${user.name}`;
+  const averageStepGoal = userRepo.calculateAverageStepGoal();
+  displayedUserStepGoalComparison.innerText = `The average daily step goal is ${userRepo.calculateAverageStepGoal()}`;
+  displayedUserStepGoal.innerText = `${user.dailyStepGoal}`;
+  displayedUserFriendsList.innerText = `${getFriendNames(user)}`;
+}
+
+function greetUser(user, date) {
+  greeting.innerText = `Hello, ${user.getFirstName()}!`;
+  displayDate.innerText = date;
+};
+
+function displayUserRankings(location, user, date, category) {
+  if (category === 'distance') {
+    location.innerText = userRepo.findUsersDistanceRank(user, date);
+  } else {
+    location.innerText = activityRepo.getActivityRank(user, date, category);
+  }
+}
+
+function displayUserData(location, user, date, category, section) {
+  location.innerText = user.wellnessLog.getTodaysStat(date, category, section, userRepo.users);
+}
+
 function createCharts(user, date) {
   createHydrationChart(user, date);
   createTodaysSleepChart(user, date);
@@ -64,21 +89,6 @@ function createCharts(user, date) {
   lastNightsSleepQualityValue.innerText = `${user.wellnessLog.getTodaysStat(date, 'sleep', 'sleepQuality')} out  of 5`;
 }
 
-
-
-function greetUser(user, date) {
-  greeting.innerText = `Hello, ${user.getFirstName()}!`;
-  displayDate.innerText = date;
-};
-
-function displayUserInfo(user) {
-  displayedUserName.innerText = `${user.name}`;
-  const averageStepGoal = userRepo.calculateAverageStepGoal();
-  displayedUserStepGoalComparison.innerText = `The average daily step goal is ${userRepo.calculateAverageStepGoal()}`;
-  displayedUserStepGoal.innerText = `${user.dailyStepGoal}`;
-  displayedUserFriendsList.innerText = `${getFriendNames(user)}`;
-}
-
 function getFriendNames(user) {
   const friendNameList = user.friends.map((friendID) => {
     let friend = userRepo.users.find((user) => user.id === friendID);
@@ -87,17 +97,9 @@ function getFriendNames(user) {
   return friendNameList.join(', ');
 };
 
-function displayUserData(location, user, date, category, section) {
-  location.innerText = user.wellnessLog.getTodaysStat(date, category, section, userRepo.users);
-}
 
-function displayUserRankings(location, user, date, category) {
-  if (category === 'distance') {
-    location.innerText = userRepo.findUsersDistanceRank(user, date);
-  } else {
-    location.innerText = activityRepo.getActivityRank(user, date, category);
-  }
-}
+
+
 
 
 
