@@ -266,8 +266,8 @@ footer {
 
 .help-tip{
     position: relative;
-    top: 2vh;
-    left: 7vw;
+    top: 5%;
+    left: 45%;
     text-align: center;
     background-color: #081D36;
     border-radius: 50%;
@@ -286,6 +286,7 @@ footer {
 
 .help-tip:hover p{
     display:block;
+    z-index: 100;
     transform-origin: 100% 0%;
 
     -webkit-animation: fadeIn 0.3s ease-in-out;
