@@ -32,14 +32,10 @@ window.onload = openSite();
 function openSite() {
   userRepo = new UserRepository(userData);
   activityRepo = new ActivityRepository(activityData);
-  currentUser = userRepo.users[getRandomIndex(userRepo.users)];
-  getWellnessLogs();
+  // currentUser = userRepo.users[getRandomIndex(userRepo.users)];
+  currentUser = userRepo.users[2];
   displayUserDashboard(currentUser, '2019/09/22');
 };
-
-function getWellnessLogs() {
-  userRepo.users.forEach(user => user.getWellnessLog(hydrationData, sleepData, activityData, user.id));
-}
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -48,6 +44,9 @@ function getRandomIndex(array) {
 function displayUserDashboard(user, date) {
   displayUserInfo(user);
   greetUser(user, date);
+  displayUserRankings(minutesRanking, user, date, 'minutesActive');
+  displayUserRankings(stepsRanking, user, date, 'numSteps');
+  displayUserRankings(distanceRanking, currentUser, date, 'distance');
   displayUserData(todaysActivityMinutes, user, date, 'activity', 'minutesActive');
   displayUserData(todaysStepCount, user, date, 'activity', 'numSteps');
   displayUserData(todaysDistanceWalked, user, date, 'activity', 'distance');
@@ -91,6 +90,14 @@ function getFriendNames(user) {
 
 function displayUserData(location, user, date, category, section) {
   location.innerText = user.wellnessLog.getTodaysStat(date, category, section, userRepo.users);
+}
+
+function displayUserRankings(location, user, date, category) {
+  if (category === 'distance') {
+    location.innerText = userRepo.findUsersDistanceRank(user, date);
+  } else {
+    location.innerText = activityRepo.getActivityRank(user, date, category);
+  }
 }
 
 
