@@ -257,7 +257,6 @@ function createDailyHydrationChart(user, date) {
         text: 'Today\'s Hydration'
       },
       circumference: 2 * Math.PI,
-      // events: [],
       rotation: Math.PI
     },
   };
