@@ -15,7 +15,7 @@ function createHydrationChart(user, date) {
       data: Object.values(user.wellnessLog.getWeekOfStats(date, 'hydration', 'numOunces')),
       backgroundColor: '#7398C4',
       borderColor: "#061223",
-      borderWidth: 1
+      borderWidth: 1,
       }]
     },
     options:{
@@ -113,20 +113,20 @@ function createAllTimeSleepChart(user, date) {
     data: {
       labels: Object.keys(user.wellnessLog.getWeekOfStats(date, 'sleep', 'sleepQuality')),
       datasets:[{
-      label: 'quality',
+        label: 'quality',
 
-      data: Object.values(user.wellnessLog.getWeekOfStats(date, 'sleep', 'sleepQuality')),
-      yAxisID: 'yAxis2',
-      backgroundColor: '#791289',
-      borderColor: "#061223",
-      borderWidth: 1
+        data: Object.values(user.wellnessLog.getWeekOfStats(date, 'sleep', 'sleepQuality')),
+        yAxisID: 'yAxis2',
+        backgroundColor: '#791289',
+        borderColor: "#061223",
+        borderWidth: 1
       },
       {
-      label: 'duration',
-      data: Object.values(user.wellnessLog.getWeekOfStats(date, 'sleep', 'hoursSlept')),
-      backgroundColor: '#AD94CD',
-      borderColor: "#061223",
-      borderWidth: 1
+        label: 'duration',
+        data: Object.values(user.wellnessLog.getWeekOfStats(date, 'sleep', 'hoursSlept')),
+        backgroundColor: '#AD94CD',
+        borderColor: "#061223",
+        borderWidth: 1
       }],
     },
     options:{
