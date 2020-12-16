@@ -424,7 +424,7 @@ footer {
 
 .help-tip{
     position: relative;
-    top: 5%;
+    top: 6%;
     left: 45%;
     text-align: center;
     background-color: #081D36;
@@ -433,7 +433,12 @@ footer {
     height: 18px;
     font-size: 14px;
     line-height: 26px;
-    cursor: default;
+    cursor: help;
+}
+
+.ranking-tip {
+  top: -4%;
+  left: 45%;
 }
 
 .help-tip:before{
@@ -452,10 +457,10 @@ footer {
 
 }
 
-.help-tip p{    /* The tooltip */
+.help-tip p{
     display: none;
     text-align: left;
-    background-color: #1E2021;
+    background-color: #081D36;
     padding: 20px;
     width: 300px;
     position: absolute;
@@ -467,25 +472,6 @@ footer {
     line-height: 1.4;
 }
 
-.help-tip p:before{ /* The pointer of the tooltip */
-    position: absolute;
-    content: '';
-    width:0;
-    height: 0;
-    border:6px solid transparent;
-    border-bottom-color:#1E2021;
-    right:10px;
-    top:-12px;
-}
-
-.help-tip p:after{ /* Prevents the tooltip from being hidden */
-    width:100%;
-    height:40px;
-    content:'';
-    position: absolute;
-    top:-40px;
-    left:0;
-}
 
 @-webkit-keyframes fadeIn {
     0% {
