@@ -106,8 +106,6 @@ footer {
   width: 25vw;
 }
 
-
-
 .activity-numbers_stats {
   display: flex;
   flex-direction: column;
@@ -250,16 +248,55 @@ footer {
 @media screen and (max-width: 35em) {
   header {
     flex-direction: column;
+    align-items: center;
     height: 30%;
   }
   main {
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
   }
   aside {
     flex-direction: column;
     height: 500px;
   }
   .activity-data-week {
-    width: 100vw;
+    margin:1vh;
+    width: 32em;
+    height: 14em;
+  }
+  .hydration-data-week {
+    margin:1vh;
+    width: 18em;
+    height: 14em;
+  }
+  .activity-numbers {
+    margin:1vh;
+    width: 15em;
+    height: 14em;
+  }
+  .hydration {
+    flex-direction: row;
+  }
+  .hydration-data-today {
+    margin:1vh;
+    width: 12em;
+    height: 14em;
+  }
+  .sleep-data-week {
+    margin:1vh;
+    width: 32em;
+    height: 14em;
+  }
+  .sleep-data-doughnut {
+    line-height: 0;
+    margin:1vh;
+    width: 15em;
+    height: 15em;
+  }
+  .sleep-doughnut-wrapper {
+    margin:1vh;
+    height: 8em;
+    width: 12em;
   }
 }
