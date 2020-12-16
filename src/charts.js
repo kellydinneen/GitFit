@@ -236,7 +236,7 @@ function createDailyHydrationChart(user, date) {
   let chartData = {
     type: 'doughnut',
     data: {
-      labels: ['ounces'],
+      labels: ['Ounces', 'Ounces to Go'],
       datasets:[{
       label: {display: false},
       data: [ouncesValue, upperLimit - ouncesValue >= 0? upperLimit - ouncesValue : 0],
@@ -257,7 +257,7 @@ function createDailyHydrationChart(user, date) {
         text: 'Today\'s Hydration'
       },
       circumference: 2 * Math.PI,
-      events: [],
+      // events: [],
       rotation: Math.PI
     },
   };
