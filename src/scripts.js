@@ -6,8 +6,10 @@ const displayedUserStepGoal = document.querySelector('#user-step-goal');
 const displayedUserStepGoalComparison = document.querySelector('#user-step-goal_comparison');
 const displayedUserFriendsList = document.querySelector('#user-friends-list');
 const weeklyHydrationChart = document.querySelector('#hydration-data-week_chart').getContext('2d');
+const lastNightsSleepHoursValue = document.querySelector('#sleep-data-last-night-hours_number');
 const lastNightsSleepQualityChart = document.querySelector('#sleep-data-last-night-quality_chart');
 const lastNightsSleepQualityValue = document.querySelector('#sleep-data-last-night-quality_value');
+const allTimeSleepHoursValue = document.querySelector('#sleep-data-all-time-hours_number');
 const allTimeSleepQualityChart = document.querySelector('#sleep-data-all-time-quality_chart');
 const allTimeSleepQualityValue = document.querySelector('#sleep-data-all-time-quality_value');
 const weekOfSleepChart = document.querySelector('#sleep-data-week_chart');
@@ -50,6 +52,8 @@ function displayUserDashboard(user, date) {
   displayUserData(todaysActivityMinutes, user, date, 'activity', 'minutesActive');
   displayUserData(todaysStepCount, user, date, 'activity', 'numSteps');
   displayUserData(todaysDistanceWalked, user, date, 'activity', 'distance');
+  displayUserData(lastNightsSleepHoursValue, user, date, 'sleep', 'hoursSlept');
+  allTimeSleepHoursValue.innerText = user.wellnessLog.calculateAllTimeAverage('sleep', 'hoursSlept');
   createCharts(user, date);
 }
 
@@ -67,7 +71,7 @@ function greetUser(user, date) {
 };
 
 function displayUserRankings(location, user, date, category) {
-  location.innerText = `${activityRepo.getActivityRank(user, date, category)} of ${userRepo.users.length}`;
+  location.innerText = `#${activityRepo.getActivityRank(user, date, category)} of ${userRepo.users.length}`;
 }
 
 function displayUserData(location, user, date, category, section) {
@@ -93,11 +97,3 @@ function getFriendNames(user) {
   });
   return friendNameList.join(', ');
 };
-
-
-
-
-
-
-
-

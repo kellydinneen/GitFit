@@ -73,6 +73,7 @@ footer {
 .sleep-data-doughnut {
   width: 16.5vw;
   height: 30vh;
+  line-height: 0.5em;
 }
 
 .sleep-data-week {
@@ -126,16 +127,36 @@ footer {
 .minutes {
   font-weight: bolder;
   color: #D45E5E;
+  text-shadow: 1px 1px 1px #2F0101;
 }
 
 .distance {
   font-weight: bolder;
   color: #C50031;
+  text-shadow: 1px 1px 1px #2F0101;
 }
 
 .steps {
   font-weight: bolder;
   color: #F79D03;
+  text-shadow: 1px 1px 1px #2F0101;
+}
+
+.stairs {
+  font-weight: bolder;
+  color: #EDC610;
+  text-shadow: 1px 1px 1px #2F0101;
+}
+
+.sleep-hours {
+  color: #666;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.sleep-hours-number {
+  color: #AD94CD;
+  text-shadow: 1px 1px 1px #2F0101;
 }
 
 .sleep-doughnut-headline {
@@ -153,6 +174,7 @@ footer {
 .site-title {
   font-size: 40px;
   font-style: italic;
+  text-decoration-line: underline;
 }
 
 .user-info_content_title {
