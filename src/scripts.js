@@ -71,7 +71,7 @@ function greetUser(user, date) {
 };
 
 function displayUserRankings(location, user, date, category) {
-  location.innerText = `#${activityRepo.getActivityRank(user, date, category)} of ${userRepo.users.length}`;
+  location.innerText = `#${activityRepo.getActivityRank(user, date, category)}`;
 }
 
 function displayUserData(location, user, date, category, section) {
