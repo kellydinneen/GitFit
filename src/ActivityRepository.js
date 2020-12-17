@@ -4,21 +4,16 @@ class ActivityRepository {
   }
 
   calculateAllUserDailyAverage(day, type) {
-    let users = [];
-    this.allUsersActivity.forEach(entry => {
-      if (!users.includes(entry.userID) && entry.date === day) {
-        users.push(entry.userID);
-      }
-    });
-
-    const allUsersActivityTypeTotal = this.allUsersActivity.reduce((acc, entry) => {
+    let numberOfEntries = 0;
+    const allUsersActivityTypeTotal = this.allUsersActivity.reduce((total, entry) => {
         if (entry.date === day) {
-          acc += entry[type];
+          total += entry[type];
+          numberOfEntries += 1;
         }
-        return acc;
+        return total;
       }, 0);
 
-    return allUsersActivityTypeTotal / users.length;
+    return allUsersActivityTypeTotal / numberOfEntries;
   };
 
   getActivityRank(user, date, property) {
