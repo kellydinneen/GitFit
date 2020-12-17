@@ -98,4 +98,10 @@ describe('User', function () {
     expect(userName1).to.equal('Luisa');
     expect(userName2).to.equal('Jarvis');
   });
+
+  it('should instantiate a user\'s wellness log', function() {
+    user1.getWellnessLog([], [], []);
+
+    expect(user1).to.have.property('wellnessLog');
+  });
 });
