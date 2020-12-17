@@ -31,11 +31,12 @@ class WellnessLog {
   }
 
   calculateAllTimeAverage(wellnessCategory, property) {
-    let total = 0;
-    this[wellnessCategory].forEach(entry => {
-      total += entry[property];
-    });
-    return (total / this[wellnessCategory].length).toFixed(1);
+    const category = this[wellnessCategory];
+    const total = category.reduce((acc, entry) => {
+      acc += entry[property];
+      return acc;
+    }, 0);
+    return (total / category.length).toFixed(1);
   }
 
   getTotalWeeklyActiveMinutes(date) {
