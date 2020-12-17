@@ -19,9 +19,10 @@ class WellnessLog {
   }
 
   getWeekOfStats(day, wellnessCategory, property) {
+    const category = this[wellnessCategory];
     const weeklyLog = {};
-    const dateIndex = this[wellnessCategory].findIndex(logEntry => logEntry.date === day);
-    const weekOfEntries = this[wellnessCategory].slice(dateIndex - 6 || 0, dateIndex + 1 || this[wellnessCategory].length + 1);
+    const dateIndex = category.findIndex(logEntry => logEntry.date === day);
+    const weekOfEntries = category.slice(dateIndex - 6 ||  0, dateIndex + 1 || category.length + 1);
     weekOfEntries.forEach(entry => {
       const dateOfEntry = entry.date;
       weeklyLog[dateOfEntry] = entry[property];
@@ -30,11 +31,12 @@ class WellnessLog {
   }
 
   calculateAllTimeAverage(wellnessCategory, property) {
-    let total = 0;
-    this[wellnessCategory].forEach(entry => {
-      total += entry[property];
-    });
-    return (total / this[wellnessCategory].length).toFixed(1);
+    const category = this[wellnessCategory];
+    const total = category.reduce((acc, entry) => {
+      acc += entry[property];
+      return acc;
+    }, 0);
+    return (total / category.length).toFixed(1);
   }
 
   getTotalWeeklyActiveMinutes(date) {
@@ -64,10 +66,9 @@ class WellnessLog {
     const record = this.activity.sort((a, b) => b.flightsOfStairs - a.flightsOfStairs);
     return record[0].flightsOfStairs;
   }
-
 }
 
 if (typeof module !== 'undefined') {
   module.exports = WellnessLog;
-};
+}
 

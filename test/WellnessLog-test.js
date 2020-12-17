@@ -3,7 +3,6 @@ const expect = chai.expect;
 
 const WellnessLog = require('../src/WellnessLog.js');
 const User = require('../src/User.js');
-// const User = require('../src/WellnessLog.js');
 
 
 let userData = [
@@ -143,29 +142,29 @@ describe('WellnessLog.sleep', function() {
   });
 
   it('should calculate a user\'s all time average hours of sleep', function() {
-    const averageHoursSlept = wellnessLog1.calculateAllTimeAverage('sleep','hoursSlept');
+    const averageHoursSlept = wellnessLog1.calculateAllTimeAverage('sleep', 'hoursSlept');
     const correctAnswer = (56.4 / 7).toFixed(1);
     expect(averageHoursSlept).to.equal(correctAnswer);
   });
 
   it('should calculate a user\'s all time average sleep quality', function() {
-    const averageSleepQuality = wellnessLog1.calculateAllTimeAverage('sleep','sleepQuality');
+    const averageSleepQuality = wellnessLog1.calculateAllTimeAverage('sleep', 'sleepQuality');
     const correctAnswer = (18.3 / 7).toFixed(1);
     expect(averageSleepQuality).to.equal(correctAnswer);
   });
 
   it('should return how many hours a user slept last night', function() {
-    const lastNightSleepTime = wellnessLog1.getTodaysStat('2019/06/21', 'sleep','hoursSlept');
+    const lastNightSleepTime = wellnessLog1.getTodaysStat('2019/06/21', 'sleep', 'hoursSlept');
     expect(lastNightSleepTime).to.equal(7.8);
   });
 
   it('should return the user\'s sleep quality from last night', function() {
-    const lastNightSleepQuality = wellnessLog1.getTodaysStat('2019/06/21', 'sleep','sleepQuality');
+    const lastNightSleepQuality = wellnessLog1.getTodaysStat('2019/06/21', 'sleep', 'sleepQuality');
     expect(lastNightSleepQuality).to.equal(4.2);
   });
 
   it('should find how long a user slept for each night of the last week', function() {
-    const weekOfSleepEntries = wellnessLog1.getWeekOfStats('2019/06/21', 'sleep','hoursSlept');
+    const weekOfSleepEntries = wellnessLog1.getWeekOfStats('2019/06/21', 'sleep', 'hoursSlept');
     expect(weekOfSleepEntries).to.deep.equal({
       '2019/06/15': 6.1,
       '2019/06/16': 4.1,
@@ -178,7 +177,7 @@ describe('WellnessLog.sleep', function() {
   });
 
   it('should find a user\'s hours of sleep for each night of the last week even if they have less than a week of entries', function() {
-    const weekOfSleepEntries = wellnessLog2.getWeekOfStats('2019/06/21', 'sleep','hoursSlept');
+    const weekOfSleepEntries = wellnessLog2.getWeekOfStats('2019/06/21', 'sleep', 'hoursSlept');
     expect(weekOfSleepEntries).to.deep.equal({
       '2019/06/20': 7.0,
       '2019/06/21': 6.5
@@ -186,7 +185,7 @@ describe('WellnessLog.sleep', function() {
   });
 
   it('should find a user\'s sleep quality for each night of the last week', function() {
-    const weekOfSleepEntries = wellnessLog1.getWeekOfStats('2019/06/21', 'sleep','sleepQuality');
+    const weekOfSleepEntries = wellnessLog1.getWeekOfStats('2019/06/21', 'sleep', 'sleepQuality');
     expect(weekOfSleepEntries).to.deep.equal({
       '2019/06/15': 2.2,
       '2019/06/16': 3.8,
@@ -199,7 +198,7 @@ describe('WellnessLog.sleep', function() {
   });
 
   it('should find a user\'s sleep quality for each night of the last week even if they have less than a week of entries', function() {
-    const weekOfSleepEntries = wellnessLog2.getWeekOfStats('2019/06/21', 'sleep','sleepQuality');
+    const weekOfSleepEntries = wellnessLog2.getWeekOfStats('2019/06/21', 'sleep', 'sleepQuality');
     expect(weekOfSleepEntries).to.deep.equal({
       '2019/06/20': 3.9,
       '2019/06/21': 4.0
@@ -285,11 +284,11 @@ describe('WellnessLog.hydration', function() {
   });
 
   it('can calculate the average fluid ounces consumed by user per day for all time', function() {
-    expect(wellnessLog1.calculateAllTimeAverage('hydration','numOunces')).to.equal('63.7');
+    expect(wellnessLog1.calculateAllTimeAverage('hydration', 'numOunces')).to.equal('63.7');
   });
 
   it('can calculate the average fluid ounces consumed by different user per day for all time', function() {
-    expect(wellnessLog2.calculateAllTimeAverage('hydration','numOunces')).to.equal('83.0');
+    expect(wellnessLog2.calculateAllTimeAverage('hydration', 'numOunces')).to.equal('83.0');
   });
 
   it('can calculate how many fluid ounces a user consumed on a specific date', function() {

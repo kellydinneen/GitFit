@@ -1,5 +1,5 @@
-// const WellnessLog = require('../src/WellnessLog.js');
-// commented out for testing purposes
+// uncomment for testing
+// const WellnessLog = require('../src/WellnessLog.js'); 
 
 class User {
   constructor(userData) {

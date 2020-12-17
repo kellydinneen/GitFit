@@ -1,5 +1,5 @@
+// uncomment for testing
 // const User = require('../src/User.js');
-// commented out for testing purposes
 
 class UserRepository {
   constructor(userData) {
