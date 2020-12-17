@@ -19,9 +19,10 @@ class WellnessLog {
   }
 
   getWeekOfStats(day, wellnessCategory, property) {
+    const category = this[wellnessCategory];
     const weeklyLog = {};
-    const dateIndex = this[wellnessCategory].findIndex(logEntry => logEntry.date === day);
-    const weekOfEntries = this[wellnessCategory].slice(dateIndex - 6 ||  0, dateIndex + 1 || this[wellnessCategory].length + 1);
+    const dateIndex = category.findIndex(logEntry => logEntry.date === day);
+    const weekOfEntries = category.slice(dateIndex - 6 ||  0, dateIndex + 1 || category.length + 1);
     weekOfEntries.forEach(entry => {
       const dateOfEntry = entry.date;
       weeklyLog[dateOfEntry] = entry[property];
