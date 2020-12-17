@@ -14,7 +14,7 @@ class ActivityRepository {
       }, 0);
 
     return allUsersActivityTypeTotal / numberOfEntries;
-  };
+  }
 
   getActivityRank(user, date, property) {
     let todaysActivity = this.allUsersActivity.filter(entry => entry.date === date);
@@ -26,4 +26,4 @@ class ActivityRepository {
 
 if (typeof module !== 'undefined') {
   module.exports = ActivityRepository;
-};
+}
