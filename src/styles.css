@@ -22,11 +22,11 @@ main {
 }
 
 footer {
-  width: 97vw;
-  height: 17vh;;
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
+  width: 97vw;
+  height: 17vh;;
   background: #081D36;
   color: #D3D0CB;
   border: solid #D3D0CB;
@@ -37,7 +37,7 @@ footer {
   text-align: center;
 }
 
-.genre {
+.category {
   display: flex;
   justify-content: center;
 }
@@ -58,43 +58,43 @@ footer {
 }
 
 .activity-numbers {
-  margin: 1vw;
   height: 32vh;
   width: 22vw;
+  margin: 1vw;
 }
 
 .activity-data-week {
-  margin: 1vw;
   position: relative;
   height: 32vh;
   width: 52vw;
+  margin: 1vw;
 }
 
 .sleep-data-doughnut {
-  margin: 2vh;
   width: 22vw;
   height: 32vh;
   line-height: 0.5em;
+  margin: 2vh;
 }
 
 .sleep-data-week {
-  margin: 2vh;
   position: relative;
   height: 32vh;
   width: 52vw;
+  margin: 2vh;
 }
 
 .hydration-data-week {
   position: relative;
-  margin: 1vw;
   height: 32vh;
   width: 40vw;
+  margin: 1vw;
 }
 .hydration-data-today {
   position: relative;
-  margin: 1vw;
   height: 32vh;
   width: 25vw;
+  margin: 1vw;
 }
 .sleep-doughnut-wrapper {
   position: relative;
@@ -111,16 +111,16 @@ footer {
 .activity-numbers_stats {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   line-height: .1em;
-  align-items: center;
   text-align: center;
 }
 
 .bottom-stats {
-  width: 85%;
   display: flex;
   justify-content: space-between;
+  width: 85%;
 }
 
 /* TEXT ELEMENTS*/
@@ -148,7 +148,6 @@ footer {
   text-shadow: 1px 1px 1px #2F0101;
 }
 
-
 .sleep-hours {
   color: #666;
   font-weight: bold;
@@ -166,9 +165,9 @@ footer {
 
 .sleep-doughnut-headline {
   position: relative;
+  left: 28%;
   font-style: italic;
   font-size: 0.8em;
-  left: 28%;
 }
 
 .widget-heading {
@@ -182,9 +181,9 @@ footer {
 }
 
 .user-info_content_title {
+  padding: 0.1em;
   color: #081D36;
   background-color: #D3D0CB;
-  padding: 0.1em;
 }
 
 .user-info-item {
@@ -220,7 +219,7 @@ footer {
     height: 15vh;;
   }
 
-  .genre {
+  .category {
     flex-direction: column;
   }
 
@@ -259,7 +258,7 @@ footer {
   }
 
   .hydration-doughnut-wrapper {
-    height: 25vh;
+    height: 22vh;
     width: 25vw;
   }
 
@@ -279,11 +278,13 @@ footer {
     align-items: center;
     height: 30%;
   }
+
   main {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
   }
+
   footer {
     flex-direction: column;
     align-items: center;
@@ -292,51 +293,62 @@ footer {
     height: 400px;
     width: 96vw;
   }
-  .genre {
+
+  .category {
     flex-direction: column;
   }
+
   .activity-data-week {
-    margin:1vh;
     width: 32em;
     height: 14em;
+    margin: 1vh;
   }
+
   .hydration-data-week {
-    margin:1vh;
     width: 18em;
     height: 16em;
+    margin: 1vh;
   }
+
   .activity-numbers {
-    margin:1vh;
     width: 15em;
     height: 14em;
+    margin: 1vh;
   }
+
   .hydration {
     flex-direction: row;
   }
+
   .hydration-data-today {
-    margin:1vh;
     width: 12em;
     height: 16em;
+    margin: 1vh;
   }
+
   .sleep-data-week {
-    margin:1vh;
     width: 32em;
     height: 14em;
-  }
-  .sleep-data-doughnut {
-    line-height: 0;
     margin:1vh;
+  }
+
+  .sleep-data-doughnut {
     width: 15em;
     height: 15em;
-  }
-  .sleep-doughnut-wrapper {
+    line-height: 0;
     margin:1vh;
+  }
+
+  .sleep-doughnut-wrapper {
     height: 8em;
     width: 12em;
+    margin:1vh;
   }
+
   .label {
     font-size: 12px;
   }
+
   .user-info-item {
     font-size: 12px;
   }
@@ -346,16 +358,19 @@ footer {
   * {
     align-items: center;
   }
+
   header {
     flex-direction: column;
     align-items: center;
     height: 30%;
   }
+
   main {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
   }
+
   footer {
     flex-direction: column;
     align-items: center;
@@ -364,32 +379,37 @@ footer {
     height: 400px;
     width: 96vw;
   }
-  .genre {
+
+  .category {
     flex-direction: column;
     align-items: center;
   }
+
   .activity-data-week {
-    margin:1vh;
     width: 18em;
     height: 16em;
+    margin: 1vh;
   }
+
   .hydration-data-week {
-    margin:1vh;
     width: 18em;
     height: 16em;
+    margin: 1vh;
   }
+
   .small-widgets {
     flex-direction: column;
   }
+
   .activity-numbers {
-    margin:1vh;
     width: 18em;
     height: 14em;
+    margin: 1vh;
   }
   .hydration-data-today {
-    margin:1vh;
     width: 18em;
     height: 14em;
+    margin: 1vh;
   }
 
   .hydration-doughnut-wrapper {
@@ -398,42 +418,46 @@ footer {
   }
 
   .sleep-data-week {
-    margin:1vh;
     width: 18em;
     height: 16em;
+    margin: 1vh;
   }
+
   .sleep-data-doughnut {
-    line-height: 0;
-    margin:1vh;
-    padding: 1vh;
     width: 18em;
     height: 14em;
+    line-height: 0;
+    margin: 1vh;
+    padding: 1vh;
   }
   .sleep-doughnut-wrapper {
-    margin:1vh;
     height: 6em;
     width: 12em;
+    margin: 1vh;
   }
+
   .label {
     font-size: 12px;
   }
+
   .user-info-item {
     font-size: 12px;
   }
+
 }
 
 .help-tip{
-    position: relative;
-    top: 6%;
-    left: 45%;
-    text-align: center;
-    background-color: #081D36;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    font-size: 14px;
-    line-height: 26px;
-    cursor: help;
+  width: 18px;
+  height: 18px;
+  position: relative;
+  top: 6%;
+  left: 45%;
+  text-align: center;
+  background-color: #081D36;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 26px;
+  cursor: help;
 }
 
 .ranking-tip {
@@ -442,48 +466,40 @@ footer {
 }
 
 .help-tip:before{
-    content:'?';
-    font-weight: bold;
-    color:#fff;
+  content:'?';
+  font-weight: bold;
+  color:#fff;
 }
 
 .help-tip:hover p{
-    display: block;
-    z-index: 100;
-    transform-origin: 100% 0%;
-    -webkit-animation: fadeIn 0.3s ease-in-out;
-    animation: fadeIn 0.3s ease-in-out;
+  display: block;
+  transform-origin: 100% 0%;
+  -webkit-animation: fadeIn 0.3s ease-in-out;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 .help-tip p{
-    display: none;
-    text-align: left;
-    background-color: #081D36;
-    padding: 20px;
-    width: 300px;
-    position: absolute;
-    border-radius: 3px;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-    right: -4px;
-    color: #FFF;
-    font-size: 13px;
-    line-height: 1.4;
+  display: none;
+  text-align: left;
+  background-color: #081D36;
+  padding: 20px;
+  width: 300px;
+  position: absolute;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  right: -4px;
+  color: #FFF;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 
 @-webkit-keyframes fadeIn {
-    0% {
-        opacity:0;
-        transform: scale(0.6);
-    }
+  0% {
+    opacity: 0;
+  }
 
-    100% {
-        opacity:100%;
-        transform: scale(1);
-    }
-}
-
-@keyframes fadeIn {
-    0% { opacity:0; }
-    100% { opacity:100%; }
+  100% {
+    opacity: 100%;
+  }
 }
