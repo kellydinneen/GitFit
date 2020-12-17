@@ -5,8 +5,7 @@ const expect = chai.expect;
 const ActivityRepository = require('../src/ActivityRepository.js');
 
 describe('ActivityRepository', function() {
-  let activityData;
-  let activityRepo;
+  let activityData, activityRepo;
 
   beforeEach(function() {
     activityData = [
@@ -58,26 +57,8 @@ describe('ActivityRepository', function() {
     expect(activityRepo).to.be.an.instanceOf(ActivityRepository);
   });
 
-  it.skip('should organize user activity by date', function() {
-    expect(activityRepo.allUserLog).to.be.an('object');
-    expect(activityRepo.allUserLog).to.have.all.keys(['2019/06/15','2019/06/16']);
-  });
-
-  it.skip('should store activity for all users on each date', function() {
-    var usersActivityOnFifteenth = activityRepo.allUserLog['2019/06/15'];
-    expect(usersActivityOnFifteenth).to.be.an('object');
-    expect(usersActivityOnFifteenth).to.have.all.keys([1,2,3]);
-  });
-
-  it.skip('should store all activity data for each user on a date', function() {
-    var userOneActivityOnFifteenth = activityRepo.allUserLog['2019/06/15'][1];
-    var userTwoActivityOnFifteenth = activityRepo.allUserLog['2019/06/15'][2];
-
-    expect(userOneActivityOnFifteenth).to.be.an('object');
-    expect(userOneActivityOnFifteenth).to.have.all.keys(["numSteps", "minutesActive",
-    "flightsOfStairs"]);
-    expect(userOneActivityOnFifteenth['flightsOfStairs']).to.equal(16);
-    expect(userTwoActivityOnFifteenth['flightsOfStairs']).to.equal(10);
+  it('should hold activity data for all days for all users', function() {
+    expect(activityRepo.allUsersActivity).to.deep.equal(activityData);
   });
 
   it('should calculate average number of steps for all users on a specific date', function() {
