@@ -5,7 +5,7 @@ const SleepRepository = require('../src/SleepRepository.js');
 const UserRepository = require('../src/UserRepository.js');
 
 describe('Sleep Repository', function() {
-  let sleepRepo, userRepo;
+  let sleepRepo, userRepo, sleepData, userData;
 
   beforeEach(function() {
     userData = [
