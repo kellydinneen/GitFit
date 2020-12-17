@@ -95,12 +95,4 @@ describe('UserRepository', function() {
     expect(averageStepGoal).to.equal(20000 / 3);
   });
 
-  it('should instantiate all users\' wellness logs', function() {
-    userRepo.getAllWellnessLogs([], [], []); 
-
-    const users = userRepo.users;
-    expect(users[0]).to.have.property('wellnessLog');
-    expect(users[1]).to.have.property('wellnessLog');
-  });
-
 });
