@@ -86,9 +86,9 @@ function createCharts(user, date) {
   createSleepDonutChart(user, date, sleepQuality, 'quality', lastNightsSleepQualityChart);
   createSleepDonutChart(user, date, averageSleepQuality, 'average quality', allTimeSleepQualityChart);
   createHydrationChart(user, date);
-  createWeeklySleepChart(user, date);
-  createWeeklyActivityChart(user, date);
-  createDailyHydrationChart(user, date);
+  createWeekOfSleepChart(user, date);
+  createWeekOfActivityChart(user, date);
+  createWeekOfHydrationChart(user, date);
   todaysHydrationValue.innerText = `${(user.wellnessLog.getTodaysStat(date, 'hydration', 'numOunces') / 8).toFixed(1)} out of 10 cups`;
 }
 
