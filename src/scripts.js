@@ -79,15 +79,17 @@ function displayUserData(location, user, date, category, section) {
 }
 
 function createCharts(user, date) {
+  const sleepQuality = user.wellnessLog.getTodaysStat(date, 'sleep', 'sleepQuality');
+  const averageSleepQuality = user.wellnessLog.calculateAllTimeAverage('sleep', 'sleepQuality');
+  allTimeSleepQualityValue.innerText = `${averageSleepQuality} out  of 5`;
+  lastNightsSleepQualityValue.innerText = `${sleepQuality} out  of 5`;
+  createSleepDonutChart(user, date, sleepQuality, 'quality', lastNightsSleepQualityChart);
+  createSleepDonutChart(user, date, averageSleepQuality, 'average quality', allTimeSleepQualityChart);
   createHydrationChart(user, date);
-  createTodaysSleepChart(user, date);
-  createAllTimeSleepChart(user, date);
   createWeeklySleepChart(user, date);
   createWeeklyActivityChart(user, date);
   createDailyHydrationChart(user, date);
-  allTimeSleepQualityValue.innerText = `${user.wellnessLog.calculateAllTimeAverage('sleep', 'sleepQuality')} out  of 5`;
   todaysHydrationValue.innerText = `${(user.wellnessLog.getTodaysStat(date, 'hydration', 'numOunces') / 8).toFixed(1)} out of 10 cups`;
-  lastNightsSleepQualityValue.innerText = `${user.wellnessLog.getTodaysStat(date, 'sleep', 'sleepQuality')} out  of 5`;
 }
 
 function getFriendNames(user) {

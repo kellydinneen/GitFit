@@ -44,16 +44,15 @@ function createHydrationChart(user, date) {
   let myChart = new Chart(weeklyHydrationChart, chartData);
 }
 
-function createTodaysSleepChart(user, date) {
-  let sleepValue = user.wellnessLog.getTodaysStat(date, 'sleep', 'sleepQuality');
+function createSleepDonutChart(user, date, value, label, canvas) {
   let highestPossibleQuality = 5;
   let chartData = {
     type: 'doughnut',
     data: {
-      labels: ['Sleep Quality'],
+      labels: [label],
       datasets:[{
       label: false,
-      data: [sleepValue, highestPossibleQuality - sleepValue],
+      data: [value, highestPossibleQuality - value],
       backgroundColor: ['#791289', '#E7E5DF'],
       borderWidth: 0
       }]
@@ -73,40 +72,9 @@ function createTodaysSleepChart(user, date) {
       rotation: Math.PI
     },
   };
-  let myChart = new Chart(lastNightsSleepQualityChart, chartData);
+  let myChart = new Chart(canvas, chartData);
 }
 
-function createAllTimeSleepChart(user, date) {
-  let sleepValue = user.wellnessLog.calculateAllTimeAverage('sleep', 'sleepQuality');
-  let highestPossibleQuality = 5;
-  let chartData = {
-    type: 'doughnut',
-    data: {
-      labels: ['Average Sleep Quality'],
-      datasets:[{
-      label: false,
-      data: [sleepValue, highestPossibleQuality - sleepValue],
-      backgroundColor: ['#791289', '#E7E5DF'],
-      borderWidth: 0
-      }]
-    },
-    options:{
-      legend: {
-        display: false
-      },
-      title: {
-            display: true,
-            text: 'Average Quality'
-      },
-      responsive: true,
-      maintainAspectRatio: false,
-      circumference: Math.PI,
-      events: [],
-      rotation: Math.PI
-    },
-  };
-  let myChart = new Chart(allTimeSleepQualityChart, chartData);
-}
 
  //Sleep Week : As bar
  function createWeeklySleepChart(user, date) {
