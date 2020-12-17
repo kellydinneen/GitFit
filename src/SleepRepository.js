@@ -4,11 +4,9 @@ class SleepRepository {
   }
 
   calculateAllUsersAverageSleepQuality() {
-    const sleepQualitySummation = (sumQuality, night) => {
-      sumQuality += night.sleepQuality;
-      return sumQuality;
-    };
-    const sumOfSleepQuality = this.sleepCollection.reduce(sleepQualitySummation, 0);
+    const sumOfSleepQuality = this.sleepCollection.reduce((sumQuality, night) => {
+      return sumQuality += night.sleepQuality;
+    }, 0);
     return sumOfSleepQuality / this.sleepCollection.length;
   }
 
