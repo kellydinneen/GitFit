@@ -1,3 +1,5 @@
+const ActivityRepository = require("./ActivityRepository");
+
 //query selectors
 const dateDisplay = document.querySelector('#date');
 const greeting = document.querySelector('#greeting');
@@ -32,10 +34,11 @@ window.onload = openSite();
 
 function openSite() {
   const userRepo = new UserRepository(userData);
+  const activityRepo = new ActivityRepository(activityData);
   const currentUser = userRepo.users[getRandomIndex(userRepo.users)];
-  const currentUser.getWellnessLog(hydrationData, sleepData, activityData);
+  currentUser.getWellnessLog(hydrationData, sleepData, activityData);
   displayUserDashboard(currentUser, '2019/09/22');
-};
+}
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -45,7 +48,7 @@ function displayUserDashboard(user, date) {
   displayUserInfo(user);
   greetUser(user, date);
   displayActivityData(user, date);
-  displayHydrationData(user,date);
+  displayHydrationData(user, date);
   displaySleepData(user, date);
 }
 
@@ -63,17 +66,17 @@ function getFriendNames(user) {
     return friend.getFirstName();
   });
   return friendNameList.join(', ');
-};
+}
 
 function greetUser(user, date) {
   greeting.innerText = `Hello, ${user.getFirstName()}!`;
   dateDisplay.innerText = date;
-};
+}
 
 function displayActivityData(user, date) {
   displayUserActivityRankings(minutesRanking, user, date, 'minutesActive');
   displayUserActivityRankings(stepsRanking, user, date, 'numSteps');
-  displayUserActivityRankings(distanceRanking, currentUser, date, 'flightsOfStairs');
+  displayUserActivityRankings(distanceRanking, user, date, 'flightsOfStairs');
   displayDailyUserData(todaysActivityMinutes, user, date, 'activity', 'minutesActive');
   displayDailyUserData(todaysStepCount, user, date, 'activity', 'numSteps');
   displayDailyUserData(todaysDistanceWalked, user, date, 'activity', 'distance');
