@@ -24,16 +24,14 @@ class SleepRepository {
   }
 
   findNightsLongestSleepers(date) {
-    const nightSleeps = this.sleepCollection.filter(entry => entry.date === date);
-    const sortedSleeps = nightSleeps.sort((a, b) => {
-      return a.hoursSlept - b.hoursSlept
-    });
-    const longestSleepTime = sortedSleeps[sortedSleeps.length - 1];
-    const longestSleeps = sortedSleeps.filter(sleep => sleep.hoursSlept === longestSleepTime.hoursSlept);
+    const allSleeps = this.sleepCollection.filter(entry => entry.date === date);
+    const sortedSleeps = allSleeps.sort((a, b) => a.hoursSlept - b.hoursSlept);
+    const longestSleep = sortedSleeps[sortedSleeps.length - 1];
+    const longestSleeps = sortedSleeps.filter(sleep => sleep.hoursSlept === longestSleep.hoursSlept);
     return longestSleeps.map(sleep => sleep.userID);
   }
 
- }
+}
 
 if (typeof module !== 'undefined') {
   module.exports = SleepRepository;
