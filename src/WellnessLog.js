@@ -21,7 +21,7 @@ class WellnessLog {
   getWeekOfStats(day, wellnessCategory, property) {
     const weeklyLog = {};
     const dateIndex = this[wellnessCategory].findIndex(logEntry => logEntry.date === day);
-    const weekOfEntries = this[wellnessCategory].slice(dateIndex - 6 || 0, dateIndex + 1 || this[wellnessCategory].length + 1);
+    const weekOfEntries = this[wellnessCategory].slice(dateIndex - 6 ||  0, dateIndex + 1 || this[wellnessCategory].length + 1);
     weekOfEntries.forEach(entry => {
       const dateOfEntry = entry.date;
       weeklyLog[dateOfEntry] = entry[property];
@@ -64,7 +64,6 @@ class WellnessLog {
     const record = this.activity.sort((a, b) => b.flightsOfStairs - a.flightsOfStairs);
     return record[0].flightsOfStairs;
   }
-
 }
 
 if (typeof module !== 'undefined') {
