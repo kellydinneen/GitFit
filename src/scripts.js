@@ -1,11 +1,24 @@
 //query selectors
 const dateDisplay = document.querySelector('#date');
 const greeting = document.querySelector('#greeting');
+
 const displayedUserName = document.querySelector('#user-name');
 const displayedUserStepGoal = document.querySelector('#user-step-goal');
-const displayedUserStepGoalComparison = document.querySelector('#user-step-goal_comparison');
+const displayedAverageUserStepGoal = document.querySelector('#user-step-goal_comparison');
 const displayedUserFriendsList = document.querySelector('#user-friends-list');
+
+const todaysActivityMinutes = document.querySelector('#activity-data_today-minutes');
+const todaysStepCount = document.querySelector('#activity-data_today-steps');
+const todaysDistanceWalked = document.querySelector('#activity-data_today-distance');
+const minutesRanking = document.querySelector('#activity-data_rank-minutes');
+const distanceRanking = document.querySelector('#activity-data_rank-distance');
+const stepsRanking = document.querySelector('#activity-data_rank-steps');
+const weekOfActivityChart = document.querySelector('#activity-data-week_chart');
+
 const weeklyHydrationChart = document.querySelector('#hydration-data-week_chart').getContext('2d');
+const todaysHydration = document.querySelector('#hydration-data_today_chart');
+const todaysHydrationValue = document.querySelector('#hydration-data_today_number');
+
 const lastNightsSleepHoursValue = document.querySelector('#sleep-data-last-night-hours_number');
 const lastNightsSleepQualityChart = document.querySelector('#sleep-data-last-night-quality_chart');
 const lastNightsSleepQualityValue = document.querySelector('#sleep-data-last-night-quality_value');
@@ -13,15 +26,6 @@ const allTimeSleepHoursValue = document.querySelector('#sleep-data-all-time-hour
 const allTimeSleepQualityChart = document.querySelector('#sleep-data-all-time-quality_chart');
 const allTimeSleepQualityValue = document.querySelector('#sleep-data-all-time-quality_value');
 const weekOfSleepChart = document.querySelector('#sleep-data-week_chart');
-const todaysActivityMinutes = document.querySelector('#activity-data_today-minutes');
-const todaysStepCount = document.querySelector('#activity-data_today-steps');
-const todaysDistanceWalked = document.querySelector('#activity-data_today-distance');
-const weekOfActivityChart = document.querySelector('#activity-data-week_chart');
-const minutesRanking = document.querySelector('#activity-data_rank-minutes');
-const distanceRanking = document.querySelector('#activity-data_rank-distance');
-const stepsRanking = document.querySelector('#activity-data_rank-steps');
-const todaysHydration = document.querySelector('#hydration-data_today_chart');
-const todaysHydrationValue = document.querySelector('#hydration-data_today_number');
 
 //eventhandlers and helpers
 window.onload = openSite();
@@ -48,7 +52,7 @@ function displayUserDashboard(user, date) {
 function displayUserInfo(user) {
   const averageStepGoal = userRepo.calculateAverageStepGoal();
   displayedUserName.innerText = `${user.name}`;
-  displayedUserStepGoalComparison.innerText = `The average daily step goal is ${averageStepGoal}`;
+  displayedAverageUserStepGoal.innerText = `The average daily step goal is ${averageStepGoal}`;
   displayedUserStepGoal.innerText = `${user.dailyStepGoal}`;
   displayedUserFriendsList.innerText = `${getFriendNames(user)}`;
 }
