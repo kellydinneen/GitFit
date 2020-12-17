@@ -1,3 +1,5 @@
+// const WellnessLog = require('../src/WellnessLog.js');
+
 class User {
   constructor(userData) {
     this.id = userData.id;

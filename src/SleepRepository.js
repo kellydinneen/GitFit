@@ -12,7 +12,7 @@ class SleepRepository {
 
   findWeeksGoodSleepers(date, userRepo) {
     const highestQualitySleepers = userRepo.users.filter((user) => {
-      const userWeekOfSleep = user.getSleepLog(this.sleepCollection).getWeekOfSleepData(date, 'sleepQuality');
+      const userWeekOfSleep = user.getWellnessLog([], this.sleepCollection, []).getWeekOfStats(date, 'sleep', 'sleepQuality');
       const totalWeeksQuality =
         Object.values(userWeekOfSleep).reduce((total, sleepQuality) => {
           total += sleepQuality;
