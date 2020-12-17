@@ -10,9 +10,8 @@
 * [Technologies](#technologies)
 * [Deployment](#deployment)
 * [Authors](#authors)
-* [Contributors](#contributors)
 
-## Introudction
+## Introduction
 
 GitFit is a hub for tracking a user's health log. The user can document and keep track of their sleep, hydration, and activity to keep them motivated and determined to keep on keepin' on! 
 
@@ -44,11 +43,13 @@ The page displays 4 differenct sections:
 2. User's Activity
 * Displays the user's Activity stats for the most recent day and week as well as their rank among all of the users
 3. User's Hydration
-* Displays how much water a user drank on the latest day, assuming that the goal is to drink 8 cups, and their hydration log entries from the latest week.
+* Displays how much water a user drank on the latest day, assuming that the goal is to drink 10 cups, and their hydration log entries from the latest week.
 4. User's Sleep
 * Displays the quality of a user's sleep on a scale of 1 to 5 and the hours of sleep they got, assuming that 8 hours is the goal. These are displayed for the latest day, the latest week, and the user's all time average. 
 
-The current user's information is displayed from a `User` class that instantiated within the `UserRepository` class as soon as the page loads. Then the each user is assigned a `WellnessLog` object instance that contains all of the user's documented activity, hydration, and sleep data. Then, all users' data is logged into a `SleepRepository`, `ActivityRepository`, and `HydrationRepository`, where methods calaculate information about all users' wellness data. 
+The small question marks in the corners of some widgets are to explain the information that is displayed when hovered over. For example, the sleep charts' question mark shows that sleep quality is judged based on a scale of 0 to 5. 
+
+The current user's information is displayed from a `User` class that is instantiated within the `UserRepository` class as soon as the page loads. Then the each user is assigned a `WellnessLog` object instance that contains all of the user's documented activity, hydration, and sleep data. Then, all users' data is logged into a `SleepRepository`, `ActivityRepository`, and `HydrationRepository`, where methods calaculate information about all users' wellness data. 
 
 Charts are used to display some of the user's data. The charts were created using `Chart js`.
 

@@ -67,6 +67,7 @@ function createTodaysSleepChart(user, date) {
             text: 'Quality'
       },
       responsive: true,
+      maintainAspectRatio: false,
       circumference: Math.PI,
       events: [],
       rotation: Math.PI
@@ -98,6 +99,7 @@ function createAllTimeSleepChart(user, date) {
             text: 'Average Quality'
       },
       responsive: true,
+      maintainAspectRatio: false,
       circumference: Math.PI,
       events: [],
       rotation: Math.PI
@@ -257,7 +259,6 @@ function createDailyHydrationChart(user, date) {
         text: 'Today\'s Hydration'
       },
       circumference: 2 * Math.PI,
-      // events: [],
       rotation: Math.PI
     },
   };
