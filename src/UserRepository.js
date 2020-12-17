@@ -1,7 +1,7 @@
 // const User = require('../src/User.js');
+// commented out for testing purposes
 
 class UserRepository {
-
   constructor(userData) {
     this.users = userData.map(user => {
       let person = new User(user);
@@ -15,18 +15,14 @@ class UserRepository {
 
   calculateAverageStepGoal() {
     const addition = (sum, user) => {
-      sum+= user.dailyStepGoal;
+      sum += user.dailyStepGoal;
       return sum;
     };
     const totalStepGoal = this.users.reduce(addition, 0);
     return totalStepGoal / this.users.length;
-    };
-
-    getAllWellnessLogs() {
-      userRepo.users.forEach(user => user.getWellnessLog(hydrationData, sleepData, activityData, user.id));
-    }
-};
+  }
+}
 
 if (typeof module !== 'undefined') {
   module.exports = UserRepository;
-};
+}

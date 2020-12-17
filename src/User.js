@@ -1,4 +1,5 @@
 // const WellnessLog = require('../src/WellnessLog.js');
+// commented out for testing purposes
 
 class User {
   constructor(userData) {
@@ -18,10 +19,9 @@ class User {
 
   getWellnessLog(hydrationData, sleepData, activityData) {
     this.wellnessLog = new WellnessLog(hydrationData, sleepData, activityData, this.id);
-    return this.wellnessLog;
   }
 }
 
 if (typeof module !== 'undefined') {
   module.exports = User;
-};
+}

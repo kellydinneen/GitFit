@@ -6,10 +6,6 @@ class WellnessLog {
     this.activity = activityData.filter(log => log.userID === id);
   }
 
-  //wellnessCategory could be: 'hydrationLog', 'sleepLog', or 'activityLog'
-  //property could be: 'numOunces' 'sleepQuality' 'hoursSlept' 'numSteps' 'minutesActive' 'flightsOfStairs'
-
-  //TODAY
   getTodaysStat(day, wellnessCategory, property, userData) {
     const daysLogEntry = this[wellnessCategory].find(logEntry => logEntry.date === day);
     if (property === 'distance') {
@@ -20,9 +16,8 @@ class WellnessLog {
     } else {
       return daysLogEntry[property];
     }
-  };
+  }
 
-  //THIS WEEK
   getWeekOfStats(day, wellnessCategory, property) {
     const weeklyLog = {};
     const dateIndex = this[wellnessCategory].findIndex(logEntry => logEntry.date === day);
@@ -34,8 +29,6 @@ class WellnessLog {
     return weeklyLog;
   }
 
-
-  //ALL TIME AVERAGES
   calculateAllTimeAverage(wellnessCategory, property) {
     let total = 0;
     this[wellnessCategory].forEach(entry => {
@@ -44,15 +37,13 @@ class WellnessLog {
     return (total / this[wellnessCategory].length).toFixed(1);
   }
 
-//Activity Only
-
   getTotalWeeklyActiveMinutes(date) {
     const weeksActiveMinutes = Object.values(this.getWeekOfStats(date, 'activity', 'minutesActive'));
-      const totalMinutesActive = weeksActiveMinutes.reduce((acc, minutes) => {
-        acc += minutes;
-        return acc;
-      }, 0);
-      return totalMinutesActive;
+    const totalMinutesActive = weeksActiveMinutes.reduce((acc, minutes) => {
+      acc += minutes;
+      return acc;
+    }, 0);
+    return totalMinutesActive;
   }
 
   evaluateStepGoal(date, userData) {
@@ -79,3 +70,4 @@ class WellnessLog {
 if (typeof module !== 'undefined') {
   module.exports = WellnessLog;
 };
+
