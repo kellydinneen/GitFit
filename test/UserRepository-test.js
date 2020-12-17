@@ -1,10 +1,8 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-
 const UserRepository = require('../src/UserRepository.js');
 const User = require('../src/User.js');
-
 
 describe('UserRepository', function() {
   let userRepo;
@@ -95,6 +93,14 @@ describe('UserRepository', function() {
   it('should return average step goal of all users', function() {
     const averageStepGoal = userRepo.calculateAverageStepGoal();
     expect(averageStepGoal).to.equal(20000 / 3);
+  });
+
+  it('should instantiate all users\' wellness logs', function() {
+    userRepo.getAllWellnessLogs([], [], []); 
+
+    const users = userRepo.users;
+    expect(users[0]).to.have.property('wellnessLog');
+    expect(users[1]).to.have.property('wellnessLog');
   });
 
 });

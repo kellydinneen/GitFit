@@ -35,7 +35,7 @@ function openSite() {
   userRepo = new UserRepository(userData);
   activityRepo = new ActivityRepository(activityData);
   currentUser = userRepo.users[getRandomIndex(userRepo.users)];
-  userRepo.getAllWellnessLogs();
+  userRepo.getAllWellnessLogs(hydrationData, sleepData, activityData);
   displayUserDashboard(currentUser, '2019/09/22');
 };
 

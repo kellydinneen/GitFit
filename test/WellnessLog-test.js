@@ -3,6 +3,8 @@ const expect = chai.expect;
 
 const WellnessLog = require('../src/WellnessLog.js');
 const User = require('../src/User.js');
+// const User = require('../src/WellnessLog.js');
+
 
 let userData = [
   {
