@@ -23,12 +23,11 @@ const stepsRanking = document.querySelector('#activity-data_rank-steps');
 const todaysHydration = document.querySelector('#hydration-data_today_chart');
 const todaysHydrationValue = document.querySelector('#hydration-data_today_number');
 
-
 let userRepo;
 let currentUser;
 let activityRepo;
 
-//event handlers
+//eventhandlers and helpers
 window.onload = openSite();
 
 function openSite() {
@@ -37,7 +36,7 @@ function openSite() {
   currentUser = userRepo.users[getRandomIndex(userRepo.users)];
   currentUser.getWellnessLog(hydrationData, sleepData, activityData);
   displayUserDashboard(currentUser, '2019/09/22');
-};
+}
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
