@@ -34,7 +34,7 @@ To get started on this project:
 The current user is randomly chosen from a `UserRepository` class upon the opening of the page. So, everytime the page is refreshed a different user's information and logged health statistics are displayed. 
 
 <p align = "center">
-<img src="">
+<img src="https://i.imgur.com/AeJJaLA.png">
 </p>
 
 The page displays 4 differenct sections: 
@@ -49,7 +49,7 @@ The page displays 4 differenct sections:
 
 The small question marks in the corners of some widgets are to explain the information that is displayed when hovered over. For example, the sleep charts' question mark shows that sleep quality is judged based on a scale of 0 to 5. 
 
-The current user's information is displayed from a `User` class that is instantiated within the `UserRepository` class as soon as the page loads. Then the each user is assigned a `WellnessLog` object instance that contains all of the user's documented activity, hydration, and sleep data. Then, all users' data is logged into a `SleepRepository`, `ActivityRepository`, and `HydrationRepository`, where methods calaculate information about all users' wellness data. 
+The current user's information is displayed from a `User` class that is instantiated within the `UserRepository` class as soon as the page loads. Then the each user is assigned a `WellnessLog` object instance that contains all of the user's documented activity, hydration, and sleep data. Then, all users' data is logged into a `SleepRepository`, `ActivityRepository`, and `HydrationRepository`, where methods calculate information about all users' wellness data. 
 
 Charts are used to display some of the user's data. The charts were created using `Chart js`.
 
@@ -75,7 +75,7 @@ The User Info Area displays a percentage of the user's personal info.
 
 ## Deployment
 
-####
+The site can be reached at this [link](https://richardltyler.github.io/GitFit/src/index.html).
 
 ## Authors
 <table>

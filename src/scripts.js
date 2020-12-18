@@ -1,11 +1,24 @@
 //query selectors
-const displayDate = document.querySelector('#date');
+const dateDisplay = document.querySelector('#date');
 const greeting = document.querySelector('#greeting');
+
 const displayedUserName = document.querySelector('#user-name');
 const displayedUserStepGoal = document.querySelector('#user-step-goal');
-const displayedUserStepGoalComparison = document.querySelector('#user-step-goal_comparison');
+const displayedAverageUserStepGoal = document.querySelector('#user-step-goal_comparison');
 const displayedUserFriendsList = document.querySelector('#user-friends-list');
+
+const todaysActivityMinutes = document.querySelector('#activity-data_today-minutes');
+const todaysStepCount = document.querySelector('#activity-data_today-steps');
+const todaysDistanceWalked = document.querySelector('#activity-data_today-distance');
+const minutesRanking = document.querySelector('#activity-data_rank-minutes');
+const distanceRanking = document.querySelector('#activity-data_rank-distance');
+const stepsRanking = document.querySelector('#activity-data_rank-steps');
+const weekOfActivityChart = document.querySelector('#activity-data-week_chart');
+
 const weeklyHydrationChart = document.querySelector('#hydration-data-week_chart').getContext('2d');
+const todaysHydration = document.querySelector('#hydration-data_today_chart');
+const todaysHydrationValue = document.querySelector('#hydration-data_today_number');
+
 const lastNightsSleepHoursValue = document.querySelector('#sleep-data-last-night-hours_number');
 const lastNightsSleepQualityChart = document.querySelector('#sleep-data-last-night-quality_chart');
 const lastNightsSleepQualityValue = document.querySelector('#sleep-data-last-night-quality_value');
@@ -13,15 +26,6 @@ const allTimeSleepHoursValue = document.querySelector('#sleep-data-all-time-hour
 const allTimeSleepQualityChart = document.querySelector('#sleep-data-all-time-quality_chart');
 const allTimeSleepQualityValue = document.querySelector('#sleep-data-all-time-quality_value');
 const weekOfSleepChart = document.querySelector('#sleep-data-week_chart');
-const todaysActivityMinutes = document.querySelector('#activity-data_today-minutes');
-const todaysStepCount = document.querySelector('#activity-data_today-steps');
-const todaysDistanceWalked = document.querySelector('#activity-data_today-distance');
-const weekOfActivityChart = document.querySelector('#activity-data-week_chart');
-const minutesRanking = document.querySelector('#activity-data_rank-minutes');
-const distanceRanking = document.querySelector('#activity-data_rank-distance');
-const stepsRanking = document.querySelector('#activity-data_rank-steps');
-const todaysHydration = document.querySelector('#hydration-data_today_chart');
-const todaysHydrationValue = document.querySelector('#hydration-data_today_number');
 
 let userRepo;
 let currentUser;
@@ -45,50 +49,17 @@ function getRandomIndex(array) {
 function displayUserDashboard(user, date) {
   displayUserInfo(user);
   greetUser(user, date);
-  displayUserRankings(minutesRanking, user, date, 'minutesActive');
-  displayUserRankings(stepsRanking, user, date, 'numSteps');
-  displayUserRankings(distanceRanking, currentUser, date, 'flightsOfStairs');
-  displayUserData(todaysActivityMinutes, user, date, 'activity', 'minutesActive');
-  displayUserData(todaysStepCount, user, date, 'activity', 'numSteps');
-  displayUserData(todaysDistanceWalked, user, date, 'activity', 'distance');
-  displayUserData(lastNightsSleepHoursValue, user, date, 'sleep', 'hoursSlept');
-  allTimeSleepHoursValue.innerText = user.wellnessLog.calculateAllTimeAverage('sleep', 'hoursSlept');
-  createCharts(user, date);
+  displayActivityData(user, date);
+  displayHydrationData(user, date);
+  displaySleepData(user, date);
 }
 
 function displayUserInfo(user) {
-  displayedUserName.innerText = `${user.name}`;
   const averageStepGoal = userRepo.calculateAverageStepGoal();
-  displayedUserStepGoalComparison.innerText = `The average daily step goal is ${userRepo.calculateAverageStepGoal()}`;
+  displayedUserName.innerText = `${user.name}`;
+  displayedAverageUserStepGoal.innerText = `The average daily step goal is ${averageStepGoal}`;
   displayedUserStepGoal.innerText = `${user.dailyStepGoal}`;
   displayedUserFriendsList.innerText = `${getFriendNames(user)}`;
-}
-
-function greetUser(user, date) {
-  greeting.innerText = `Hello, ${user.getFirstName()}!`;
-  displayDate.innerText = date;
-};
-
-function displayUserRankings(location, user, date, category) {
-  location.innerText = `#${activityRepo.getActivityRank(user, date, category)}`;
-}
-
-function displayUserData(location, user, date, category, section) {
-  location.innerText = user.wellnessLog.getTodaysStat(date, category, section, userRepo.users);
-}
-
-function createCharts(user, date) {
-  const sleepQuality = user.wellnessLog.getTodaysStat(date, 'sleep', 'sleepQuality');
-  const averageSleepQuality = user.wellnessLog.calculateAllTimeAverage('sleep', 'sleepQuality');
-  allTimeSleepQualityValue.innerText = `${averageSleepQuality} out  of 5`;
-  lastNightsSleepQualityValue.innerText = `${sleepQuality} out  of 5`;
-  createSleepDonutChart(user, date, sleepQuality, 'quality', lastNightsSleepQualityChart);
-  createSleepDonutChart(user, date, averageSleepQuality, 'average quality', allTimeSleepQualityChart);
-  createHydrationChart(user, date);
-  createWeekOfSleepChart(user, date);
-  createWeekOfActivityChart(user, date);
-  createWeekOfHydrationChart(user, date);
-  todaysHydrationValue.innerText = `${(user.wellnessLog.getTodaysStat(date, 'hydration', 'numOunces') / 8).toFixed(1)} out of 10 cups`;
 }
 
 function getFriendNames(user) {
@@ -97,4 +68,51 @@ function getFriendNames(user) {
     return friend.getFirstName();
   });
   return friendNameList.join(', ');
-};
+}
+
+function greetUser(user, date) {
+  greeting.innerText = `Hello, ${user.getFirstName()}!`;
+  dateDisplay.innerText = date;
+}
+
+function displayActivityData(user, date) {
+  displayUserActivityRankings(minutesRanking, user, date, 'minutesActive');
+  displayUserActivityRankings(stepsRanking, user, date, 'numSteps');
+  displayUserActivityRankings(distanceRanking, user, date, 'flightsOfStairs');
+  displayDailyUserData(todaysActivityMinutes, user, date, 'activity', 'minutesActive');
+  displayDailyUserData(todaysStepCount, user, date, 'activity', 'numSteps');
+  displayDailyUserData(todaysDistanceWalked, user, date, 'activity', 'distance');
+  createWeekOfActivityChart(user, date);
+}
+
+function displayUserActivityRankings(location, user, date, category) {
+  location.innerText = `#${activityRepo.getActivityRank(user, date, category)}`;
+}
+
+function displaySleepData(user, date) {
+  const sleepQuality = user.wellnessLog.getTodaysStat(date, 'sleep', 'sleepQuality');
+  const averageSleepQuality = user.wellnessLog.calculateAllTimeAverage('sleep', 'sleepQuality');
+  createSleepDonutChart(user, date, sleepQuality, 'quality', lastNightsSleepQualityChart);
+  createSleepDonutChart(user, date, averageSleepQuality, 'average quality', allTimeSleepQualityChart);
+  createWeekOfSleepChart(user, date);
+  displayDailyUserData(lastNightsSleepHoursValue, user, date, 'sleep', 'hoursSlept');
+  displaySleepDonutInfo(allTimeSleepQualityValue, averageSleepQuality);
+  displaySleepDonutInfo(lastNightsSleepQualityValue, sleepQuality);
+  allTimeSleepHoursValue.innerText = user.wellnessLog.calculateAllTimeAverage('sleep', 'hoursSlept');
+}
+
+function displaySleepDonutInfo(location, value) {
+  location.innerText = `${value} out of 5`;
+}
+
+function displayHydrationData(user, date) {
+  createHydrationChart(user, date);
+  createWeekOfHydrationChart(user, date);
+  todaysHydrationValue.innerText = `${(user.wellnessLog.getTodaysStat(date, 'hydration', 'numOunces') / 8).toFixed(1)} out of 10 cups`;
+}
+
+function displayDailyUserData(location, user, date, category, section) {
+  location.innerText = user.wellnessLog.getTodaysStat(date, category, section, userRepo.users);
+}
+
+
