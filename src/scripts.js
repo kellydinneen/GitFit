@@ -1,5 +1,3 @@
-const ActivityRepository = require("./ActivityRepository");
-
 //query selectors
 const dateDisplay = document.querySelector('#date');
 const greeting = document.querySelector('#greeting');
@@ -29,13 +27,17 @@ const allTimeSleepQualityChart = document.querySelector('#sleep-data-all-time-qu
 const allTimeSleepQualityValue = document.querySelector('#sleep-data-all-time-quality_value');
 const weekOfSleepChart = document.querySelector('#sleep-data-week_chart');
 
+let userRepo;
+let currentUser;
+let activityRepo;
+
 //eventhandlers and helpers
 window.onload = openSite();
 
 function openSite() {
-  const userRepo = new UserRepository(userData);
-  const activityRepo = new ActivityRepository(activityData);
-  const currentUser = userRepo.users[getRandomIndex(userRepo.users)];
+  userRepo = new UserRepository(userData);
+  activityRepo = new ActivityRepository(activityData);
+  currentUser = userRepo.users[getRandomIndex(userRepo.users)];
   currentUser.getWellnessLog(hydrationData, sleepData, activityData);
   displayUserDashboard(currentUser, '2019/09/22');
 }
